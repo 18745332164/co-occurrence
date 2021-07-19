@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <PreferenceCategory android:title="@string/theme_title" />
+    <Preference
+        android:key="my_theme"
+        android:title="@string/theme_summary"/>
+
+    <PreferenceCategory android:title="@string/advanced_options_type_custom_name" />
+    <ListPreference android:key="notification_priority"
+        android:title="@string/notification_priority"
+        android:defaultValue="3"
+        android:entries="@array/notification_priority_list"
+        android:entryValues="@array/notification_priority_list"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null" />
+
+    <ListPreference android:key="languages_list"
+        android:title="@string/languages_title"
+        android:defaultValue="3"
+        android:entries="@array/language_list"
+        android:entryValues="@array/language_list"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null" />
+
+    <Preference
+        android:key="permission_activity_show"
+        android:title="@string/permissions_title" />
+
+    <com.adam.aslfms.SeekBarPreference
+        android:key="scrobble_pointer"
+        android:summary="@string/scrobble_point_summary"
+        android:title="@string/scrobble_point_title" />
+
+    <PreferenceCategory
+        android:key="ao_battery"
+        android:title="@string/ao_battery_title" />
+
+    <PreferenceCategory
+        android:key="ao_plugged"
+        android:title="@string/ao_plugged_title" />
+
+    <PreferenceCategory
+        android:key="developer_options"
+        android:title="@string/developer_options" />
+    <Preference
+        android:key="export_database"
+        android:title="@string/export_database" />
+
+</PreferenceScreen>

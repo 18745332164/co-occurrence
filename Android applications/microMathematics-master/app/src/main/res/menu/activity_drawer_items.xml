@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ microMathematics - Extended Visual Calculator
+  ~ Copyright (C) 2014-2021 by Mikhail Kulesh
+  ~
+  ~ This program is free software: you can redistribute it and/or modify it under the terms of the GNU
+  ~ General Public License as published by the Free Software Foundation, either version 3 of the License,
+  ~ or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+  ~ even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+  ~ GNU General Public License for more details. You should have received a copy of the GNU General
+  ~ Public License along with this program.
+  -->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:orderInCategory="0"
+            android:icon="@drawable/drawer_worksheet"
+            android:title="@string/app_short_name"/>
+        <item
+            android:orderInCategory="1"
+            android:icon="@drawable/drawer_how_to_use"
+            android:title="@string/app_short_name" />
+    </group>
+
+    <item android:id="@+id/nav_group_examples"
+          android:title="@string/activity_example"
+          android:orderInCategory="2">
+        <menu>
+            <item
+                android:orderInCategory="2"
+                android:icon="@drawable/drawer_function_plot"
+                android:title="@string/app_short_name" />
+            <item
+                android:orderInCategory="3"
+                android:icon="@drawable/drawer_polar_plot"
+                android:title="@string/app_short_name" />
+            <item
+                android:orderInCategory="4"
+                android:icon="@drawable/drawer_three_d_plot"
+                android:title="@string/app_short_name" />
+            <item
+                android:orderInCategory="5"
+                android:icon="@drawable/drawer_series_and_integrals"
+                android:title="@string/app_short_name" />
+        </menu>
+    </item>
+
+    <item android:id="@+id/nav_group_etc"
+          android:title="@string/app_short_name"
+          android:orderInCategory="3">
+        <menu>
+            <item
+                android:orderInCategory="6"
+                android:icon="@drawable/drawer_about"
+                android:title="@string/app_short_name" />
+            <item
+                android:orderInCategory="7"
+                android:icon="@drawable/drawer_documentation"
+                android:title="@string/app_short_name" />
+        </menu>
+    </item>
+
+</menu>

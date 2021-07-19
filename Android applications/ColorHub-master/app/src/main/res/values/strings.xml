@@ -1,0 +1,937 @@
+<resources>
+    <string name="app_name">ColorHub</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Admob id -->
+    <string name="banner_com"></string>
+
+    <string name="banner_commercial">ca-app-pub-8446606602742080/4407347050</string>
+    <string name="banner_commercialww">ca-app-pub-8446606602742080~2930613852</string>
+    <string name="antrikod_web">www.antrikod.com</string>
+    <string name="software_team">SOFTWARE TEAM</string>
+    <string name="graphic_team">GRAPHICS TEAM</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="aboutus">We develops applications for Mobile platforms and works on different technologies. For more, visit our website.</string>
+
+    <string name="new_rate_dialog_title">Rate this app</string>
+    <string name="new_rate_dialog_message">If you enjoy playing this app, would you mind taking a moment to rate it? It won\'t take more than a minute. Thanks for your support!</string>
+    <string name="new_rate_dialog_ok">Rate It Now</string>
+    <string name="new_rate_dialog_later">Remind Me Later</string>
+    <string name="new_rate_dialog_never">No, Thanks</string>
+
+
+    <string-array name="HeaderColorName">
+        <item>Red</item>
+        <item>Pink</item>
+        <item>Purple</item>
+        <item>Deep Purple</item>
+        <item>Indigo</item>
+        <item>Blue</item>
+        <item>Light Blue</item>
+        <item>Cyan</item>
+        <item>Teal</item>
+        <item>Green</item>
+        <item>Light Green</item>
+        <item>Lime</item>
+        <item>Yellow</item>
+        <item>Amber</item>
+        <item>Orange</item>
+        <item>Deep Orange</item>
+        <item>Brown</item>
+        <item>Grey</item>
+        <item>Blue Grey</item>
+    </string-array>
+
+
+    <string-array name="Planets">
+        <item>Sun</item>
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
+
+
+    <!-- Flat Colors -->
+
+    <string-array name="FlatColorName">
+        <item>Turquoise</item>
+        <item>Greensea</item>
+        <item>Emerland</item>
+        <item>Nephritis</item>
+        <item>Peterriver</item>
+        <item>Belizehole</item>
+        <item>Amethyst</item>
+        <item>Wisteria</item>
+        <item>Wetasphalt</item>
+        <item>Midnightblue</item>
+        <item>Sunfloser</item>
+        <item>Orange</item>
+        <item>Carrot</item>
+        <item>Pumpkin</item>
+        <item>Alizarin</item>
+        <item>Pomegranate</item>
+        <item>Clouds</item>
+        <item>Silver</item>
+        <item>Asbestos</item>
+        <item>Concrete</item>
+    </string-array>
+
+    <string-array name="FlatColorCode">
+        <item>#FF1abc9c</item>
+        <item>#FF16a085</item>
+        <item>#FF2ecc71</item>
+        <item>#FF27ae60</item>
+        <item>#FF3498db</item>
+        <item>#FF2980b9</item>
+        <item>#FF9b59b6</item>
+        <item>#FF8e44ad</item>
+        <item>#FF34495e</item>
+        <item>#FF2c3e50</item>
+        <item>#FFf1c40f</item>
+        <item>#FFf39c12</item>
+        <item>#FFe67e22</item>
+        <item>#FFd35400</item>
+        <item>#FFe74c3c</item>
+        <item>#FFc0392b</item>
+        <item>#FFecf0f1</item>
+        <item>#FFbdc3c7</item>
+        <item>#FF7f8c8d</item>
+        <item>#FF95a5a6</item>
+    </string-array>
+
+
+    <!-- Flat Colors End -->
+
+    <!-- Metro Colors -->
+    <string-array name="MetroColorName">
+        <item>Lime</item>
+        <item>Green</item>
+        <item>Emerald</item>
+        <item>Teal</item>
+        <item>Cyan</item>
+        <item>Cobalt</item>
+        <item>Indigo</item>
+        <item>Violet</item>
+        <item>Pink</item>
+        <item>Magenta</item>
+        <item>Crimson</item>
+        <item>Red</item>
+        <item>Orange</item>
+        <item>Amber</item>
+        <item>Yellow</item>
+        <item>Brown</item>
+        <item>Olive</item>
+        <item>Steel</item>
+        <item>Mauve</item>
+        <item>Sienna</item>
+    </string-array>
+
+
+    <string-array name="MetroColorCode">
+        <item>#FFa4c400</item>
+        <item>#FF60a917</item>
+        <item>#FF008a00</item>
+        <item>#FF00aba9</item>
+        <item>#FF1ba1e2</item>
+        <item>#FF0050ef</item>
+        <item>#FF6a00ff</item>
+        <item>#FFaa00ff</item>
+        <item>#FFf472d0</item>
+        <item>#FFd80073</item>
+        <item>#FFa20025</item>
+        <item>#FFe51400</item>
+        <item>#FFfa6800</item>
+        <item>#FFf0a30a</item>
+        <item>#FFe3c800</item>
+        <item>#FF825a2c</item>
+        <item>#FF6d8764</item>
+        <item>#FF647687</item>
+        <item>#FF76608a</item>
+        <item>#FFa0522d</item>
+    </string-array>
+    <!-- Metro Colors End -->
+
+    <!--  Social Colors -->
+
+    <string-array name="SocialColorName">
+
+        <item>Facebook</item>
+        <item>Skype</item>
+        <item>Twitter</item>
+        <item>Wordpress</item>
+        <item>Linkedin</item>
+        <item>Vimeo</item>
+        <item>Tumblr</item>
+        <item>VK</item>
+        <item>Yahoo</item>
+        <item>Slideshare</item>
+        <item>Instagram</item>
+        <item>Google Plus</item>
+        <item>Producthunt</item>
+        <item>Slack</item>
+        <item>Hackernews</item>
+        <item>Dribbble</item>
+        <item>Whatsapp</item>
+        <item>Flickr</item>
+        <item>Wechat</item>
+        <item>Foursquare</item>
+        <item>Medium</item>
+        <item>Vine</item>
+        <item>Behance</item>
+        <item>Snapchat</item>
+    </string-array>
+
+
+    <string-array name="SocialColorCode">
+        <item>#FF3b5999</item>
+        <item>#FF00AFF0</item>
+        <item>#FF55acee</item>
+        <item>#FF21759b</item>
+        <item>#FF0077B5</item>
+        <item>#FF1ab7ea</item>
+        <item>#FF34465d</item>
+        <item>#FF4c75a3</item>
+        <item>#FF410093</item>
+        <item>#FF0077b5</item>
+        <item>#FF3f729b</item>
+        <item>#FFdd4b39</item>
+        <item>#FFda552f</item>
+        <item>#FF3aaf85</item>
+        <item>#FFff6600</item>
+        <item>#FFea4c89</item>
+        <item>#FF25D366</item>
+        <item>#FFff0084</item>
+        <item>#FF09b83e</item>
+        <item>#FFf94877</item>
+        <item>#FF02b875</item>
+        <item>#FF00b489</item>
+        <item>#FF131418</item>
+        <item>#FFFFFC00</item>
+    </string-array>
+
+    <!-- Social Colors End -->
+
+    <!-- Material Colors Names -->
+
+    <string-array name="MaterialColorNames">
+        <item>Red</item>
+        <item>Pink</item>
+        <item>Purple</item>
+        <item>Deep Purple</item>
+        <item>Indigo</item>
+        <item>Blue</item>
+        <item>Light Blue</item>
+        <item>Cyan</item>
+        <item>Teal</item>
+        <item>Green</item>
+        <item>Light Green</item>
+        <item>Lime</item>
+        <item>Yellow</item>
+        <item>Amber</item>
+        <item>Orange</item>
+        <item>Deep Orange</item>
+        <item>Brown</item>
+        <item>Grey</item>
+        <item>Blue Grey</item>
+    </string-array>
+
+
+    <!-- Material Color Red -->
+    <string-array name="MaterialColorCodeName">
+        <item>RED</item>
+        <item>50</item>
+        <item>100</item>
+        <item>200</item>
+        <item>300</item>
+        <item>400</item>
+        <item>500</item>
+        <item>600</item>
+        <item>700</item>
+        <item>800</item>
+        <item>900</item>
+        <item>A100</item>
+        <item>A200</item>
+        <item>A400</item>
+        <item>A700</item>
+    </string-array>
+
+
+    <string-array name="MaterialColorCodeRed">
+        <item>#FFF44336</item>
+        <item>#FFFFebee</item>
+        <item>#ffffcdd2</item>
+        <item>#ffef9a9a</item>
+        <item>#ffe57373</item>
+        <item>#ffef5350</item>
+        <item>#fff44336</item>
+        <item>#ffe53935</item>
+        <item>#ffd32f2f</item>
+        <item>#ffc62828</item>
+        <item>#ffb71c1c</item>
+        <item>#ffff8a80</item>
+        <item>#ffff5252</item>
+        <item>#ffff1744</item>
+        <item>#ffd50000</item>
+
+    </string-array>
+
+    <!-- Material Color Pink -->
+    <string-array name="MaterialColorCodePink">
+        <item>#FFE91E63</item>
+        <item>#FFFCE4EC</item>
+        <item>#FFF8BBD0</item>
+        <item>#FFF48FB1</item>
+        <item>#FFF06292</item>
+        <item>#FFEC407A</item>
+        <item>#FFE91E63</item>
+        <item>#FFD81B60</item>
+        <item>#FFC2185B</item>
+        <item>#FFAD1457</item>
+        <item>#FF880E4F</item>
+        <item>#FFFF80AB</item>
+        <item>#FFFF4081</item>
+        <item>#FFF50057</item>
+        <item>#FFC51162</item>
+    </string-array>
+    <!-- Material Color Purple -->
+
+    <string-array name="MaterialColorCodePurple">
+        <item>#FF9C27B0</item>
+        <item>#FFF3E5F5</item>
+        <item>#FFE1BEE7</item>
+        <item>#FFCE93D8</item>
+        <item>#FFBA68C8</item>
+        <item>#FFAB47BC</item>
+        <item>#FF9C27B0</item>
+        <item>#FF8E24AA</item>
+        <item>#FF7B1FA2</item>
+        <item>#FF6A1B9A</item>
+        <item>#FF4A148C</item>
+        <item>#FFEA80FC</item>
+        <item>#FFE040FB</item>
+        <item>#FFD500F9</item>
+        <item>#FFAA00FF</item>
+    </string-array>
+
+    <!-- Material Color DEEP PURPLE -->
+    <string-array name="MaterialColorCodeDeepPurple">
+        <item>#FF673AB7</item>
+        <item>#FFEDE7F6</item>
+        <item>#FFD1C4E9</item>
+        <item>#FFB39DDB</item>
+        <item>#FF9575CD</item>
+        <item>#FF7E57C2</item>
+        <item>#FF673AB7</item>
+        <item>#FF5E35B1</item>
+        <item>#FF512DA8</item>
+        <item>#FF4527A0</item>
+        <item>#FF311B92</item>
+        <item>#FFB388FF</item>
+        <item>#FF7C4DFF</item>
+        <item>#FF651FFF</item>
+        <item>#FF6200EA</item>
+    </string-array>
+
+    <!-- Material Color Indigo  -->
+
+    <string-array name="MaterialColorCodeIndigo">
+        <item>#FF3F51B5</item>
+        <item>#FFE8EAF6</item>
+        <item>#FFC5CAE9</item>
+        <item>#FF9FA8DA</item>
+        <item>#FF7986CB</item>
+        <item>#FF5C6BC0</item>
+        <item>#FF3F51B5</item>
+        <item>#FF3949AB</item>
+        <item>#FF303F9F</item>
+        <item>#FF283593</item>
+        <item>#FF1A237E</item>
+        <item>#FF8C9EFF</item>
+        <item>#FF536DFE</item>
+        <item>#FF3D5AFE</item>
+        <item>#FF304FFE</item>
+    </string-array>
+    <!-- Material Color Blue -->
+    <string-array name="MaterialColorCodeBlue">
+        <item>#FF2196F3</item>
+        <item>#FFE3F2FD</item>
+        <item>#FFBBDEFB</item>
+        <item>#FF90CAF9</item>
+        <item>#FF64B5F6</item>
+        <item>#FF42A5F5</item>
+        <item>#FF2196F3</item>
+        <item>#FF1E88E5</item>
+        <item>#FF1976D2</item>
+        <item>#FF1565C0</item>
+        <item>#FF0D47A1</item>
+        <item>#FF82B1FF</item>
+        <item>#FF448AFF</item>
+        <item>#FF2979FF</item>
+        <item>#FF2962FF</item>
+    </string-array>
+
+    <!-- Material Color Light Blue  -->
+    <string-array name="MaterialColorCodeLightBlue">
+        <item>#FF03A9F4</item>
+        <item>#FFE1F5FE</item>
+        <item>#FFB3E5FC</item>
+        <item>#FF81D4FA</item>
+        <item>#FF4FC3F7</item>
+        <item>#FF29B6F6</item>
+        <item>#FF03A9F4</item>
+        <item>#FF039BE5</item>
+        <item>#FF0288D1</item>
+        <item>#FF0277BD</item>
+        <item>#FF01579B</item>
+        <item>#FF80D8FF</item>
+        <item>#FF40C4FF</item>
+        <item>#FF00B0FF</item>
+        <item>#FF0091EA</item>
+    </string-array>
+
+    <!-- Material Color Cyan -->
+    <string-array name="MaterialColorCodeCyan">
+        <item>#FF00BCD4</item>
+        <item>#FFE0F7FA</item>
+        <item>#FFB2EBF2</item>
+        <item>#FF80DEEA</item>
+        <item>#FF4DD0E1</item>
+        <item>#FF26C6DA</item>
+        <item>#FF00BCD4</item>
+        <item>#FF00ACC1</item>
+        <item>#FF0097A7</item>
+        <item>#FF00838F</item>
+        <item>#FF006064</item>
+        <item>#FF84FFFF</item>
+        <item>#FF18FFFF</item>
+        <item>#FF00E5FF</item>
+        <item>#FF00B8D4</item>
+    </string-array>
+
+    <!-- Material Color  Teal-->
+    <string-array name="MaterialColorCodeTeal">
+        <item>#FF009688</item>
+        <item>#FFE0F2F1</item>
+        <item>#FFB2DFDB</item>
+        <item>#FF80CBC4</item>
+        <item>#FF4DB6AC</item>
+        <item>#FF26A69A</item>
+        <item>#FF009688</item>
+        <item>#FF00897B</item>
+        <item>#FF00796B</item>
+        <item>#FF00695C</item>
+        <item>#FF004D40</item>
+        <item>#FFA7FFEB</item>
+        <item>#FF64FFDA</item>
+        <item>#FF1DE9B6</item>
+        <item>#FF00BFA5</item>
+    </string-array>
+    <!-- Material Color Green  -->
+    <string-array name="MaterialColorCodeGreen">
+        <item>#FF4CAF50</item>
+        <item>#FFE8F5E9</item>
+        <item>#FFC8E6C9</item>
+        <item>#FFA5D6A7</item>
+        <item>#FF81C784</item>
+        <item>#FF66BB6A</item>
+        <item>#FF4CAF50</item>
+        <item>#FF43A047</item>
+        <item>#FF388E3C</item>
+        <item>#FF2E7D32</item>
+        <item>#FF1B5E20</item>
+        <item>#FFB9F6CA</item>
+        <item>#FF69F0AE</item>
+        <item>#FF00E676</item>
+        <item>#FF00C853</item>
+    </string-array>
+    <!-- Material Color Light Green  -->
+    <string-array name="MaterialColorCodeLightGreen">
+        <item>#FF8BC34A</item>
+        <item>#FFF1F8E9</item>
+        <item>#FFDCEDC8</item>
+        <item>#FFC5E1A5</item>
+        <item>#FFAED581</item>
+        <item>#FF9CCC65</item>
+        <item>#FF8BC34A</item>
+        <item>#FF7CB342</item>
+        <item>#FF689F38</item>
+        <item>#FF558B2F</item>
+        <item>#FF33691E</item>
+        <item>#FFCCFF90</item>
+        <item>#FFB2FF59</item>
+        <item>#FF76FF03</item>
+        <item>#FF64DD17</item>
+    </string-array>
+
+    <!-- Material Color LIME  -->
+    <string-array name="MaterialColorCodeLime">
+        <item>#FFCDDC39</item>
+        <item>#FFF9FBE7</item>
+        <item>#FFF0F4C3</item>
+        <item>#FFE6EE9C</item>
+        <item>#FFDCE775</item>
+        <item>#FFD4E157</item>
+        <item>#FFCDDC39</item>
+        <item>#FFC0CA33</item>
+        <item>#FFAFB42B</item>
+        <item>#FF9E9D24</item>
+        <item>#FF827717</item>
+        <item>#FFF4FF81</item>
+        <item>#FFEEFF41</item>
+        <item>#FFC6FF00</item>
+        <item>#FFAEEA00</item>
+    </string-array>
+
+    <!-- Material Color Yellow  -->
+    <string-array name="MaterialColorCodeYellow">
+        <item>#FFFFEB3B</item>
+        <item>#FFFFFDE7</item>
+        <item>#FFFFF9C4</item>
+        <item>#FFFFF59D</item>
+        <item>#FFFFF176</item>
+        <item>#FFFFEE58</item>
+        <item>#FFFFEB3B</item>
+        <item>#FFFDD835</item>
+        <item>#FFFBC02D</item>
+        <item>#FFF9A825</item>
+        <item>#FFF57F17</item>
+        <item>#FFFFFF8D</item>
+        <item>#FFFFFF00</item>
+        <item>#FFFFEA00</item>
+        <item>#FFFFD600</item>
+    </string-array>
+
+    <!-- Material Color Amber -->
+    <string-array name="MaterialColorCodeAmber">
+        <item>#FFFFC107</item>
+        <item>#FFFFF8E1</item>
+        <item>#FFFFECB3</item>
+        <item>#FFFFE082</item>
+        <item>#FFFFD54F</item>
+        <item>#FFFFCA28</item>
+        <item>#FFFFC107</item>
+        <item>#FFFFB300</item>
+        <item>#FFFFA000</item>
+        <item>#FFFF8F00</item>
+        <item>#FFFF6F00</item>
+        <item>#FFFFE57F</item>
+        <item>#FFFFD740</item>
+        <item>#FFFFC400</item>
+        <item>#FFFFAB00</item>
+    </string-array>
+
+    <!-- Material Color Orange -->
+    <string-array name="MaterialColorCodeOrange">
+        <item>#FFFF9800</item>
+        <item>#FFFFF3E0</item>
+        <item>#FFFFE0B2</item>
+        <item>#FFFFCC80</item>
+        <item>#FFFFB74D</item>
+        <item>#FFFFA726</item>
+        <item>#FFFF9800</item>
+        <item>#FFFB8C00</item>
+        <item>#FFF57C00</item>
+        <item>#FFEF6C00</item>
+        <item>#FFE65100</item>
+        <item>#FFFFD180</item>
+        <item>#FFFFAB40</item>
+        <item>#FFFF9100</item>
+        <item>#FFFF6D00</item>
+
+    </string-array>
+
+    <!-- Material Color DeepOrange -->
+    <string-array name="MaterialColorCodeDeepOrange">
+        <item>#FFFF5722</item>
+        <item>#FFFBE9E7</item>
+        <item>#FFFFCCBC</item>
+        <item>#FFFFAB91</item>
+        <item>#FFFF8A65</item>
+        <item>#FFFF7043</item>
+        <item>#FFFF5722</item>
+        <item>#FFF4511E</item>
+        <item>#FFE64A19</item>
+        <item>#FFD84315</item>
+        <item>#FFBF360C</item>
+        <item>#FFFF9E80</item>
+        <item>#FFFF6E40</item>
+        <item>#FFFF3D00</item>
+        <item>#FFDD2C00</item>
+    </string-array>
+
+    <!-- Material Color Brown  -->
+    <string-array name="MaterialColorCodeBrown">
+        <item>#FF795548</item>
+        <item>#FFEFEBE9</item>
+        <item>#FFD7CCC8</item>
+        <item>#FFBCAAA4</item>
+        <item>#FFA1887F</item>
+        <item>#FF8D6E63</item>
+        <item>#FF795548</item>
+        <item>#FF6D4C41</item>
+        <item>#FF5D4037</item>
+        <item>#FF4E342E</item>
+        <item>#FF3E2723</item>
+    </string-array>
+
+    <!-- Material Color  Grey-->
+
+    <string-array name="MaterialColorCodeGrey">
+        <item>#FF9E9E9E</item>
+        <item>#FFFAFAFA</item>
+        <item>#FFF5F5F5</item>
+        <item>#FFEEEEEE</item>
+        <item>#FFE0E0E0</item>
+        <item>#FFBDBDBD</item>
+        <item>#FF9E9E9E</item>
+        <item>#FF757575</item>
+        <item>#FF616161</item>
+        <item>#FF424242</item>
+        <item>#FF212121</item>
+    </string-array>
+
+    <!-- Material Color BlueGrey-->
+    <string-array name="MaterialColorCodeBlueGrey">
+        <item>#FF607D8B</item>
+        <item>#FFECEFF1</item>
+        <item>#FFCFD8DC</item>
+        <item>#FFB0BEC5</item>
+        <item>#FF90A4AE</item>
+        <item>#FF78909C</item>
+        <item>#FF607D8B</item>
+        <item>#FF546E7A</item>
+        <item>#FF455A64</item>
+        <item>#FF37474F</item>
+        <item>#FF263238</item>
+    </string-array>
+
+
+    <!-- Html Color Names and Codes -->
+
+    <string-array name="HtmlColorName">
+        <item>Gainsboro</item>
+        <item>Lightgray</item>
+        <item>Silver</item>
+        <item>Darkgray</item>
+        <item>Gray</item>
+        <item>Dimgray</item>
+        <item>Lightslategray</item>
+        <item>Slategray</item>
+        <item>Darkslategray</item>
+        <item>Black</item>
+        <item>Cornsilk</item>
+        <item>Blanchedalmond</item>
+        <item>Bisque</item>
+        <item>Navajowhite</item>
+        <item>Wheat</item>
+        <item>Burlywood</item>
+        <item>Tan</item>
+        <item>Rosybrown</item>
+        <item>Sandybrown</item>
+        <item>Goldenrod</item>
+        <item>Darkgoldenrod</item>
+        <item>Peru</item>
+        <item>Chocolate</item>
+        <item>Saddlebrown</item>
+        <item>Sienna</item>
+        <item>Brown</item>
+        <item>Maroon</item>
+        <item>Indianred</item>
+        <item>Lightcoral</item>
+        <item>Salmon</item>
+        <item>Darksalmon</item>
+        <item>Lightsalmon</item>
+        <item>Crimson</item>
+        <item>Red</item>
+        <item>Firebrick</item>
+        <item>Darkred</item>
+        <item>Pink</item>
+        <item>Lightpink</item>
+        <item>Hotpink</item>
+        <item>Deeppink</item>
+        <item>Mediumvioletred</item>
+        <item>Palevioletred</item>
+        <item>Lightsalmon</item>
+        <item>Coral</item>
+        <item>Tomato</item>
+        <item>Orangered</item>
+        <item>Darkorange</item>
+        <item>Orange</item>
+        <item>Gold</item>
+        <item>Yellow</item>
+        <item>Lightyellow</item>
+        <item>Lemonchiffon</item>
+        <item>Lightgoldenrodyellow</item>
+        <item>Papayawhip</item>
+        <item>Moccasin</item>
+        <item>Peachpuff</item>
+        <item>Palegoldenrod</item>
+        <item>Khaki</item>
+        <item>Darkkhaki</item>
+        <item>Greenyellow</item>
+        <item>Chartreuse</item>
+        <item>Lawngreen</item>
+        <item>Lime</item>
+        <item>Limegreen</item>
+        <item>Palegreen</item>
+        <item>Lightgreen</item>
+        <item>Mediumspringgreen</item>
+        <item>Springgreen</item>
+        <item>Mediumseagreen</item>
+        <item>Seagreen</item>
+        <item>Forestgreen</item>
+        <item>Green</item>
+        <item>Darkgreen</item>
+        <item>Yellowgreen</item>
+        <item>Olivedrab</item>
+        <item>Olive</item>
+        <item>Darkolivegreen</item>
+        <item>Mediumaquamarine</item>
+        <item>Darkseagreen</item>
+        <item>Lightseagreen</item>
+        <item>Darkcyan</item>
+        <item>Teal</item>
+        <item>Lavender</item>
+        <item>Thistle</item>
+        <item>Plum</item>
+        <item>Violet</item>
+        <item>Orchid</item>
+        <item>Fuchsia</item>
+        <item>Magenta</item>
+        <item>Mediumorchid</item>
+        <item>Mediumpurple</item>
+        <item>Rabeccapurple</item>
+        <item>Blueviolet</item>
+        <item>Darkviolet</item>
+        <item>Darkorchid</item>
+        <item>Darkmagenta</item>
+        <item>Purple</item>
+        <item>Indigo</item>
+        <item>Slateblue</item>
+        <item>Darkslateblue</item>
+        <item>Mediumslateblue</item>
+        <item>Aqua</item>
+        <item>Cyan</item>
+        <item>Lightcyan</item>
+        <item>Paleturquoise</item>
+        <item>Aquamarine</item>
+        <item>Turquoise</item>
+        <item>Mediumturquoise</item>
+        <item>Darkturquoise</item>
+        <item>Cadetblue</item>
+        <item>Steelblue</item>
+        <item>Lightsteelblue</item>
+        <item>Powderblue</item>
+        <item>Lightblue</item>
+        <item>Skyblue</item>
+        <item>Lightskyblue</item>
+        <item>Deepskyblue</item>
+        <item>Dodgerblue</item>
+        <item>Cornflowerblue</item>
+        <item>Mediumslateblue</item>
+        <item>Royalblue</item>
+        <item>Blue</item>
+        <item>Mediumblue</item>
+        <item>Darkblue</item>
+        <item>Navy</item>
+        <item>Midnightblue</item>
+        <item>White</item>
+        <item>Snow</item>
+        <item>Honeydew</item>
+        <item>Mintcream</item>
+        <item>Azure</item>
+        <item>Aliceblue</item>
+        <item>Chostwhite</item>
+        <item>Whitesmoke</item>
+        <item>Seashell</item>
+        <item>Beige</item>
+        <item>Oldlace</item>
+        <item>Floralwhite</item>
+        <item>Ivory</item>
+        <item>Antiquewhite</item>
+        <item>Linen</item>
+        <item>Lavenderblush</item>
+        <item>Mistyrose</item>
+    </string-array>
+
+    <string-array name="HtmlColorCode">
+        <item>#FFDCDCDC</item>
+        <item>#FFD3D3D3</item>
+        <item>#FFC0C0C0</item>
+        <item>#FFA9A9A9</item>
+        <item>#FF808080</item>
+        <item>#FF696969</item>
+        <item>#FF778899</item>
+        <item>#FF708090</item>
+        <item>#FF2F4F4F</item>
+        <item>#FF000000</item>
+        <item>#FFFFF8DC</item>
+        <item>#FFFFEBCD</item>
+        <item>#FFFFE4C4</item>
+        <item>#FFFFDEAD</item>
+        <item>#FFF5DEB3</item>
+        <item>#FFDEB887</item>
+        <item>#FFD2B48C</item>
+        <item>#FFBC8F8F</item>
+        <item>#FFF4A460</item>
+        <item>#FFDAA520</item>
+        <item>#FFB8860B</item>
+        <item>#FFCD853F</item>
+        <item>#FFD2691E</item>
+        <item>#FF8B4513</item>
+        <item>#FFA0522D</item>
+        <item>#FFA52A2A</item>
+        <item>#FF800000</item>
+        <item>#FFCD5C5C</item>
+        <item>#FFF08080</item>
+        <item>#FFFA8072</item>
+        <item>#FFE9967A</item>
+        <item>#FFFFA07A</item>
+        <item>#FFDC143C</item>
+        <item>#FFFF0000</item>
+        <item>#FFB22222</item>
+        <item>#FF8B0000</item>
+        <item>#FFFFC0CB</item>
+        <item>#FFFFB6C1</item>
+        <item>#FFFF69B4</item>
+        <item>#FFFF1493</item>
+        <item>#FFC71585</item>
+        <item>#FFDB7093</item>
+        <item>#FFFFA07A</item>
+        <item>#FFFF7F50</item>
+        <item>#FFFF6347</item>
+        <item>#FFFF4500</item>
+        <item>#FFFF8C00</item>
+        <item>#FFFFA500</item>
+        <item>#FFFFD700</item>
+        <item>#FFFFFF00</item>
+        <item>#FFFFFFE0</item>
+        <item>#FFFFFACD</item>
+        <item>#FFFAFAD2</item>
+        <item>#FFFFEFD5</item>
+        <item>#FFFFE4B5</item>
+        <item>#FFFFDAB9</item>
+        <item>#FFEEE8AA</item>
+        <item>#FFF0E68C</item>
+        <item>#FFBDB76B</item>
+        <item>#FFADFF2F</item>
+        <item>#FF7FFF00</item>
+        <item>#FF7CFC00</item>
+        <item>#FF00FF00</item>
+        <item>#FF32CD32</item>
+        <item>#FF98FB98</item>
+        <item>#FF90EE90</item>
+        <item>#FF00FA9A</item>
+        <item>#FF00FF7F</item>
+        <item>#FF3CB371</item>
+        <item>#FF2E8B57</item>
+        <item>#FF228B22</item>
+        <item>#FF008000</item>
+        <item>#FF006400</item>
+        <item>#FF9ACD32</item>
+        <item>#FF6B8E23</item>
+        <item>#FF808000</item>
+        <item>#FF556B2F</item>
+        <item>#FF66CDAA</item>
+        <item>#FF8FBC8B</item>
+        <item>#FF20B2AA</item>
+        <item>#FF008B8B</item>
+        <item>#FF008080</item>
+        <item>#FFE6E6FA</item>
+        <item>#FFD8BFD8</item>
+        <item>#FFDDA0DD</item>
+        <item>#FFEE82EE</item>
+        <item>#FFDA70D6</item>
+        <item>#FFFF00FF</item>
+        <item>#FFFF00FF</item>
+        <item>#FFBA55D3</item>
+        <item>#FF9370DB</item>
+        <item>#FF663399</item>
+        <item>#FF8A2BE2</item>
+        <item>#FF9400D3</item>
+        <item>#FF9932CC</item>
+        <item>#FF8B008B</item>
+        <item>#FF800080</item>
+        <item>#FF4B0082</item>
+        <item>#FF6A5ACD</item>
+        <item>#FF483D8B</item>
+        <item>#FF7B68EE</item>
+        <item>#FF00FFFF</item>
+        <item>#FF00FFFF</item>
+        <item>#FFE0FFFF</item>
+        <item>#FFAFEEEE</item>
+        <item>#FF7FFFD4</item>
+        <item>#FF40E0D0</item>
+        <item>#FF48D1CC</item>
+        <item>#FF00CED1</item>
+        <item>#FF5F9EA0</item>
+        <item>#FF4682B4</item>
+        <item>#FFB0C4DE</item>
+        <item>#FFB0E0E6</item>
+        <item>#FFADD8E6</item>
+        <item>#FF87CEEB</item>
+        <item>#FF87CEFA</item>
+        <item>#FF00BFFF</item>
+        <item>#FF1E90FF</item>
+        <item>#FF6495ED</item>
+        <item>#FF7B68EE</item>
+        <item>#FF4169E1</item>
+        <item>#FF0000FF</item>
+        <item>#FF0000CD</item>
+        <item>#FF00008B</item>
+        <item>#FF000080</item>
+        <item>#FF191970</item>
+        <item>#FFFFFFFF</item>
+        <item>#FFFFFAFA</item>
+        <item>#FFF0FFF0</item>
+        <item>#FFF5FFFA</item>
+        <item>#FFF0FFFF</item>
+        <item>#FFF0F8FF</item>
+        <item>#FFF8F8FF</item>
+        <item>#FFF5F5F5</item>
+        <item>#FFFFF5EE</item>
+        <item>#FFF5F5DC</item>
+        <item>#FFFDF5E6</item>
+        <item>#FFFFFAF0</item>
+        <item>#FFFFFFF0</item>
+        <item>#FFFAEBD7</item>
+        <item>#FFFAF0E6</item>
+        <item>#FFFFF0F5</item>
+        <item>#FFFFE4E1</item>
+    </string-array>
+    <string name="title_activity_color_picker">ColorPickerActivity</string>
+    <string name="title_activity_aboutus">AboutusActivity</string>
+    <string name="add_color">Add</string>
+    <string name="palette_name">Palette Name</string>
+    <string name="save_button">Save</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="save_dialog">Save Dialog</string>
+    <string name="title_activity_your_color">YourColorActivity</string>
+    <string name="title_activity_color">ColorActivity</string>
+    <string name="delete_saved_object">Delete File</string>
+    <string name="delete_file_ask">Delete Color Palette?</string>
+    <string name="answer_yes">Yes</string>
+    <string name="answer_no">No</string>
+    <string name="edit_dialog">Edit Palette Name</string>
+    <string name="delete_this_color">Delete This Color</string>
+    <string name="success_add_color">Successfully added color</string>
+    <string name="allready_added_color">Already added this color</string>
+    <string name="admob_inter_app_pub">ca-app-pub-8446606602742080/5303685851</string>
+    <string name="success_add_palette">Successfully Added to Your Colors</string>
+    <string name="success_delete_item">Successfully Delete Item</string>
+    <string name="success_edit_name">Successfully Edited Palette Name</string>
+    <string name="exit_app">Exit Application</string>
+    <string name="exit_app_ask">Exit ColorHub?</string>
+    <string name="action_about_us">About Us</string>
+    <string name="action_share_this_app">Share This App</string>
+    <string name="action_rate_this_app">Rate This App</string>
+    <string name="action_more_app">More</string>
+
+</resources>

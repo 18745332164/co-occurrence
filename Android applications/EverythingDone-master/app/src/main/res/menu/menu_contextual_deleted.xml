@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+      xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      tools:ignore="AlwaysShowAction">
+
+    <item
+        android:id="@+id/act_select_all"
+        android:title="@string/act_select_all"
+        android:icon="@drawable/act_select_all"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/act_restore_selected"
+        android:title="@string/act_restore_selected"
+        android:icon="@drawable/act_restore_all"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/act_delete_selected_forever"
+        android:title="@string/act_delete_selected_forever"
+        android:icon="@drawable/act_delete_forever"
+        app:showAsAction="always"/>
+
+</menu>

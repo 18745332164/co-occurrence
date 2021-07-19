@@ -1,0 +1,73 @@
+<resources>
+
+    <style name="AppThemeRaw" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="actionBarStyle">@style/action_bar_theme</item>
+
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+    </style>
+
+    <style name="AppTheme" parent="AppThemeRaw">
+    </style>
+    <style name="AppTheme.OpaqueStatusBar" parent="AppThemeRaw">
+    </style>
+    
+    <style name="action_bar_theme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="android:textColorPrimary">@color/primary_textcolor</item>
+    </style>
+
+    <style name="PopupMenu" parent="Widget.AppCompat.PopupMenu">
+        <!--<item name="android:popupBackground">@color/anybill_blue</item>-->
+    </style>
+
+    <style name="ellipsize">
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:focusable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:scrollHorizontally">true</item>
+    </style>
+
+    <style name="benchmarkSettingWidget">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/optionsTextColor</item>
+        <item name="android:paddingBottom">@dimen/form_element_std_padding</item>
+        <item name="android:paddingTop">@dimen/form_element_std_padding</item>
+        <item name="android:textSize">@dimen/optionsTextSize</item>
+    </style>
+
+    <style name="resultTableCell" parent="ellipsize">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:padding">6dp</item>
+        <item name="android:gravity">right|center_vertical</item>
+    </style>
+
+    <style name="nav_drawer_item">
+        <item name="android:textSize">20sp</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:textColor">@color/nav_color_selector</item>
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="HoodViewOverlayDark" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="android:background">?android:windowBackground</item>
+        <item name="hoodZebraColor">@color/hoodlib_zebra_color_dark</item>
+        <item name="hoodTextSizeNormal">@dimen/hoodlib_standard_text_size</item>
+        <item name="hoodTextSizeHeader">@dimen/hoodlib_header_text_size</item>
+        <item name="hoodViewpagerTabTextColor">@android:color/primary_text_dark</item>
+        <item name="hoodViewpagerTabBackgroundColor">?attr/colorPrimary</item>
+    </style>
+
+    <style name="DebugActivityTheme" parent="HoodThemeLight">
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+    </style>
+</resources>

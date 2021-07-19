@@ -1,0 +1,16 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile project(':core')
+    compile project(':cli')
+    compile 'net.java.dev.jna:jna:4.2.1'
+    compile 'net.java.dev.jna:jna-platform:4.2.1'
+}

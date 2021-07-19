@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ microMathematics - Extended Visual Calculator
+  ~ Copyright (C) 2014-2021 by Mikhail Kulesh
+  ~
+  ~ This program is free software: you can redistribute it and/or modify it under the terms of the GNU
+  ~ General Public License as published by the Free Software Foundation, either version 3 of the License,
+  ~ or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+  ~ even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+  ~ GNU General Public License for more details. You should have received a copy of the GNU General
+  ~ Public License along with this program.
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/dialog_content_padding"
+    android:paddingTop="@dimen/dialog_content_padding"
+    android:orientation="vertical">
+
+    <TextView 
+        style="@style/DialogTextViewStyle"
+        android:id="@+id/fman_input_dialog_prompt"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent" />
+
+    <LinearLayout
+        style="@style/DialogTextEditBackgroundStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.AppCompatEditText
+            style="@style/DialogTextEditStyle"
+            android:id="@+id/fman_input_dialog_edit_field"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent" />
+    </LinearLayout>
+</LinearLayout>
+     

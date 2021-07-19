@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <de.tobifleig.lxc.plaf.android.ui.FileListView
+        android:id="@+id/fileList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill"
+        android:longClickable="true" >
+    </de.tobifleig.lxc.plaf.android.ui.FileListView>
+
+    <TextView
+        android:id="@+id/noWifiWarning"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="top"
+        android:background="@color/material_accent"
+        android:gravity="center"
+        android:text="@string/ui_nowifi"
+        android:textColor="?android:attr/textColorPrimaryInverse"
+        android:textSize="18sp"/>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_add"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_compat_margin"
+        app:elevation="6dp"
+        app:pressedTranslationZ="12dp"
+        app:fabSize="normal"
+        app:borderWidth="0dp"
+        />
+
+
+</android.support.design.widget.CoordinatorLayout>

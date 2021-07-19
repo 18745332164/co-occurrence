@@ -1,0 +1,578 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'ch.netzwerg:gradle-release-plugin:1.2.0'
+    }
+}
+
+apply plugin: 'ch.netzwerg.release'
+
+def currentVersion = file("${projectDir}/version.txt").text.trim()
+
+// Find property in either System environment or Gradle properties.
+// If set in both places, Gradle properties win.
+def getPropertyValueOrThrow(String propertyName) {
+    def value = System.getenv(propertyName)
+    if (project.hasProperty(propertyName)) {
+        value = project.getProperty(propertyName)
+    }
+    if (value == null || value.trim().isEmpty()) {
+        throw new GradleException("Could not find '$propertyName'. " +
+                "Most be provided as either environment variable or " +
+                "a Gradle property.")
+    }
+    return value
+}
+
+// Shared configuration that copies relevant properties from the root level and parse them on to
+// child projects.
+def copyProperties = {
+    if (project.hasProperty('buildTargetABIs')) {
+        // Valid options: armeabi-v7a, arm64-v8a, x86, x86_64
+        startParameter.projectProperties += [buildTargetABIs: project.getProperty('buildTargetABIs')]
+    }
+    if (project.hasProperty('coreSourcePath')) {
+        def absolutePath = file(project.getProperty('coreSourcePath')).absolutePath
+        startParameter.projectProperties += [coreSourcePath: absolutePath]
+    }
+    if (project.hasProperty('s3cfg')) {
+        startParameter.projectProperties += [s3cfg: project.getProperty('s3cfg')]
+    }
+    if (project.hasProperty('enableLTO')) {
+        startParameter.projectProperties += [enableLTO: project.getProperty('enableLTO')]
+    }
+    if (project.hasProperty('buildCore')) {
+        startParameter.projectProperties += [buildCore: project.getProperty('buildCore')]
+    }
+}
+
+task assembleAnnotations(type:GradleBuild) {
+    group = 'Build'
+    description = 'Assemble the Realm annotations'
+    buildFile = file('realm-annotations/build.gradle')
+    tasks = ['assemble']
+}
+
+task installAnnotations(type:GradleBuild) {
+    group = 'Install'
+    description = 'Install the jar realm-annotations into mavenLocal()'
+    buildFile = file('realm-annotations/build.gradle')
+    tasks = ['publishToMavenLocal']
+}
+
+task assembleTransformer(type:GradleBuild) {
+    group = 'Build'
+    description = 'Assemble the Realm transformer'
+    dependsOn installAnnotations
+    buildFile = file('realm-transformer/build.gradle')
+    tasks = ['assemble']
+}
+
+task installTransformer(type:GradleBuild) {
+    group = 'Install'
+    description = 'Install the jar realm-transformer into mavenLocal()'
+    dependsOn installAnnotations
+    buildFile = file('realm-transformer/build.gradle')
+    tasks = ['publishToMavenLocal']
+}
+
+task installBuildTransformer(type:GradleBuild) {
+    group = 'Install'
+    description = 'Install the jar realm-library-build-transformer into mavenLocal()'
+    buildFile = file('library-build-transformer/build.gradle')
+    tasks = ['publishToMavenLocal']
+}
+
+task assembleRealm(type:GradleBuild) {
+    group = 'Build'
+    description = 'Assemble the Realm project'
+    dependsOn installAnnotations
+    dependsOn installTransformer
+    dependsOn installBuildTransformer
+    buildFile = file('realm/build.gradle')
+    tasks = ['assemble', 'javadocJar', 'sourcesJar']
+    configure copyProperties
+}
+
+task checkExamples(type:GradleBuild) {
+    group = 'Test'
+    description = 'Run the JVM tests and checks the examples'
+    buildFile = file('examples/build.gradle')
+    tasks = ['check']
+    configure copyProperties
+}
+
+task checkRealm(type:GradleBuild) {
+    group = 'Test'
+    description = 'Run the JVM tests and checks Realm project'
+    buildFile = file('realm/build.gradle')
+    tasks = ['check']
+    configure copyProperties
+}
+
+task check {
+    group = 'Test'
+    description = 'Run the JVM tests and checks in the realm and examples projects'
+    dependsOn checkRealm
+    dependsOn checkExamples
+}
+
+task assembleUnitTests(type:GradleBuild) {
+    group = 'Build'
+    description = 'Assemble Android unit tests of the Realm project'
+    dependsOn installTransformer
+    buildFile = file('realm/build.gradle')
+    tasks = ['assembleAndroidTest']
+    configure copyProperties
+}
+
+task connectedUnitTests(type:GradleBuild) {
+    group = 'Test'
+    description = 'Run the Android unit tests of the Realm project'
+    dependsOn installTransformer
+    buildFile = file('realm/build.gradle')
+    tasks = ['connectedAndroidTest']
+    configure copyProperties
+}
+
+task assembleBenchmarks(type:GradleBuild) {
+    group = 'Build'
+    description = 'Assemble benchmark tests for the library '
+    dependsOn installTransformer
+    buildFile = file('library-benchmarks/build.gradle')
+    tasks = ['assembleAndroidTest']
+    configure copyProperties
+}
+
+task connectedBenchmarks(type:GradleBuild) {
+    group = 'Test'
+    description = 'Run all the benchmark tests for the library '
+    dependsOn installTransformer
+    buildFile = file('library-benchmarks/build.gradle')
+    tasks = ['connectedAndroidTest']
+    configure copyProperties
+}
+
+task installRealm(type:GradleBuild) {
+    group = 'Install'
+    description = 'Install the artifacts of Realm libraries into mavenLocal()'
+    dependsOn installTransformer
+    dependsOn installBuildTransformer
+    buildFile = file('realm/build.gradle')
+    tasks = ['publishToMavenLocal']
+    configure copyProperties
+}
+
+task assembleGradlePlugin(type:GradleBuild) {
+    group = 'Build'
+    description = 'Assemble the Realm Gradle plugin'
+    dependsOn installRealm
+    dependsOn installTransformer
+    buildFile = file('gradle-plugin/build.gradle')
+    tasks = ['assemble']
+}
+
+task installGradlePlugin(type:GradleBuild) {
+    description = 'Install the Realm Gradle plugin into mavenLocal()'
+    group = 'Install'
+    dependsOn installRealm
+    dependsOn installTransformer
+    buildFile = file('gradle-plugin/build.gradle')
+    tasks = ['publishToMavenLocal']
+}
+
+task installRealmJava(type:Task) {
+    dependsOn installGradlePlugin
+    dependsOn installRealm
+    group = 'Install'
+    description = 'Install the Realm library and Gradle plugin into mavenLocal()'
+}
+
+task assembleExamples(type:GradleBuild) {
+    dependsOn installGradlePlugin
+    dependsOn installRealm
+    group = 'Build'
+    description = 'Assemble the Realm examples'
+    buildFile = file('examples/build.gradle')
+    tasks = ['assemble']
+}
+
+task monkeyExamples(type:GradleBuild) {
+    dependsOn installGradlePlugin
+    dependsOn installRealm
+    group = 'Build'
+    description = 'Run the monkey tests on the Realm examples'
+    buildFile = file('examples/build.gradle')
+    tasks = ['monkeyRelease']
+}
+
+task javadoc(type:GradleBuild) {
+    description = 'Generate the Javadoc Jar for the Realm project'
+    group = 'Docs'
+    buildFile = file('realm/build.gradle')
+    tasks = ['javadocJar']
+    configure copyProperties
+}
+
+task createLatestJavadocRedirectFile(type: Copy) {
+    description = 'Redirects from /java/latest/ to correct version'
+    from 'realm/templates'
+    into "$buildDir/outputs/doc_redirects/java_latest"
+    include 'redirect.html.template'
+    rename { file -> 'index.html' }
+    expand(title: "Realm Java ${currentVersion}", url: "../${currentVersion}/index.html")
+}
+
+task createLatestKotlindocRedirectFile(type: Copy) {
+    description = 'Redirects from /kotlin/latest/ to correct version'
+    from 'realm/templates'
+    into "$buildDir/outputs/doc_redirects/kotlin_latest"
+    include 'redirect.html.template'
+    rename { file -> 'index.html' }
+    expand(title: "Kotlin Extensions ${currentVersion}", url: "../${currentVersion}/index.html")
+}
+
+task createKotlinRootRedirectFile(type: Copy) {
+    description = 'Redirects from /kotlin/<version>/ to /kotlin/<version>/kotlin-extensions, which is the real root folder'
+    from 'realm/templates'
+    into "$buildDir/outputs/doc_redirects/kotlin_root"
+    include 'redirect.html.template'
+    rename { file -> 'index.html' }
+    expand(title: "Kotlin Extensions ${currentVersion}", url: "./kotlin-extensions/index.html")
+}
+
+task uploadJavadoc {
+    group = 'Release'
+    description = 'Upload Java and Kotlin docs to S3'
+    dependsOn javadoc
+    dependsOn createLatestJavadocRedirectFile
+    dependsOn createLatestKotlindocRedirectFile
+    dependsOn createKotlinRootRedirectFile
+
+    doLast {
+        def awsAccessKey = getPropertyValueOrThrow("SDK_DOCS_AWS_ACCESS_KEY")
+        def awsSecretKey = getPropertyValueOrThrow("SDK_DOCS_AWS_SECRET_KEY")
+
+        // Upload the versioned folder of the docs
+        exec {
+            commandLine 's3cmd', 'put', '--recursive', '--acl-public', "--access_key=${awsAccessKey}", "--secret_key=${awsSecretKey}", 'realm/realm-library/build/docs/javadoc/', "s3://realm-sdks/realm-sdks/java/${currentVersion}/"
+        }
+        exec {
+            commandLine 's3cmd', 'put', '--recursive', '--acl-public', "--access_key=${awsAccessKey}", "--secret_key=${awsSecretKey}", 'realm/kotlin-extensions/build/docs/', "s3://realm-sdks/realm-sdks/kotlin/${currentVersion}/"
+        }
+
+        // Upload automatic redirect for Kotlin extensions, since the directory structure created
+        // by Dokka only have a style.css in the root dir.
+        exec {
+            commandLine 's3cmd', 'put', '--acl-public', "--access_key=${awsAccessKey}", "--secret_key=${awsSecretKey}", "$buildDir/outputs/doc_redirects/kotlin_root/index.html", "s3://realm-sdks/realm-sdks/kotlin/${currentVersion}/index.html"
+        }
+
+        // Upload redirects to /latest end point so it points to the just uploaded version
+        exec {
+            commandLine 's3cmd', 'put', '--acl-public', "--access_key=${awsAccessKey}", "--secret_key=${awsSecretKey}", "$buildDir/outputs/doc_redirects/java_latest/index.html", "s3://realm-sdks/realm-sdks/java/latest/index.html"
+        }
+        exec {
+            commandLine 's3cmd', 'put', '--acl-public', "--access_key=${awsAccessKey}", "--secret_key=${awsSecretKey}", "$buildDir/outputs/doc_redirects/kotlin_latest/index.html", "s3://realm-sdks/realm-sdks/kotlin/latest/index.html"
+        }
+    }
+}
+
+task sourcesJar(type:GradleBuild) {
+    description = 'Generate the sources Jar for the Realm project'
+    group = 'Docs'
+    buildFile = file('realm/build.gradle')
+    tasks = ['sourcesJar']
+    configure copyProperties
+}
+
+task assemble {
+    group 'Build'
+    description = 'Build Realm, the Gradle plugin and the examples'
+    dependsOn assembleExamples
+}
+
+task distributionJniUnstrippedPackage(type:Zip) {
+    description = 'Generate native libs package with debug symbols'
+    dependsOn assembleRealm
+
+    group = 'Artifact'
+    archiveName = "realm-java-jni-libs-unstripped-${currentVersion}.zip"
+    destinationDir = file("${buildDir}/outputs/distribution")
+
+    from("realm/realm-library/build/outputs/jniLibs-unstripped") {
+        include '**/*.so'
+    }
+}
+
+task cleanRealm(type:GradleBuild) {
+    description = 'Clean the Realm project'
+    group = 'Clean'
+    buildFile = file('realm/build.gradle')
+    tasks = ['clean']
+    configure copyProperties
+}
+
+task cleanGradlePlugin(type:GradleBuild) {
+    description = 'Clean the Realm Gradle plugin project'
+    group = 'Clean'
+    buildFile = file('gradle-plugin/build.gradle')
+    tasks = ['clean']
+}
+
+task cleanExamples(type:GradleBuild) {
+    description = 'Clean the Realm examples'
+    group = 'Clean'
+    buildFile = file('examples/build.gradle')
+    tasks = ['clean']
+}
+
+task cleanLocalMavenRepos(type:Delete) {
+    description = 'Remove any Realm artifacts from the local Maven repositories'
+    group = 'Clean'
+    delete "${System.env.HOME}/.m2/repository/io/realm"
+}
+
+task clean {
+    description = 'Perform all the other clean tasks'
+    group = 'Clean'
+    cleanLocalMavenRepos.dependsOn cleanRealm
+    cleanLocalMavenRepos.dependsOn cleanGradlePlugin
+    cleanLocalMavenRepos.dependsOn cleanExamples
+    dependsOn cleanLocalMavenRepos
+}
+
+task manualClean {
+    description = 'Clean build files without using clean tasks defined in sub projects'
+    group = 'Clean'
+
+    doLast {
+        // clean 'build' directories
+        exec {
+            workingDir "${rootDir}"
+            commandLine 'find', '.', '-type', 'd', '-name', 'build', '-print', '-exec', 'rm', '-rf', '{}', ';', '-prune'
+        }
+
+        // clean '.externalNativeBuild' directories
+        exec {
+            workingDir "${rootDir}"
+            commandLine 'find', '.', '-type', 'd', '-name', '.externalNativeBuild', '-print', '-exec', 'rm', '-rf', '{}', ';', '-prune'
+        }
+
+        // clean '.gradle' directories except one in the root
+        exec {
+            workingDir "${rootDir}"
+            commandLine 'find', '.', '-mindepth', '2', '-type', 'd', '-name', '.gradle', '-print', '-exec', 'rm', '-rf', '{}', ';', '-prune'
+        }
+
+        // clean ${System.env.HOME}/.m2/repository/io/realm
+        exec {
+            workingDir "${rootDir}"
+            commandLine 'sh', '-c', "echo \"${System.env.HOME}/.m2/repository/io/realm\" && rm -rf \"${System.env.HOME}/.m2/repository/io/realm\""
+        }
+    }
+}
+
+task uploadDistributionPackage {
+    group = 'Release'
+    description = 'Upload the distribution package to S3'
+    dependsOn distributionJniUnstrippedPackage
+    def s3AccessKey = "${ -> getPropertyValueOrThrow('REALM_S3_ACCESS_KEY')}"
+    def s3SecretKey = "${ -> getPropertyValueOrThrow('REALM_S3_SECRET_KEY')}"
+    doLast {
+        exec {
+            workingDir "${buildDir}/outputs/distribution/"
+            commandLine 's3cmd', "--access_key=${s3AccessKey}", "--secret_key=${s3SecretKey}", 'put', "realm-java-jni-libs-unstripped-${currentVersion}.zip", 's3://static.realm.io/downloads/java/'
+        }
+    }
+}
+
+task uploadUpdateVersion(type: Exec) {
+    group = 'Release'
+    description = 'Update the file on S3 containing the latest version'
+    def s3AccessKey = "${ -> getPropertyValueOrThrow('REALM_S3_ACCESS_KEY')}"
+    def s3SecretKey = "${ -> getPropertyValueOrThrow('REALM_S3_SECRET_KEY')}"
+    commandLine 's3cmd', "--access_key=${s3AccessKey}", "--secret_key=${s3SecretKey}", 'put', "${rootDir}/version.txt", 's3://static.realm.io/update/java'
+}
+
+task distribute {
+    group = 'Release'
+    description = 'Distribute release artifacts to S3'
+    dependsOn uploadDistributionPackage
+    dependsOn uploadUpdateVersion
+}
+
+task bintrayRealm(type: GradleBuild) {
+    description = 'Publish the Realm AAR and AP to Bintray'
+    group = 'Publishing'
+    buildFile = file('realm/build.gradle')
+    tasks = ['bintrayUploadAll']
+    startParameter.projectProperties = gradle.startParameter.projectProperties
+    configure copyProperties
+}
+
+task bintrayAnnotations(type: GradleBuild) {
+    description = 'Publish the Realm Annotations to Bintray'
+    group = 'Publishing'
+    buildFile = file('realm-annotations/build.gradle')
+    startParameter.projectProperties = gradle.startParameter.projectProperties
+    tasks = ['bintrayUpload']
+}
+
+task bintrayGradlePlugin(type: GradleBuild) {
+    description = 'Publish the Realm Gradle Plugin to Bintray'
+    group = 'Publishing'
+    buildFile = file('gradle-plugin/build.gradle')
+    startParameter.projectProperties = gradle.startParameter.projectProperties
+    tasks = ['bintrayUpload']
+}
+
+task bintrayTransformer(type: GradleBuild) {
+    description = 'Publish the Realm Transformer to Bintray'
+    group = 'Publishing'
+    buildFile = file('realm-transformer/build.gradle')
+    startParameter.projectProperties = gradle.startParameter.projectProperties
+    tasks = ['bintrayUpload']
+}
+
+import groovy.json.JsonSlurper
+def checkPackageIsReady(String packageName, String version) {
+    // See https://bintray.com/docs/api/#_get_version
+    def userName = project.findProperty('bintrayUser') ?: 'noUser'
+    def accessKey = project.findProperty('bintrayKey') ?: 'noKey'
+    def result = new ByteArrayOutputStream()
+    exec {
+        commandLine 'curl',
+                '-X',
+                'GET',
+                '-u',
+                "${userName}:${accessKey}",
+                "https://api.bintray.com/packages/realm/maven/$packageName/versions/$version"
+        standardOutput = result
+    }
+    def parser = new JsonSlurper()
+    def commandlineResponse = result.toString()
+    def json = parser.parseText(commandlineResponse)
+    if (json["published"] != false) {
+        throw new GradleException("$packageName was not ready to be published: $commandlineResponse")
+    }
+}
+
+int publishPackage(String packageName, String version) {
+    // See https://bintray.com/docs/api/#_publish_discard_uploaded_content
+    def userName = project.findProperty('bintrayUser') ?: 'noUser'
+    def accessKey = project.findProperty('bintrayKey') ?: 'noKey'
+    def result = new ByteArrayOutputStream()
+    exec {
+        commandLine 'curl',
+                '-X',
+                'POST',
+                '-u',
+                "${userName}:${accessKey}",
+                "https://api.bintray.com/content/realm/maven/$packageName/$version/publish"
+        standardOutput = result
+    }
+    def parser = new JsonSlurper()
+    def commandlineResponse = result.toString()
+    println "$commandlineResponse"
+    def json = parser.parseText(commandlineResponse)
+    if (!json.keySet().contains('files')) {
+        throw new GradleException("$packageName was not correctly published: $commandlineResponse")
+    }
+    return json['files']
+}
+
+task bintrayUpload {
+    description = 'Publish all the Realm artifacts to Bintray'
+    group = 'Publishing'
+    dependsOn bintrayRealm
+    dependsOn bintrayAnnotations
+    dependsOn bintrayGradlePlugin
+    dependsOn bintrayTransformer
+
+    doLast {
+        // All the packages we want to release
+        def packages = [ "realm-annotations",
+                         "realm-transformer",
+                         "realm-annotations-processor",
+                         "realm-android-library",
+                         "realm-android-library-object-server",
+                         "realm-android-kotlin-extensions",
+                         "realm-android-kotlin-extensions-object-server",
+                         "realm-gradle-plugin" ]
+
+        // Number of files we expect to have been released. If this
+        // does not happen, an error is thrown and manual intervention
+        // is needed.
+        def expectedFilesReleasedCount = 24
+
+        // Check that all packages are available on BinTray before publishing them
+        // This makes it possible to quickly release them using the Web UI if
+        // anything goes wrong.
+        packages.each {pckg ->
+            checkPackageIsReady(pckg, currentVersion);
+        }
+
+        // Once we verified all packages are ready, we release them while keeping
+        // track of the number of released files.
+        def releasedFilesCount = 0
+        packages.each {pckg ->
+            releasedFilesCount += publishPackage(pckg, currentVersion);
+        }
+        if (releasedFilesCount != expectedFilesReleasedCount) {
+            throw new GradleException("Something went wrong when releasing on BinTray. Number of files did not match the expected: $releasedFilesCount vs. $expectedFilesReleasedCount")
+        }
+    }
+}
+
+task ojoRealm(type: GradleBuild) {
+    description = 'Publish the Realm AAR and AP SNAPSHOT to Bintray'
+    group = 'Publishing'
+    buildFile = file('realm/build.gradle')
+    tasks = ['ojoUpload']
+    startParameter.projectProperties = gradle.startParameter.projectProperties
+    configure copyProperties
+}
+
+task ojoAnnotations(type: GradleBuild) {
+    description = 'Publish the Realm Annotations SNAPSHOT to Bintray'
+    group = 'Publishing'
+    buildFile = file('realm-annotations/build.gradle')
+    startParameter.projectProperties = gradle.startParameter.projectProperties
+    tasks = ['artifactoryPublish']
+}
+
+task ojoGradlePlugin(type: GradleBuild) {
+    description = 'Publish the Realm Gradle Plugin SNAPSHOT to Bintray'
+    group = 'Publishing'
+    buildFile = file('gradle-plugin/build.gradle')
+    startParameter.projectProperties = gradle.startParameter.projectProperties
+    tasks = ['artifactoryPublish']
+}
+
+task ojoTransformer(type: GradleBuild) {
+    description = 'Publish the Realm Transformer SNAPSHOT to Bintray'
+    group = 'Publishing'
+    buildFile = file('realm-transformer/build.gradle')
+    startParameter.projectProperties = gradle.startParameter.projectProperties
+    tasks = ['artifactoryPublish']
+}
+
+task ojoUpload {
+    description = 'Publish all the Realm SNAPSHOT artifacts to OJO'
+    group = 'Publishing'
+    dependsOn ojoRealm
+    dependsOn ojoAnnotations
+    dependsOn ojoGradlePlugin
+    dependsOn ojoTransformer
+}
+
+// This is just a placeholder for the release plugin
+task build {}
+
+release {
+    push = false
+    versionSuffix = '-SNAPSHOT'
+    tagPrefix = 'v'
+}

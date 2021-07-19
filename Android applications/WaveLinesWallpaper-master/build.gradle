@@ -1,0 +1,36 @@
+buildscript {
+	ext {
+		tools_version = '4.0.1'
+		build_tools_version = '29.0.3'
+		sdk_version = 29
+		support_version = '25.3.1'
+	}
+
+	repositories {
+		google()
+		jcenter()
+	}
+
+	dependencies {
+		classpath "com.android.tools.build:gradle:$tools_version"
+	}
+}
+
+allprojects {
+	repositories {
+		google()
+		jcenter()
+	}
+
+	gradle.projectsEvaluated {
+		tasks.withType(JavaCompile) {
+			options.compilerArgs \
+				<< "-Xlint:unchecked" \
+				<< "-Xlint:deprecation"
+		}
+	}
+}
+
+task clean(type: Delete) {
+	delete rootProject.buildDir
+}

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="fill_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	tools:orientation="vertical">
+
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="100dp"
+		android:orientation="horizontal">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:width="100dip"
+			android:padding="5dip"
+			android:text="Action:"
+			android:textSize="22dip"></TextView>
+
+		<EditText
+			android:id="@+id/ci_et_action"
+			android:layout_width="wrap_content"
+			android:layout_height="100dp"
+			android:layout_weight="1"
+			android:autoText="false"
+			android:inputType="textMultiLine"
+			android:maxLines="3"
+			android:singleLine="false"
+			tools:autoText="false"
+			tools:capitalize="none"
+			tools:textAllCaps="false"></EditText>
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="100dp"
+		android:orientation="horizontal">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:width="100dip"
+			android:padding="5dip"
+			android:text="Data:"
+			android:textSize="22dip"></TextView>
+
+		<EditText
+			android:id="@+id/ci_et_data"
+			android:layout_width="wrap_content"
+			android:layout_height="100dp"
+			android:layout_weight="1"
+			android:inputType="textMultiLine"
+			android:maxLines="3"></EditText>
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="100dp"
+		android:orientation="horizontal">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:width="100dip"
+			android:padding="5dip"
+			android:text="Type:"
+			android:textSize="22dip"></TextView>
+
+		<EditText
+			android:id="@+id/ci_et_type"
+			android:layout_width="wrap_content"
+			android:layout_height="100dp"
+			android:layout_weight="1"
+			android:inputType="textMultiLine"
+			android:maxLines="3"></EditText>
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="85dp"
+		android:gravity="center|center_vertical"
+		android:orientation="horizontal">
+
+		<Button
+			android:id="@+id/ci_btn_ok"
+			android:layout_width="100dip"
+			android:layout_height="48dp"
+			android:layout_margin="5dip"
+			android:text="@string/OK"></Button>
+
+		<Button
+			android:id="@+id/ci_btn_test"
+			android:layout_width="wrap_content"
+			android:layout_height="48dp"
+			android:layout_margin="5dip"
+			android:text="Test"></Button>
+
+		<Button
+			android:id="@+id/ci_btn_cancel"
+			android:layout_width="100dip"
+			android:layout_height="48dp"
+			android:layout_margin="5dip"
+			android:text="Cancel"></Button>
+	</LinearLayout>
+</LinearLayout>

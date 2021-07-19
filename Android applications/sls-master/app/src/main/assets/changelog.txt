@@ -1,0 +1,253 @@
+Visit,
+https://github.com/simple-last-fm-scrobbler/sls
+For more details.
+https://github.com/simple-last-fm-scrobbler/sls/wiki/Privacy-Concerns
+For privacy concerns.
+
+- 1.7.1 (2019-11-19) codename: ningus
+  * copy bug
+  * play/pause bug
+
+- 1.7.0 (2019-9-22) codename: mingus
+  * Login notification bug
+  * Music App Activity bug
+  * Rate Limit Exceeded status for Last.fm
+
+- 1.6.9 (2019-9-15) codename: lingus
+  * major database patch
+
+- 1.6.8 (2019-9-15) codename: kingus
+  * Database problems fixed
+  * Database migration
+  * Stop automatic app adding, so user must manually add music apps Android 5.0+
+  * Offline Heart Track
+  * A grey record of sent tracks is kept now
+  * Back button in permissions fixed
+  * Privacy information in permissions
+  * Russian thanks to alexesprit
+
+- 1.6.7 (2019-9-15) codename: jingus
+  * Fixed non-foreground service crash Bug
+  * Show user permissions each update
+  * Option Active App Notification status changes after track switch
+
+- 1.6.6 (2019-9-14) codename: ingus
+  * Better Service Management
+  * Listener warning notification for Android 8.0+
+  * Improve Exit Button
+  * Fixed occasional blank music notification
+
+- 1.6.5 (2019-9-13) codename: hingus
+  * Better Service Management
+  * Update Permissions UI
+  * Fixed Notification Priority
+
+- 1.6.4 (2019-9-10) codename: gingus
+  * UI ListenBrainz Login Bug
+  * Changelog 2019
+
+- 1.6.3 (2019-9-9) codename: fingus
+  * UI fixes
+  * Added not logged in warning
+  * Added database management
+
+- 1.6.2 (2019-9-8) codename: engus
+  * Fixed music not being recognized immediately
+  * Skip permissions optionally
+  * Language selection
+
+- 1.6.1 (2019-9-7) codename: dingus
+  * Fixed icon kitkat
+
+- 1.6.0 (2019-9-7) codename: cingus
+  * Fixed Google Play logo block flag
+
+- 1.5.9 (2019-9-7) codename: bingus
+  * Fixed Google Play 'Last.fm' word block flag
+
+- 1.5.8 (2019-6-24) codename: angus
+  * Permission Changes
+  * Notification Priority
+  * App Detected Notification
+  * Export db
+  * Dropped support for Gingerbread
+  * Themes
+  * Many Apps Supported (API 21+) Lollipop
+  * Notification Listener
+  * Fixes (thanks to G00fY2)
+  * Features (thanks to 4-Eyes)
+  * Bugs & Languages fixes thanks to many
+
+- 1.5.7 (2018-1-8)
+  * Fix scrobbles on Android 8 and higher (thanks to G00fY2)
+  * Switch to SDK 25 to allow receiving implicit broadcasts
+  * Add back Android 2.3 Support
+
+- 1.5.6 (2017-9-17)
+  * Update from Android 24 SDK to 26 (Android 8)
+
+- 1.5.5 (2017-9-16)
+  * ListenBrainz fix (thanks to @19379)
+  * Notice: Version 1.5.6 dropping android < 4.0 support
+  * Notice: Version 1.5.6 will be released soon after version 1.5.5
+  * Notice: If you are interested in starting a 'old android' fork please email.
+
+- 1.5.4 (2017-2-4)
+  * Bug fixes
+  * Add Ukrainian translation (thanks to personaljesusua)
+  * Add Chinese translation (thanks to cmpute)
+
+- 1.5.3 (2016-11-21)
+  * ListenBrainz support (testing)
+  * Clear Unused Apps List Feature
+  * Only Show Logged In Services in Status
+  * Apache 2.0 License
+
+- 1.5.2 (2016-11-15)
+  * GNU-fm is for home built servers
+  * Libre.fm solo Love Track
+  * Polish fix (thanks to ksz16)
+
+- 1.5.1 (2016-09-24)
+  * Better request timeout
+  * GNU-fm alternate (thanks to ejegg)
+  * Better control of OnGoing Service
+
+- 1.5.0 (2016-1-1)
+  * Bug fixes and more (thanks to inverse)
+  * Add Portuguese Brazil translations (thanks to MendelGusmao)
+  * Add Huawei support
+  * Add Polish translation (thanks to Grzes58)
+  * Add Phone Notification to ensure scrobbles
+  * Add Deezer Support
+  * Add Love track and copy feature
+  * Network notifications
+  * Last.fm API 2.0
+  * Add Czech (thanks to Michal Absolin)
+  * Add Russian translation (thanks to bajituka)
+  * Edit Scrobble Cache
+
+- 1.4.9 (2015-08-09)
+  * Add French translation (thanks to pierreduchemin)
+  * Add Spanish translation (thanks to moshpirit)
+  * Add support for Spotify (thanks to inverse)
+  * Fixed support for PlayerPro (thanks to metanota)
+  * Add new icon (thanks to bryansills)
+  * Add German translation (thanks to herrherrmann)
+  * Add new Material Design (thanks to bryansills)
+  * Bug fixes and support (thanks to inverse)  
+
+- 1.4.8 (2014-08-16)
+  * Add new high-resolution icon (thanks to Tha Phlash)
+
+- 1.4.7 (2014-07-23)
+  * Add support for Amazon Music (thanks to theli-ua)
+  * Add support for PlayerPro (thanks to metanota)
+
+- 1.4.6 (2014-02-12)
+  * Prevent crashes due to insufficient permissions (READ_EXTERNAL_STORAGE) (thanks to Joel Teichroeb)
+
+- 1.4.5 (2013-03-03)
+  * Support for LG Music Player (thanks to Shahar)
+
+- 1.4.4 (2012-10-20)
+  * Support for JRTStudio Android Music Player (thanks to Joseph Cooper)
+
+- 1.4.3 (2012-08-06)
+  * Yet more stability and bug fixes (thanks to Argoday)
+
+- 1.4.2 (2012-08-05)
+  * More stability and bug fixes (thanks to Argoday)
+
+- 1.4.1 (2012-08-03)
+  * Stability and bug fixes (thanks to Argoday)
+
+- 1.4.0 (2012-08-01)
+  * Updated to Android 4.0 look-n-feel (thanks to Sean O'Neil)
+
+- 1.3.7 (2012-07-28)
+  * Added support for Music2Dance2 (thanks to Argoday)
+  * Added support for Rdio (thanks to stermi)
+  * Stability improvements
+
+- 1.3.6 (2012-04-21)
+  * Added support for Neutron Music Player (thanks to Dmitry Kostjuchenko)
+
+- 1.3.5 (2012-02-01)
+  * Added support for Sony Ericsson/Xperia phones (thanks to Mark Gillespie)
+
+- 1.3.4 (2011-10-12)
+  * Added support for MIUI Music Player (thanks to Andrew Thomson)
+
+- 1.3.3 (2011-07-13)
+  * Fixed bug where SLS wouldn't work with Google Music (Beta/3)
+
+- 1.3.2 (2011-03-07)
+  * Added support for Winamp
+  * Added support for the myTouch 4G music player
+
+- 1.3.1 (2010-06-30)
+  * Don't prevent login with usernames containing spaces
+
+- 1.3 (2010-03-08)
+  * Added support to scrobble only when on certain types of network (3G, Wifi, etc.)
+  * Reworked the options screen a little
+  * Added ability to view the local cache sorted in different ways
+  * Minor fixes
+
+- 1.2.7  (2010-03-01)
+  * Minor bug-fixes
+
+- 1.2.6  (2010-01-31)
+  * Handles scrobbling from built-in music apps better
+
+- 1.2.5  (2010-01-27)
+  * New icon by Tha PHLASH
+
+- 1.2.4  (2010-01-22)
+  * Fixed bug where SLS would crash if you hadn't scrobbled all your cached tracks before upgrading to 1.2.3
+
+- 1.2.3  (2010-01-22)
+  * Implemented an API for new music apps
+  * Now detects music apps that can scrobble through SLS automatically
+  * Added link to profile page in the status screen
+
+- 1.2.1  (2009-12-18)
+  * Small bugfixes, removed (stupid) username length limit
+
+- 1.2    (2009-12-06)
+  * Added support for the Scrobble Droid API - can now scrobble for all apps that can scrobble through Scrobble Droid.
+  * Changes to the options screen: more battery / plugged in settings + more
+
+- 1.1.10 (2009-11-25)
+  * Added advanced option to always submit when plugged to a power source
+  * Fixed (for the second time, sorry) a bug where SLS would crash when interrupted by other apps
+
+- 1.1.9  (2009-09-27)
+  * Can now view and edit scrobble cache
+  * GUI improvements
+
+- 1.1.7  (2009-09-22)
+  * Added advanced options to not scrobble immediately
+  * Added options to conserve battery
+
+- 1.1.5  (2009-09-19)
+  * Added support to scrobble to Libre.fm
+
+- 1.1    (2009-09-14)
+  * Major architectural overhaul
+  * Handles offline mode better, scrobbles will be submitted immediately when the phone comes online again
+  * These change notes
+  * The about screen
+
+- 1.0.2  (2009-09-11)
+  * Fixed a bug where a crash would occur if you unmounted/re-mounted the sd-card
+
+- 1.0.1  (2009-08-27)
+  * Added support for HTC Hero
+
+- 1.0    (2009-08-24)
+  * First release!
+  * Supports scrobbling and now-playing notifications from the default android music app
+  * Scrobbles are cached if they can't be submitted right away
+  * Starts automatically when music is played

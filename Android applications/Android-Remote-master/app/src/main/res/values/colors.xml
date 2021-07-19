@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="actionbar">#db6835</color>
+    <color name="actionbar_dark">#bb5325</color>
+
+    <color name="clementine_right">#db6835</color>
+    <color name="clementine_left">#af597d</color>
+
+    <color name="orange">#db6835</color>
+    <color name="orange_light">#edb49b</color>
+
+    <color name="list_pressed_start">#55FFA768</color>
+    <color name="list_pressed_end">#55FD964E</color>
+
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+
+    <color name="navigation_drawer_section">#e5e5e5</color>
+
+    <color name="searchview_edittext_hint">#dddddd</color>
+
+    <color name="player_smalltext">#444444</color>
+
+    <item name="grey_cab" type="color">#9b9b9b</item>
+    <item name="grey_cab_status" type="color">#7c7c7c</item>
+
+    <color name="notification">#424242</color>
+</resources>

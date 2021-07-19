@@ -1,0 +1,293 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<micromath xmlns:mmt="http://micromath.mkulesh.com">
+  <formulaList documentVersion="2" author="" title="" description="" textWidth="39" significantDigits="6" scale="0.50000" redefineAllowed="true">
+    <text_fragment>
+      <term key="text" text="Ahora trazamos varias funciones dadas&#10;en el sistema de coordenadas polares.&#10;Cada punto de este sistema está&#10;determinado por una distancia r desde&#10;el origen y el ángulo f desde el eje&#10;x." />
+    </text_fragment>
+    <image_fragment fileName="asset:/images/polar_coordinates.svg" embedded="false" originalSize="false" width="680" height="400" colorType="auto" />
+    <text_fragment>
+      <term key="text" text="El ángulo f es nuestra variable&#10;independiente que se cambia de la&#10;siguiente manera:" />
+    </text_fragment>
+    <equation>
+      <term key="leftTerm" text="f" />
+      <term key="rightTerm" code="equidistant_interval">
+        <term key="minValue" text="0.01" />
+        <term key="nextValue" text="0.05" />
+        <term key="maxValue" text="300" />
+      </term>
+    </equation>
+    <text_fragment>
+      <term key="text" text="La distancia r(f) es nuestra variable&#10;dependiente. Teniendo un par de f y r,&#10;podemos transformarla en las&#10;coordenadas cartesianas x e y usando&#10;funciones de seno y coseno:" />
+    </text_fragment>
+    <equation>
+      <term key="leftTerm" text="x(r)" />
+      <term key="rightTerm" code="mult">
+        <term key="leftTerm" text="r" />
+        <term key="rightTerm" code="cos">
+          <term key="argTerm" text="f" />
+        </term>
+      </term>
+    </equation>
+    <equation inRightOfPrevious="true">
+      <term key="leftTerm" text="y(r)" />
+      <term key="rightTerm" code="mult">
+        <term key="leftTerm" text="r" />
+        <term key="rightTerm" code="sin">
+          <term key="argTerm" text="f" />
+        </term>
+      </term>
+    </equation>
+    <text_fragment textStyle="subsection" numbering="true">
+      <term key="text" text="Un caracol" />
+    </text_fragment>
+    <text_fragment>
+      <term key="text" text='Definiremos nuestra función polar en&#10;tres pasos. La primera expresión&#10;define una "rueda":' />
+    </text_fragment>
+    <equation>
+      <term key="leftTerm" text="A" />
+      <term key="rightTerm" text="1.1" />
+    </equation>
+    <equation inRightOfPrevious="true">
+      <term key="leftTerm" text="B" />
+      <term key="rightTerm" text="1.271" />
+    </equation>
+    <equation inRightOfPrevious="true">
+      <term key="leftTerm" text="q" />
+      <term key="rightTerm" text="2" />
+    </equation>
+    <equation>
+      <term key="leftTerm" text="r1(f)" />
+      <term key="rightTerm" code="plus">
+        <term key="leftTerm" text="A" />
+        <term key="rightTerm" code="mult">
+          <term key="leftTerm" text="2" />
+          <term key="rightTerm" code="power">
+            <term key="leftTerm" code="sin">
+              <term key="argTerm" code="mult">
+                <term key="leftTerm" text="B" />
+                <term key="rightTerm" text="f" />
+              </term>
+            </term>
+            <term key="rightTerm" text="q" />
+          </term>
+        </term>
+      </term>
+    </equation>
+    <text_fragment>
+      <term key="text" text='Para trazar esta función, añadimos el&#10;cuadro gráfico usando el botón "Nuevo&#10;elemento" en la barra de acciones o el&#10;botón "Añadir gráfica de la función"&#10;de la barra de herramientas:' />
+    </text_fragment>
+    <image_fragment fileName="asset:/images/toolbar_plot_function.svg" embedded="false" originalSize="false" width="400" height="110" colorType="auto" />
+    <text_fragment>
+      <term key="text" text="En lugar de f y r, usaremos aquí reglas&#10;previamente definidas de la&#10;transformación para x e y, donde r1(f)&#10;se utiliza como un argumento simbólico&#10;para estas reglas:" />
+    </text_fragment>
+    <plot_function width="680" height="650" axes_style="crossed" xLabelsNumber="5" yLabelsNumber="5" gridLineColor="#FF838383" xType="linear" yType="linear" functionsNumber="1">
+      <term key="yMaxValue" text="3.2" />
+      <term key="yFunction" color="#FF0000FF" width="1" lineStyle="solid" shapeType="none" shapeSize="300" code="content:com.mkulesh.micromath.link.y">
+        <term key="argTerm" code="content:com.mkulesh.micromath.link.r1">
+          <term key="argTerm" text="f" />
+        </term>
+      </term>
+      <term key="yMinValue" text="-3.2" />
+      <term key="xMinValue" text="-3.2" />
+      <term key="xFunction" code="content:com.mkulesh.micromath.link.x">
+        <term key="argTerm" code="content:com.mkulesh.micromath.link.r1">
+          <term key="argTerm" text="f" />
+        </term>
+      </term>
+      <term key="xMaxValue" text="3.2" />
+    </plot_function>
+    <text_fragment>
+      <term key="text" text="A continuación, podemos modificar esta&#10;rueda a continuación:" />
+    </text_fragment>
+    <equation>
+      <term key="leftTerm" text="r2(f)" />
+      <term key="rightTerm" code="plus">
+        <term key="leftTerm" text="A" />
+        <term key="rightTerm" code="mult">
+          <term key="leftTerm" text="2" />
+          <term key="rightTerm" code="power">
+            <term key="leftTerm" code="sin">
+              <term key="argTerm" code="plus">
+                <term key="leftTerm" code="mult">
+                  <term key="leftTerm" text="B" />
+                  <term key="rightTerm" text="f" />
+                </term>
+                <term key="rightTerm" code="mult">
+                  <term key="leftTerm" text="1" />
+                  <term key="rightTerm" code="content:com.mkulesh.micromath.link.r1">
+                    <term key="argTerm" text="f" />
+                  </term>
+                </term>
+              </term>
+            </term>
+            <term key="rightTerm" text="q" />
+          </term>
+        </term>
+      </term>
+    </equation>
+    <plot_function width="680" height="650" axes_style="crossed" xLabelsNumber="5" yLabelsNumber="5" gridLineColor="#FF838383" xType="linear" yType="linear" functionsNumber="1">
+      <term key="yMaxValue" text="3.2" />
+      <term key="yFunction" color="#FF00BC29" width="1" lineStyle="solid" shapeType="none" shapeSize="300" code="content:com.mkulesh.micromath.link.y">
+        <term key="argTerm" code="content:com.mkulesh.micromath.link.r2">
+          <term key="argTerm" text="f" />
+        </term>
+      </term>
+      <term key="yMinValue" text="-3.2" />
+      <term key="xMinValue" text="-3.2" />
+      <term key="xFunction" code="content:com.mkulesh.micromath.link.x">
+        <term key="argTerm" code="content:com.mkulesh.micromath.link.r2">
+          <term key="argTerm" text="f" />
+        </term>
+      </term>
+      <term key="xMaxValue" text="3.2" />
+    </plot_function>
+    <text_fragment>
+      <term key="text" text="Finalmente, escalamos la última función&#10;r2(f) usando un conversión de flotador&#10;a número para parecer a una función de&#10;paso. Como resultado, obtenemos un&#10;bonito caracol:" />
+    </text_fragment>
+    <equation>
+      <term key="leftTerm" text="r(f)" />
+      <term key="rightTerm" code="mult">
+        <term key="leftTerm" code="content:com.mkulesh.micromath.link.r2">
+          <term key="argTerm" text="f" />
+        </term>
+        <term key="rightTerm" code="divide_slash">
+          <term key="leftTerm" code="floor">
+            <term key="argTerm" text="f" />
+          </term>
+          <term key="rightTerm" text="10" />
+        </term>
+      </term>
+    </equation>
+    <plot_function width="680" height="650" axes_style="crossed" xLabelsNumber="8" yLabelsNumber="8" gridLineColor="#FF838383" xType="linear" yType="linear" functionsNumber="1">
+      <term key="yMaxValue" text="92" />
+      <term key="yFunction" color="#ECD40700" width="1" lineStyle="solid" shapeType="none" shapeSize="300" code="content:com.mkulesh.micromath.link.y">
+        <term key="argTerm" code="content:com.mkulesh.micromath.link.r">
+          <term key="argTerm" text="f" />
+        </term>
+      </term>
+      <term key="yMinValue" text="-92" />
+      <term key="xMinValue" text="-92" />
+      <term key="xFunction" code="content:com.mkulesh.micromath.link.x">
+        <term key="argTerm" code="content:com.mkulesh.micromath.link.r">
+          <term key="argTerm" text="f" />
+        </term>
+      </term>
+      <term key="xMaxValue" text="92" />
+    </plot_function>
+    <text_fragment textStyle="subsection" numbering="true">
+      <term key="text" text="Arce japonés" />
+    </text_fragment>
+    <text_fragment>
+      <term key="text" text="El arce japonés es bien conocido por&#10;sus atractivas formas de hojas y&#10;colores. Tal hoja puede ser descrita&#10;matemáticamente y trazada como una&#10;curva en el sistema de coordenadas&#10;polares:" />
+    </text_fragment>
+    <equation>
+      <term key="leftTerm" text="f" />
+      <term key="rightTerm" code="equidistant_interval">
+        <term key="minValue" text="0.01" />
+        <term key="nextValue" text="0.02" />
+        <term key="maxValue" text="100" />
+      </term>
+    </equation>
+    <equation>
+      <term key="leftTerm" text="x(r)" />
+      <term key="rightTerm" code="mult">
+        <term key="leftTerm" text="r" />
+        <term key="rightTerm" code="cos">
+          <term key="argTerm" text="f" />
+        </term>
+      </term>
+    </equation>
+    <equation inRightOfPrevious="true">
+      <term key="leftTerm" text="y(r)" />
+      <term key="rightTerm" code="mult">
+        <term key="leftTerm" text="r" />
+        <term key="rightTerm" code="sin">
+          <term key="argTerm" text="f" />
+        </term>
+      </term>
+    </equation>
+    <equation>
+      <term key="leftTerm" text="s1(f)" />
+      <term key="rightTerm" code="mult">
+        <term key="leftTerm" code="plus">
+          <term key="leftTerm" text="1" />
+          <term key="rightTerm" code="sin">
+            <term key="argTerm" text="f" />
+          </term>
+        </term>
+        <term key="rightTerm" code="minus">
+          <term key="leftTerm" text="1" />
+          <term key="rightTerm" code="mult">
+            <term key="leftTerm" text="0.9" />
+            <term key="rightTerm" code="abs_layout">
+              <term key="argTerm" code="sin">
+                <term key="argTerm" code="mult">
+                  <term key="leftTerm" text="4" />
+                  <term key="rightTerm" text="f" />
+                </term>
+              </term>
+            </term>
+          </term>
+        </term>
+      </term>
+    </equation>
+    <equation>
+      <term key="leftTerm" text="s2(f)" />
+      <term key="rightTerm" code="plus">
+        <term key="leftTerm" text="0.9" />
+        <term key="rightTerm" code="mult">
+          <term key="leftTerm" text="0.05" />
+          <term key="rightTerm" code="cos">
+            <term key="argTerm" code="mult">
+              <term key="leftTerm" text="200" />
+              <term key="rightTerm" text="f" />
+            </term>
+          </term>
+        </term>
+      </term>
+    </equation>
+    <equation>
+      <term key="leftTerm" text="r(f)" />
+      <term key="rightTerm" code="plus">
+        <term key="leftTerm" code="mult">
+          <term key="leftTerm" code="mult">
+            <term key="leftTerm" code="floor">
+              <term key="argTerm" text="f" />
+            </term>
+            <term key="rightTerm" code="content:com.mkulesh.micromath.link.s1">
+              <term key="argTerm" text="f" />
+            </term>
+          </term>
+          <term key="rightTerm" code="content:com.mkulesh.micromath.link.s2">
+            <term key="argTerm" text="f" />
+          </term>
+        </term>
+        <term key="rightTerm" code="minus">
+          <term key="leftTerm" code="random">
+            <term key="argTerm" text="2" />
+          </term>
+          <term key="rightTerm" text="1" />
+        </term>
+      </term>
+    </equation>
+    <plot_function width="680" height="650" axes_style="none" xLabelsNumber="5" yLabelsNumber="5" gridLineColor="#FF838383" xType="linear" yType="linear" functionsNumber="1">
+      <term key="yMaxValue" text="190" />
+      <term key="yFunction" color="#D3510008" width="2" lineStyle="solid" shapeType="none" shapeSize="300" code="content:com.mkulesh.micromath.link.y">
+        <term key="argTerm" code="content:com.mkulesh.micromath.link.r">
+          <term key="argTerm" text="f" />
+        </term>
+      </term>
+      <term key="yMinValue" text="-40" />
+      <term key="xMinValue" text="-110" />
+      <term key="xFunction" code="content:com.mkulesh.micromath.link.x">
+        <term key="argTerm" code="content:com.mkulesh.micromath.link.r">
+          <term key="argTerm" text="f" />
+        </term>
+      </term>
+      <term key="xMaxValue" text="110" />
+    </plot_function>
+    <text_fragment>
+      <term key="text" text="http://es.wikipedia.org/wiki/Acer_palmatum" />
+    </text_fragment>
+  </formulaList>
+</micromath>

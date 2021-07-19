@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+
+	default-autowire="byName" default-lazy-init="true">
+	
+	<bean id="navigationController" class="net.sourceforge.atunes.kernel.modules.navigator.NavigationController" init-method="initialize"/>
+	<bean class="net.sourceforge.atunes.kernel.modules.navigator.NavigationTreeMouseListener" scope="prototype"/>
+	<bean class="net.sourceforge.atunes.kernel.modules.navigator.NavigationTreeToolTipListener" scope="prototype"/>
+	<bean class="net.sourceforge.atunes.kernel.modules.navigator.NavigationTableMouseListener" scope="prototype"/>
+	
+	<bean id="navigatorTableColumnDecorator" class="net.sourceforge.atunes.gui.ColumnDecorator" scope="prototype">
+		<property name="columnModel" ref="navigationTableColumnModel"/>
+		<property name="table" ref="navigationTable"/>
+	</bean>
+	
+	<bean id="extendedToolTipActionListener" class="net.sourceforge.atunes.kernel.modules.navigator.ExtendedToolTipActionListener"/>
+	<bean id="extendedToolTipGetAndSetImage" class="net.sourceforge.atunes.kernel.modules.navigator.ExtendedToolTipGetAndSetImageBackgroundWorker" scope="prototype"/>
+	
+	<bean id="navigatorActionsStateController" class="net.sourceforge.atunes.kernel.modules.navigator.NavigatorActionsStateController" scope="prototype"/>
+	
+
+	<bean id="artistSorter" class="net.sourceforge.atunes.kernel.modules.navigator.ArtistSorter"/>
+	<bean id="albumSorter" class="net.sourceforge.atunes.kernel.modules.navigator.AlbumSorter"/>
+	<bean id="folderSorter" class="net.sourceforge.atunes.kernel.modules.navigator.FolderSorter"/>
+	<bean id="yearSorter" class="net.sourceforge.atunes.kernel.modules.navigator.YearSorter"/>
+	<bean id="genreSorter" class="net.sourceforge.atunes.kernel.modules.navigator.GenreSorter"/>
+
+	<bean id="navigationViews" class="java.util.ArrayList">
+		<constructor-arg>
+			<list>
+				<ref bean="repositoryNavigationView" />
+				<ref bean="favoritesNavigationView" />
+				<ref bean="deviceNavigationView" />
+				<ref bean="radioNavigationView" />
+				<ref bean="podcastNavigationView" />
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id="navigationView" abstract="true" class="net.sourceforge.atunes.kernel.modules.navigator.AbstractNavigationView"/>
+
+	<bean id="repositoryNavigationView"
+		class="net.sourceforge.atunes.kernel.modules.navigator.RepositoryNavigationView"
+		parent="navigationView">
+		<property name="decorators">
+			<list>
+				<ref bean="artistTreeCellDecorator" />
+				<ref bean="albumTreeCellDecorator" />
+				<ref bean="genreTreeCellDecorator" />
+				<ref bean="yearTreeCellDecorator" />
+				<ref bean="folderTreeCellDecorator" />
+				<ref bean="tooltipTreeCellDecorator" />
+				<ref bean="unknownElementTreeCellDecorator" />
+				<ref bean="incompleteTagsTreeCellDecorator" />
+				<ref bean="navigationTreeRootCellDecorator"/>
+			</list>
+		</property>
+	</bean>
+	<bean id="repositoryNavigationViewTreePopupMenu" class="net.sourceforge.atunes.kernel.modules.navigator.RepositoryNavigationViewTreePopupMenu" init-method="initialize"/>
+	<bean id="repositoryNavigationViewTablePopupMenu" class="net.sourceforge.atunes.kernel.modules.navigator.RepositoryNavigationViewTablePopupMenu" init-method="initialize"/>
+	
+
+	<bean id="favoritesNavigationView"
+		class="net.sourceforge.atunes.kernel.modules.navigator.FavoritesNavigationView"
+		parent="navigationView">
+		<property name="decorators">
+			<list>
+				<ref bean="artistTreeCellDecorator" />
+				<ref bean="albumTreeCellDecorator" />
+				<ref bean="stringTreeCellDecorator" />
+				<ref bean="unknownElementTreeCellDecorator" />
+				<ref bean="incompleteTagsTreeCellDecorator" />
+				<ref bean="navigationTreeRootCellDecorator"/>
+			</list>
+		</property>
+	</bean>
+	<bean id="favoritesNavigationViewTreePopupMenu" class="net.sourceforge.atunes.kernel.modules.navigator.FavoritesNavigationViewTreePopupMenu" init-method="initialize"/>
+	<bean id="favoritesNavigationViewTablePopupMenu" class="net.sourceforge.atunes.kernel.modules.navigator.FavoritesNavigationViewTablePopupMenu" init-method="initialize"/>
+
+	<bean id="deviceNavigationView"
+		class="net.sourceforge.atunes.kernel.modules.navigator.DeviceNavigationView"
+		parent="navigationView">
+		<property name="decorators">
+			<list>
+				<ref bean="artistTreeCellDecorator" />
+				<ref bean="albumTreeCellDecorator" />
+				<ref bean="genreTreeCellDecorator" />
+				<ref bean="yearTreeCellDecorator" />
+				<ref bean="folderTreeCellDecorator" />
+				<ref bean="unknownElementTreeCellDecorator" />
+				<ref bean="incompleteTagsTreeCellDecorator" />
+				<ref bean="navigationTreeRootCellDecorator"/>				
+			</list>
+		</property>
+	</bean>
+
+	<bean id="radioNavigationView"
+		class="net.sourceforge.atunes.kernel.modules.navigator.RadioNavigationView"
+		parent="navigationView">
+		<property name="decorators">
+			<list>
+				<ref bean="stringTreeCellDecorator" />
+				<ref bean="radioTreeCellDecorator" />
+				<ref bean="navigationTreeRootCellDecorator"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="podcastNavigationView"
+		class="net.sourceforge.atunes.kernel.modules.navigator.PodcastNavigationView"
+		parent="navigationView">
+		<property name="decorators">
+			<list>
+				<ref bean="stringTreeCellDecorator" />
+				<ref bean="podcastFeedTreeCellDecorator" />
+				<ref bean="navigationTreeRootCellDecorator"/>
+			</list>
+		</property>
+	</bean>
+	
+	
+	
+	
+	<bean id="extendedTooltipContent" class="net.sourceforge.atunes.kernel.modules.navigator.ExtendedTooltipContent"/>
+</beans>

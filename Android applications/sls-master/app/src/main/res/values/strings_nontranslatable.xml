@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:locale="en">
+    <string name="app_name_short" translatable="false">SLS</string>
+    <string name="app_name" translatable="false">Simple Scrobbler</string>
+    <string name="email_addr" translatable="false">simple.lfm.scrobbler@gmail.com</string>
+    <string name="website_url" translatable="false">https://github.com/simple-last-fm-scrobbler/sls</string>
+    <string name="issues_url" translatable="false">https://github.com/simple-last-fm-scrobbler/sls/issues</string>
+    <string name="trouble_shoot" translatable="false">https://github.com/simple-last-fm-scrobbler/sls/blob/master/TroubleShooting.md</string>
+    <string name="nixtape_url" translatable="false">Nixtape URL</string>
+    <string name="gnukebox_url" translatable="false">Gnukebox URL</string>
+    <string name="listen_brainz_url" translatable="false">ListenBrainz URL</string>
+    <string name="listen_brainz_api_url" translatable="false">ListenBrainz API URL</string>
+    <string name="listen_brainz_token" translatable="false">ListenBrainz Token</string>
+    <string name="supported_musicapps" translatable="false">Spotify, Google Music, Deezer, 
+		Rhapsody/Napster, Rdio, My Cloud Player, SoundCloud, 8tracks, 
+		InfiniTracks, Squeezer, Amazon Music, Huawei, n7player, BuMP, PowerAMP, Black Player, AIMP, 
+		Timber (Beta), Vanilla Music, SmartVanilla Music, Shuttle Music Player, Rocket Player, 
+		JRTStudio Android Music Player, PlayerPro, Jetaudio, jukefox, foobar2000, DeaDBeeF, 
+		GoneMAD Music Player, Folder Player, Neutron Music Player, Music Pump XBMC Remote (Beta), 
+		Music Folder Player, Meridian Player, MixZing, Archos Music Player, Radio Noise FM, 
+		Now Playing, SoundSeeder, MortPlayer, bTunes, WIMP, Just Playlists, RockOn, Apollo, 
+		Android Music Player, HTC Hero/Sense Music Player, MIUI Music Player, ServeStream, 
+		Default Sony Ericsson/Xperia Music Player, myTouch 4G, LG Music Player, 
+		DAAP Media Player, xenoAmp, Marine, MediaMonkey, Pulsar, 
+    </string>
+
+    <string-array translatable="false" name="language_codes">
+        <item translatable="false">zh-rCN</item>
+        <item translatable="false">cs</item>
+        <item translatable="false">cs-rCZ</item>
+        <item translatable="false">en</item>
+        <item translatable="false">en-rUS</item>
+        <item translatable="false">fr</item>
+        <item translatable="false">de</item>
+        <item translatable="false">ja</item>
+        <item translatable="false">es</item>
+        <item translatable="false">pl</item>
+        <item translatable="false">pt-rBR</item>
+        <item translatable="false">ru</item>
+        <item translatable="false">uk</item>
+    </string-array>
+
+    <!-- START NetApp and Preference Data -->
+    <string name="settings_prefix_last_fm" translatable="false">last.fm</string>
+    <string name="settings_prefix_libre_fm" translatable="false">libre.fm</string>
+    <string name="settings_prefix_listenbrainz" translatable="false">ListenBrainz</string>
+    <string name="settings_prefix_libre_fm_custom" translatable="false">libre.fmCustom</string>
+    <string name="settings_prefix_listenbrainz_custom" translatable="false">ListenBrainzCustom</string>
+    <string name="user_creds_list_body" translatable="false">user_creds_list_body</string>
+    <!-- END NetApp and Preference Data -->
+</resources>

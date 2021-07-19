@@ -1,0 +1,55 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${packageName}.${activityClass}">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000000">
+        <ImageView
+            android:id="@+id/blur_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/photo1"/>
+        <ImageView
+            android:id="@+id/normal_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/photo1"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/contentWrapper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tv_resolution_normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100x200"
+            android:textColor="@color/optionsTextColorDark"
+            android:padding="2dp"
+            android:textSize="9sp"
+            android:shadowColor="#000"
+            android:shadowRadius="2"
+            android:layout_gravity="top|right"/>
+
+
+        <include layout="@layout/inc_settings"/>
+
+        <TextView
+            android:id="@+id/tv_resolution_blur"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/optionsTextColorDark"
+            android:padding="4dp"
+            android:textSize="9sp"
+            android:shadowColor="#000"
+            android:shadowRadius="2"
+            android:layout_gravity="bottom|right"/>
+    </FrameLayout>
+</FrameLayout>

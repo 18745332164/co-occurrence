@@ -1,0 +1,44 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.adam.aslfms"
+        minSdkVersion 14
+        targetSdkVersion 26
+        versionCode = 62
+        versionName = "1.7.1"
+
+        testApplicationId "com.adam.aslfms.test"
+        testInstrumentationRunner "android.test.InstrumentationTestRunner"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        abortOnError false
+        // TODO: fix all lint warnings
+        // TODO: decide what to do about at:Supress("Deprecation")
+        ignoreWarnings true
+    }
+
+
+    buildTypes {
+        release {
+            shrinkResources true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support:support-compat:26.1.0'
+    implementation 'com.android.support:design:26.1.0'
+    // implementation 'info.guardianproject.netcipher:netcipher:2.1.0' Might switch over all http to https using netcipher soon
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+}

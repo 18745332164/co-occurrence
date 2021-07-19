@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">QR PushToTalk BETA</string>
+    <string name="default_server_port">64738</string>
+    <string name="notification_message">%1$s: %2$s</string>
+</resources>

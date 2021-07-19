@@ -1,0 +1,68 @@
+/*******************************************************************************
+MeyerWeb Reset
+*******************************************************************************/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {display: block;}
+ol, ul {list-style: none;}
+table {border-collapse: collapse;border-spacing: 0;}
+
+/*******************************************************************************
+Theme Styles
+*******************************************************************************/
+
+body {
+  box-sizing: border-box;
+  font-size: 18px;
+  font-family: 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {margin: 10px 0;font-weight: 700;color:#222222;font-family: 'Lucida Grande', 'Calibri', Helvetica, Arial, sans-serif;letter-spacing: -1px;}
+h1 {font-size: 36px;font-weight: 700;}
+
+blockquote {background: #f9f9f9;border-left: 10px solid #ccc;margin: 1.5em 10px;padding: 0.5em 10px;quotes: "\201C""\201D""\2018""\2019";}
+blockquote:before {color: #ccc;content: open-quote;font-size: 4em;line-height: 0.1em;margin-right: 0.25em;vertical-align: -0.4em;}
+blockquote p {display: inline;}
+
+/* Ids */
+#footer{background: #212121;color:#eeeeee;}
+#hero{background-color: dimgray;}
+#footer-white {background: #323232; height: 230px; line-height: 10px; padding-top: 50px; -webkit-font-smoothing: antialiased; }
+
+.logo{ color: #FFC107; font-size: 20pt; font-style: bold;}
+
+h1 {font-family: 'Raleway', sans-serif;}
+h2 {font-family: 'Merriweather', serif;}
+
+/* Classes */
+
+.bg-image-home{background-image: url(images/hero.jpg); background-repeat: no-repeat; background-position: center; background-size: cover;}
+.feature-main-heading { color: #ffffff !important; font-size: 44pt;}
+.feature-sub-heading { color: #eaeaea !important;}
+.footer-divider {height: 1px; width: 100%; background-color: #ddd; position: relative; margin: 50px 0 40px; }
+.footer-header{color: white;}
+.outer-container{background: none repeat scroll 0% 0% rgba(0, 0, 0, 0.4); height: 100%;}

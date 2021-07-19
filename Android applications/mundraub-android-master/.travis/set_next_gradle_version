@@ -1,0 +1,22 @@
+#!/bin/bash
+#
+# Set the version in the gradle file of the app.
+#
+
+set -e
+
+cd "`dirname \"$0\"`"
+
+version="$1"
+version_code="`./version-to-version-code \"$version\"`"
+
+echo "next version: $version"
+echo "version code: $version_code"
+
+file="../app/build.gradle"
+
+echo "Editing `dirname \"$0\"`/$file"
+
+sed -ri 's/(versionCode\s+)[0-9]+/\1'"$version_code"'/g' "$file"
+sed -ri 's/(versionName\s+")[0-9]+\.[0-9]+"/\1'"$version"'"/g' "$file"
+

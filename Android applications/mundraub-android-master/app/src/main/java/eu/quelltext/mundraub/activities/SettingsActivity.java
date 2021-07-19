@@ -1,0 +1,793 @@
+package eu.quelltext.mundraub.activities;
+
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+import android.widget.ToggleButton;
+
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
+import eu.quelltext.mundraub.R;
+import eu.quelltext.mundraub.activities.map.SelectOfflineMapPartsActivity;
+import eu.quelltext.mundraub.activities.map.TestFruitRadarActivity;
+import eu.quelltext.mundraub.api.API;
+import eu.quelltext.mundraub.api.AsyncNetworkInteraction;
+import eu.quelltext.mundraub.api.BackgroundDownloadTask;
+import eu.quelltext.mundraub.api.progress.Progress;
+import eu.quelltext.mundraub.api.progress.Progressable;
+import eu.quelltext.mundraub.common.Dialog;
+import eu.quelltext.mundraub.common.Helper;
+import eu.quelltext.mundraub.common.Settings;
+import eu.quelltext.mundraub.initialization.Permissions;
+import eu.quelltext.mundraub.map.PlantsCache;
+import eu.quelltext.mundraub.map.TilesCache;
+import eu.quelltext.mundraub.map.position.BoundingBox;
+import eu.quelltext.mundraub.map.position.BoundingBoxCollection;
+import eu.quelltext.mundraub.notification.NotificationIDs;
+import eu.quelltext.mundraub.notification.ProgressNotification;
+import okhttp3.ResponseBody;
+import okio.BufferedSink;
+import okio.Okio;
+
+public class SettingsActivity extends MundraubBaseActivity {
+
+    private static BackgroundDownloadTask mapDownload = null;
+    private static final String NA_OVOCE_GITHUB_URL = "https://github.com/jsmesami/naovoce";
+
+    private ProgressBar updateProgress;
+    final Handler handler = new Handler();
+    ProgressUpdate plantProgressAutoUpdate;
+    private RadioGroup apiRadioGroup;
+    private TextView textFruitRadarDistanceExplanation;
+    private EditText textFruitRadarDistance;
+	private EditText textMaxNumberOfMarkers;
+	private TextView textNumberOfMarkersExplanation;
+    private Button buttonTestNotification;
+    private Button buttonOpenOfflineAreaChoice;
+    private Button buttonRemoveAreas;
+    private TextView offlineStatisticsText;
+    private Button buttonDownloadMap;
+    private ProgressBar updateProgressMap;
+    private ProgressUpdate mapProgressAutoUpdate;
+    private EditText customDownloadDomains;
+    private EditText customNaOvoceDomain;
+
+    abstract class ProgressUpdate implements Runnable {
+
+        private final ProgressBar progressBar;
+
+        private ProgressUpdate(ProgressBar bar) {
+            this.progressBar = bar;
+        }
+
+        boolean stopped = false;
+        @Override
+        public void run() {
+            try {
+                updateOrHideUpdateProgress();
+            } finally {
+                if (!stopped) {
+                    handler.postDelayed(this, 500);
+                }
+            }
+        }
+
+        public void stop() {
+            stopped = true;
+        }
+
+        private void updateOrHideUpdateProgress() {
+            Progress progress = getProgressOrNull();
+            if (progress == null) {
+                progressBar.setVisibility(View.GONE);
+            } else {
+                progressBar.setVisibility(View.VISIBLE);
+                int max = 100;
+                int newProgress = (int) Math.round(max * progress.getProgress());
+                if (newProgress != progressBar.getProgress()) {
+                    progressBar.setProgress(newProgress);
+                    // update color from https://stackoverflow.com/a/15809803
+                    //Drawable progressDrawable = progressBar.getProgressDrawable().mutate();
+                    //int color = progress.isDoneAndError() ? Color.RED : Color.GREEN;
+                    //progressDrawable.setColorFilter(color, android.graphics.PorterDuff.Mode.MULTIPLY);
+                    //progressBar.setProgressDrawable(progressDrawable);
+                }
+            }
+        }
+
+        protected abstract Progress getProgressOrNull();
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_settings);
+
+        updateProgress = (ProgressBar) findViewById(R.id.update_progress);
+        apiRadioGroup = (RadioGroup) findViewById(R.id.api_choice);
+        textFruitRadarDistanceExplanation = (TextView) findViewById(R.id.text_distance_in_meters_explanation);
+        textFruitRadarDistance = (EditText) findViewById(R.id.number_meters_to_plant);
+        whenTextEditedDo(textFruitRadarDistance, new OnTextEdited() {
+            @Override
+            public void onNewText() {
+                String text = textFruitRadarDistance.getText().toString();
+                if (text.isEmpty()) {
+                    return;
+                }
+                int meters = Integer.parseInt(text);
+                if (meters != Settings.getRadarPlantRangeMeters()) {
+                    feedbackAboutSettingsChange(Settings.setRadarPlantRangeMeters(meters));
+                    setFruitradarDistanceText();
+                }
+            }
+        });
+		textNumberOfMarkersExplanation = (TextView) findViewById(R.id.text_number_of_markers_explanation);
+        textMaxNumberOfMarkers = (EditText) findViewById(R.id.number_of_markers_displayed);
+        whenTextEditedDo(textMaxNumberOfMarkers, new OnTextEdited() {
+            @Override
+            public void onNewText() {
+            String text = textMaxNumberOfMarkers.getText().toString();
+                if (text.isEmpty()) {
+                    return;
+                }
+                int maxMarkers = Integer.parseInt(text);
+                if (maxMarkers != Settings.getMaximumDisplayedMarkers()) {
+                    feedbackAboutSettingsChange(Settings.setMaximumDisplayedMarkers(maxMarkers));
+                    setMaxNumberOfMarkersText();
+                }
+            }
+        });
+        buttonTestNotification = (Button) findViewById(R.id.button_show_example_notification);
+        buttonTestNotification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SettingsActivity.this, TestFruitRadarActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        buttonOpenOfflineAreaChoice = (Button) findViewById(R.id.button_mark_offline_areas);
+        buttonOpenOfflineAreaChoice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SettingsActivity.this, SelectOfflineMapPartsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        buttonRemoveAreas = (Button) findViewById(R.id.button_remove_areas);
+        buttonRemoveAreas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Dialog(SettingsActivity.this).askYesNo(
+                        R.string.settings_reason_delete_offline_tiles,
+                        R.string.settings_ask_delete_downloaded_tiles,
+                        new Dialog.YesNoCallback() {
+                            @Override
+                            public void yes() {
+                                Helper.deleteDir(Settings.mapTilesCacheDirectory(SettingsActivity.this));
+                                deleteAreas();
+                            }
+
+                            @Override
+                            public void no() {
+                                deleteAreas();
+                            }
+
+                            private void deleteAreas() {
+                                Settings.setOfflineAreaBoundingBoxes(BoundingBoxCollection.empty());
+                                setOfflineMapStatisticsText();
+                            }
+                });
+            }
+        });
+        offlineStatisticsText = (TextView) findViewById(R.id.text_offline_map_statistics);
+
+        buttonDownloadMap = (Button) findViewById(R.id.button_start_map_download);
+        buttonDownloadMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isDownloadingMap()) {
+                    downloadMap();
+                    new ProgressNotification(
+                            SettingsActivity.this,
+                            NotificationIDs.ID_MAP_DOWNLOAD,
+                            mapDownload.getProgress(),
+                            R.string.notification_title_download_map);
+                }
+            }
+        });
+        updateProgressMap = (ProgressBar) findViewById(R.id.update_progress_map);
+        updateMapOfflineButtons();
+        customNaOvoceDomain = (EditText) findViewById(R.id.my_na_ovoce_server_domain);
+        customNaOvoceDomain.setHint(Settings.DEFAULT_CUSTOM_NA_OVOCE_DOMAIN);
+        whenTextEditedDo(customNaOvoceDomain, new OnTextEdited() {
+            @Override
+            public void onNewText() {
+                String url = customNaOvoceDomain.getText().toString();
+                String newUrl = url.isEmpty() ? Settings.DEFAULT_CUSTOM_NA_OVOCE_DOMAIN : url;
+                if (newUrl != Settings.getCustomNaOvoceHost()) {
+                    Settings.setCustomNaOvoceHost(newUrl);
+                }
+            }
+        });
+
+        Button setupNaOvoce = (Button) findViewById(R.id.button_setup_na_ovoce);
+        setupNaOvoce.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openURLInBrowser(NA_OVOCE_GITHUB_URL);
+            }
+        });
+
+        customDownloadDomains = (EditText) findViewById(R.id.download_na_ovoce_server_domains);
+        whenTextEditedDo(customDownloadDomains, new OnTextEdited() {
+            @Override
+            public void onNewText() {
+                Set<String> urls = getCustomNaOvoceDownloadUrls();
+                if (!Settings.getCustomNaOvoceDownloads().equals(urls)) {
+                    Settings.setCustomNaOvoceDownloads(urls);
+                }
+            }
+        });
+    }
+
+    private void whenTextEditedDo(final EditText editText, final OnTextEdited edited) {
+        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    edited.onNewText();
+                }
+            }
+        });
+        editText.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                // from https://stackoverflow.com/a/8233832/1320237
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    edited.onNewText();
+                    return true;
+                }
+                return false;
+            }
+        });
+    }
+
+    interface OnTextEdited {
+        void onNewText();
+    }
+
+    private Set<String> getCustomNaOvoceDownloadUrls() {
+        String[] urls = customDownloadDomains.getText().toString().split(",");
+        for (int i = 0; i < urls.length; i++) {
+            urls[i] = urls[i].replaceAll(" ", "");
+        }
+        HashSet<String> set = new HashSet<>(Arrays.asList(urls));
+        set.remove("");
+        return set;
+    }
+
+    private void downloadMap() {
+        mapDownload = new BackgroundDownloadTask();
+        for (final TilesCache cache : Settings.getDownloadMaps()) {
+            for (int zoom : Settings.getDownloadZoomLevels()) {
+                for (BoundingBox bbox : Settings.getOfflineAreaBoundingBoxes().asSet()) {
+                    for (final TilesCache.Tile tile : cache.getTilesIn(bbox, zoom)) {
+                        if (tile.isCached()) {
+                            continue;
+                        }
+                        mapDownload.collectDownloadsFrom(new BackgroundDownloadTask.DownloadProvider() {
+                            @Override
+                            public Set<String> getDownloadUrls() {
+                                return new HashSet<>(Arrays.asList(tile.url()));
+                            }
+
+                            @Override
+                            public void handleContent(ResponseBody body, Progressable fraction) throws IOException {
+                                tile.file().getParentFile().mkdirs();
+                                BufferedSink sink = Okio.buffer(Okio.sink(tile.file()));
+                                sink.writeAll(body.source());
+                                sink.close();
+                                fraction.setProgress(1);
+                            }
+
+                            @Override
+                            public double getDownloadFraction() {
+                                return 0.8;
+                            }
+                        });
+                    }
+                }
+            }
+        }
+        mapDownload.downloadInBackground(AsyncNetworkInteraction.Callback.NULL);
+        updateMapOfflineButtons();
+    }
+
+    private void updateMapOfflineButtons() {
+        buttonDownloadMap.setEnabled(!isDownloadingMap());
+        buttonRemoveAreas.setEnabled(!isDownloadingMap());
+        if (isDownloadingMap()) {
+            mapDownload.getProgress().addCallback(new AsyncNetworkInteraction.Callback() {
+
+                private void onDone() {
+                    buttonDownloadMap.setEnabled(true);
+                    buttonRemoveAreas.setEnabled(true);
+                    setOfflineMapStatisticsText();
+                }
+                @Override
+                public void onSuccess() {
+                    onDone();
+                    new Dialog(SettingsActivity.this).alertSuccess(R.string.settings_success_download_map);
+                }
+                @Override
+                public void onFailure(int errorResourceString) {
+                    onDone();
+                    new Dialog(SettingsActivity.this).alertError(errorResourceString);
+                }
+            });
+        }
+    }
+
+    private boolean isDownloadingMap() {
+        return mapDownload != null && !mapDownload.getProgress().isDone();
+    }
+
+    @SuppressLint("StringFormatInvalid")
+    private void setFruitradarDistanceText() {
+        textFruitRadarDistanceExplanation.setText(
+                String.format(
+                        getString(R.string.settings_distance_in_meters),
+                        Settings.getRadarPlantRangeMeters()));
+    }
+
+	@SuppressLint("StringFormatInvalid")
+    private void setMaxNumberOfMarkersText() {
+        textNumberOfMarkersExplanation.setText(
+                String.format(
+                        getString(R.string.settings_max_num_of_markers),
+                        Settings.getMaximumDisplayedMarkers()));
+    }
+	
+    @Override
+    protected void onResume() {
+        super.onResume();
+        update();
+        resumeProgressBars();
+        setFruitradarDistanceText();
+        textFruitRadarDistance.setText(Integer.toString(Settings.getRadarPlantRangeMeters()));
+		setMaxNumberOfMarkersText();
+		textMaxNumberOfMarkers.setText(Integer.toString(Settings.getMaximumDisplayedMarkers()));
+        setOfflineMapStatisticsText();
+    }
+
+    private void resumeProgressBars() {
+        plantProgressAutoUpdate = new ProgressUpdate(updateProgress) {
+            @Override
+            protected Progress getProgressOrNull() {
+                return PlantsCache.getUpdateProgressOrNull();
+            }
+        };
+        plantProgressAutoUpdate.run();
+        mapProgressAutoUpdate = new ProgressUpdate(updateProgressMap) {
+            @Override
+            protected Progress getProgressOrNull() {
+                if (mapDownload == null) {
+                    return null;
+                }
+                return mapDownload.getProgress();
+            }
+        };
+        mapProgressAutoUpdate.run();
+    }
+
+    @SuppressLint("StringFormatInvalid")
+    private void setOfflineMapStatisticsText() {
+        String template = getString(R.string.settings_offline_map_statistics);
+        BoundingBoxCollection bboxes = Settings.getOfflineAreaBoundingBoxes();
+        String estimatedBytes = bboxes.byteCountToHumanReadableString(bboxes.estimateTileBytesIn(Settings.getDownloadMaps(), Settings.getDownloadZoomLevels()));
+        String usedBytes = bboxes.byteCountToHumanReadableString(Helper.folderSize(Settings.mapTilesCacheDirectory(this)));
+        String text = String.format(template, bboxes.size(), estimatedBytes, usedBytes);
+        offlineStatisticsText.setText(text);
+    }
+
+    @Override
+    protected void onPause() {
+        View current = getCurrentFocus();
+        if (current != null) {
+            current.clearFocus(); // commit the text fields if focused
+        }
+        super.onPause();
+        plantProgressAutoUpdate.stop();
+        mapProgressAutoUpdate.stop();
+    }
+
+    private void update() {
+        API api = API.instance();
+        apiRadioGroup.check(api.radioButtonId());
+        apiRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                for (API api : API.all()) {
+                    if (checkedId == api.radioButtonId()) {
+                        feedbackAboutSettingsChange(Settings.useAPI(api));
+                    }
+                }
+                update();
+            }
+        });
+        View customInputs = findViewById(R.id.custom_na_ovoce_inputs);
+        customInputs.setVisibility(api.isCustomNaOvoceAPI() ? View.VISIBLE : View.GONE);
+        customNaOvoceDomain.setText(Settings.getCustomNaOvoceHost());
+
+
+        synchronizeBooleanSetting(R.id.toggle_secure_connection, new Toggled() {
+            @Override
+            public int onToggle(boolean checked) {
+                return Settings.useInsecureConnections(!checked);
+            }
+
+            @Override
+            public boolean isChecked() {
+                return !Settings.useInsecureConnections();
+            }
+        });
+        synchronizeBooleanSetting(R.id.toggle_cache, new Toggled() {
+            @Override
+            public int onToggle(boolean checked) {
+                if (!checked) {
+                    getPermissions().WRITE_EXTERNAL_STORAGE.askIfNotGranted();
+                }
+                return Settings.useCacheForPlants(checked);
+            }
+
+            @Override
+            public boolean isChecked() {
+                return Settings.useCacheForPlants();
+            }
+        });
+        synchronizeBooleanSetting(R.id.toggle_error_report, new Toggled() {
+            @Override
+            public int onToggle(boolean checked) {
+                if (checked) {
+                    getPermissions().WRITE_EXTERNAL_STORAGE.askIfNotGranted();
+                }
+                return Settings.useErrorReport(checked);
+            }
+
+            @Override
+            public boolean isChecked() {
+                return Settings.useErrorReport();
+            }
+        });
+        synchronizeBooleanSetting(R.id.toggle_public_api, new Toggled() {
+            @Override
+            public int onToggle(boolean checked) {
+                if (checked) {
+                    getPermissions().INTERNET.askIfNotGranted();
+                }
+                return Settings.debugMundraubMapAPI(checked);
+            }
+
+            @Override
+            public boolean isChecked() {
+                return Settings.debugMundraubMapAPI();
+            }
+        });
+        synchronizeBooleanSetting(R.id.toggle_offline_mode, new Toggled() {
+            @Override
+            public int onToggle(boolean checked) {
+                if (checked) {
+                    if (!Settings.useOfflineMapAPI()) {
+                        askDownloadOfflineMapData();
+                    }
+                } else {
+                    getPermissions().INTERNET.askIfNotGranted();
+                    return Settings.useOfflineMapAPI(false);
+                }
+                return Settings.COMMIT_SUCCESSFUL;
+            }
+
+            @Override
+            public boolean isChecked() {
+                return Settings.useOfflineMapAPI();
+            }
+        });
+        synchronizePermissionSetting(R.id.toggle_camera, R.id.toggle_camera_ask, getPermissions().CAMERA);
+        synchronizePermissionSetting(R.id.toggle_location, R.id.toggle_location_ask, getPermissions().ACCESS_FINE_LOCATION);
+        synchronizePermissionSetting(R.id.toggle_internet, R.id.toggle_internet_ask, getPermissions().INTERNET);
+        synchronizePermissionSetting(R.id.toggle_storage, R.id.toggle_storage_ask, getPermissions().WRITE_EXTERNAL_STORAGE);
+        synchronizePermissionSetting(R.id.toggle_vibration, R.id.toggle_vibration_ask, getPermissions().VIBRATE);
+        synchronizeCategoryCheckbutton(R.id.checkBox_markers_mundraub, Settings.API_ID_MUNDRAUB);
+        synchronizeCategoryCheckbutton(R.id.checkBox_markers_na_ovoce, Settings.API_ID_NA_OVOCE);
+        synchronizeCategoryCheckbutton(R.id.checkBox_markers_fruitmap, Settings.API_ID_FRUITMAP);
+        synchronizeCategoryCheckbutton(R.id.checkBox_markers_community, Settings.API_ID_COMMUNITY);
+        synchronizeMarkerDownloadCheckbutton(R.id.checkBox_download_mundraub_markers, Settings.API_ID_MUNDRAUB);
+        synchronizeMarkerDownloadCheckbutton(R.id.checkBox_download_na_ovoce_markers, Settings.API_ID_NA_OVOCE);
+        synchronizeMarkerDownloadCheckbutton(R.id.checkBox_download_fruitmap_markers, Settings.API_ID_FRUITMAP);
+        synchronizeMarkerDownloadCheckbutton(R.id.checkBox_download_custom_na_ovoce_markers, Settings.API_ID_MY_NA_OVOCE);
+        customDownloadDomains.setVisibility(Settings.downloadMarkersFromAPI(Settings.API_ID_MY_NA_OVOCE) ? View.VISIBLE : View.GONE);
+        Set<String> settingUrls = Settings.getCustomNaOvoceDownloads();
+        if (!settingUrls.equals(getCustomNaOvoceDownloadUrls())) {
+            String urls = "";
+            for (Iterator<String> it = settingUrls.iterator(); it.hasNext(); ) {
+                String url = it.next();
+                if (!urls.equals("")) {
+                    urls += ", ";
+                }
+                urls += url;
+            }
+            customDownloadDomains.setText(urls);
+        }
+
+        synchronizeCheckbutton(R.id.checkBox_fruit_radar, new Toggled() {
+            @Override
+            public int onToggle(boolean checked) {
+                if (checked) {
+                    if (!Settings.useOfflineMapAPI()) {
+                        new Dialog(SettingsActivity.this).askYesNo(
+                                R.string.reason_radar_only_works_in_offline_mode,
+                                R.string.ask_switch_on_offline_mode,
+                                new Dialog.YesNoCallback() {
+                                    @Override
+                                    public void yes() {
+                                        checkPermissions(true);
+                                    }
+
+                                    @Override
+                                    public void no() {
+
+                                    }
+                                });
+                    } else {
+                        checkPermissions(false);
+                    }
+                } else {
+                    return Settings.useFruitRadarNotifications(false);
+                }
+                return Settings.COMMIT_SUCCESSFUL;
+            }
+
+            private void checkPermissions(final boolean goOffline) {
+                getPermissions().ACCESS_FINE_LOCATION.askIfNotGranted(new Permissions.PermissionChange() {
+                    @Override
+                    public void onGranted(Permissions.Permission permission) {
+                        if (goOffline) {
+                            askDownloadOfflineMapData();
+                        }
+                        feedbackAboutSettingsChange(Settings.useFruitRadarNotifications(true));
+                        update();
+                    }
+
+                    @Override
+                    public void onDenied(Permissions.Permission permission) {
+                    }
+                });
+            }
+
+            @Override
+            public boolean isChecked() {
+                return Settings.useFruitRadarNotifications();
+            }
+        });
+        synchronizeCheckbutton(R.id.checkBox_fruit_radar_vibrate, new Toggled() {
+            @Override
+            public int onToggle(boolean checked) {
+                if (checked) {
+                    getPermissions().VIBRATE.askIfNotGranted(new Permissions.PermissionChange() {
+                        @Override
+                        public void onGranted(Permissions.Permission permission) {
+                            feedbackAboutSettingsChange(Settings.vibrateWhenPlantIsInRange(true));
+                        }
+
+                        @Override
+                        public void onDenied(Permissions.Permission permission) {
+                        }
+                    });
+                } else {
+                    return Settings.vibrateWhenPlantIsInRange(false);
+                }
+                return Settings.COMMIT_SUCCESSFUL;
+            }
+
+            @Override
+            public boolean isChecked() {
+                return Settings.vibrateWhenPlantIsInRange();
+            }
+        });
+
+        synchronizeOfflineMapCheckbutton(R.id.checkBox_offline_mapnik, Settings.TILES_OSM);
+        synchronizeOfflineMapCheckbutton(R.id.checkBox_offline_satellite, Settings.TILES_SATELLITE);
+
+        synchronizeCheckbutton(R.id.checkBox_offline_download_all_zoom_levels, new Toggled() {
+            @Override
+            public int onToggle(boolean checked) {
+                return Settings.downloadMapTilesForZoomLevelsLowerThanMaximum(checked);
+            }
+
+            @Override
+            public boolean isChecked() {
+                return Settings.downloadMapTilesForZoomLevelsLowerThanMaximum();
+            }
+        });
+    }
+
+    private void synchronizeOfflineMapCheckbutton(final int resourceId, final String mapId) {
+        synchronizeCheckbutton(resourceId, new Toggled() {
+            @Override
+            public int onToggle(boolean checked) {
+                int result = Settings.setDownloadMap(mapId, checked);
+                setOfflineMapStatisticsText();
+                return result;
+            }
+            @Override
+            public boolean isChecked() {
+                return Settings.getDownloadMap(mapId);
+            }
+        });
+    }
+
+    private void synchronizeMarkerDownloadCheckbutton(int checkboxId, final String apiId) {
+        synchronizeCheckbutton(checkboxId, new Toggled() {
+            @Override
+            public int onToggle(boolean checked) {
+                return Settings.downloadMarkersFromAPI(apiId, checked);
+            }
+
+            @Override
+            public boolean isChecked() {
+                return Settings.downloadMarkersFromAPI(apiId);
+            }
+        });
+    }
+
+    private void askDownloadOfflineMapData() {
+        new Dialog(SettingsActivity.this).askYesNo(
+                R.string.reason_offline_data_needs_to_be_downloaded,
+                R.string.ask_download_offline_data,
+                new Dialog.YesNoCallback() {
+                    @Override
+                    public void yes() {
+                        goOffline();
+                    }
+
+                    @Override
+                    public void no() {
+                        feedbackAboutSettingsChange(Settings.useOfflineMapAPI(true));
+                        update();
+                    }
+                });
+    }
+
+    private void synchronizeCategoryCheckbutton(int checkBox_markers, final String apiId) {
+        synchronizeCheckbutton(checkBox_markers, new Toggled() {
+            @Override
+            public int onToggle(boolean checked) {
+                return Settings.showCategory(apiId, checked);
+            }
+
+            @Override
+            public boolean isChecked() {
+                return Settings.showCategory(apiId);
+            }
+        });
+    }
+
+    private void goOffline() {
+        getPermissions().INTERNET.askIfNotGranted(new Permissions.PermissionChange() {
+            @Override
+            public void onDenied(Permissions.Permission permission) {}
+
+            @Override
+            public void onGranted(Permissions.Permission permission) {
+                Progress progress = PlantsCache.update(new API.Callback() {
+                    @Override
+                    public void onSuccess() {
+                        feedbackAboutSettingsChange(Settings.useOfflineMapAPI(true));
+                        update();
+                        new Dialog(SettingsActivity.this).alertSuccess(R.string.success_plant_offline_data_was_downloaded);
+                    }
+
+                    @Override
+                    public void onFailure(int errorResourceString) {
+                        new Dialog(SettingsActivity.this).alertError(errorResourceString);
+                    }
+                });
+                new ProgressNotification(
+                        SettingsActivity.this,
+                        NotificationIDs.ID_MARKER_DOWNLOAD,
+                        progress,
+                        R.string.notification_title_download_markers);
+            }
+        });
+    }
+
+    interface Toggled {
+        int onToggle(boolean checked);
+        boolean isChecked();
+    }
+
+    private void synchronizeBooleanSetting(final int resourceId, final Toggled onToggle) {
+        final ToggleButton toggle = (ToggleButton) findViewById(resourceId);
+        toggle.setChecked(onToggle.isChecked());
+        toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                feedbackAboutSettingsChange(onToggle.onToggle(isChecked));
+                update();
+            }
+        });
+    }
+
+    private void feedbackAboutSettingsChange(int resourceId) {
+        if (resourceId != Settings.COMMIT_SUCCESSFUL) {
+            new Dialog(SettingsActivity.this).alertError(resourceId);
+        }
+    }
+
+    private void synchronizeCheckbutton(final int resourceId, final Toggled onToggle) {
+        final CheckBox toggle = (CheckBox) findViewById(resourceId);
+        toggle.setChecked(onToggle.isChecked());
+        toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                feedbackAboutSettingsChange(onToggle.onToggle(isChecked));
+                update();
+            }
+        });
+    }
+
+    void synchronizePermissionSetting(int onOffId, int askId, final Permissions.Permission permission) {
+        final ToggleButton onOff = (ToggleButton) findViewById(onOffId);
+        final ToggleButton ask = (ToggleButton) findViewById(askId);
+        onOff.setChecked(permission.isGranted());
+        final SettingsActivity me = this;
+        onOff.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    permission.check();
+                } else if (permission.isGranted()) {
+                    // todo open settings to change app permissions
+                    if (Permissions.CAN_ASK_FOR_PERMISSIONS) {
+                        new Dialog(me).alertInfo(R.string.error_can_edit_permissions_only_externally);
+                    } else {
+                        new Dialog(me).alertInfo(R.string.error_can_not_edit_permissions_api_too_old);
+                    }
+                }
+                update();
+            }
+        });
+        ask.setChecked(permission.canAsk());
+        ask.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                int result = permission.canAsk(isChecked);;
+                if (result != Settings.COMMIT_SUCCESSFUL) {
+                    new Dialog(me).alertError(result);
+                }
+                update();
+            }
+        });
+    }
+
+    @Override
+    protected void menuOpenSettings() {
+        // do nothing
+    }
+}

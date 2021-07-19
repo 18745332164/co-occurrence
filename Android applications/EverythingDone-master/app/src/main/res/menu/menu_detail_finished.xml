@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:ignore="AlwaysShowAction">
+
+    <item
+        android:id="@+id/act_share"
+        android:title="@string/act_share"
+        android:icon="@drawable/act_share_white"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/act_restore"
+        android:title="@string/act_restore"
+        android:icon="@drawable/act_restore"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/act_check_habit_detail"
+        android:title="@string/act_check_habit_detail"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/act_copy_content"
+        android:title="@string/act_copy_content"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/act_export"
+        android:title="@string/act_export_to_sdcard"
+        app:showAsAction="never"/>
+
+</menu>

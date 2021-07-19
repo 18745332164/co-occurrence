@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-autowire="byName" default-lazy-init="true">
+
+	<!-- TYPES OF FRAMES -->
+	<bean id="frameTypes" class="net.sourceforge.atunes.gui.frame.Frames">
+		<property name="frames">
+			<list>
+				<ref bean="defaultFrame"/>
+				<ref bean="enhancedFrame"/>
+				<ref bean="navigatorTopPlayListBottomFrame"/>
+			</list>
+		</property>
+		<property name="images">
+			<map>
+				<entry key-ref="defaultFrame" value="/images/windows/1.png"/>
+				<entry key-ref="enhancedFrame" value="/images/windows/2.png"/>
+				<entry key-ref="navigatorTopPlayListBottomFrame" value="/images/windows/3.png"/>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="defaultFrame" class="java.lang.Class" factory-method="forName">
+		<constructor-arg value="net.sourceforge.atunes.gui.frame.DefaultSingleFrame"/>
+	</bean>
+	<bean id="enhancedFrame" class="java.lang.Class" factory-method="forName">
+		<constructor-arg value="net.sourceforge.atunes.gui.frame.EnhancedSingleFrame"/>
+	</bean>
+	<bean id="navigatorTopPlayListBottomFrame" class="java.lang.Class" factory-method="forName">
+		<constructor-arg value="net.sourceforge.atunes.gui.frame.NavigatorTopPlayListBottomSingleFrame"/>
+	</bean>
+	
+	
+	
+
+
+	<bean id="frameFactory" class="net.sourceforge.atunes.kernel.modules.ui.FrameFactory">
+		<property name="defaultFrameClass" value="net.sourceforge.atunes.gui.frame.DefaultSingleFrame"/>
+	</bean>
+	
+	<bean id="frame" factory-bean="frameFactory" factory-method="create"/>
+	
+	
+	<bean class="net.sourceforge.atunes.gui.frame.FrameListenersDecorator" scope="prototype"/>
+	<bean class="net.sourceforge.atunes.gui.frame.WindowListener" scope="prototype"/>
+	<bean class="net.sourceforge.atunes.gui.frame.SingleFrameComponentAdapter" scope="prototype"/>
+	<bean class="net.sourceforge.atunes.gui.frame.SaveFrameSizeTask" scope="prototype"/>
+	<bean class="net.sourceforge.atunes.gui.frame.SaveFramePositionTask" scope="prototype"/>
+	
+	
+	<bean id="appMenuBar" class="net.sourceforge.atunes.gui.views.menus.ApplicationMenuBar"/>
+	<bean id="fileMenu" class="net.sourceforge.atunes.gui.views.menus.FileMenu" init-method="initialize">
+		<constructor-arg value="FILE"/>
+	</bean>
+	<bean id="editMenu" class="net.sourceforge.atunes.gui.views.menus.EditMenu" init-method="initialize">
+		<constructor-arg value="EDIT"/>
+	</bean>
+	<bean id="viewMenu" class="net.sourceforge.atunes.gui.views.menus.ViewMenu" init-method="initialize">
+		<constructor-arg value="VIEW"/>
+	</bean>
+	<bean id="toolsMenu" class="net.sourceforge.atunes.gui.views.menus.ToolsMenu" init-method="initialize">
+		<constructor-arg value="TOOLS"/>
+	</bean>
+	<bean id="playListMenu" class="net.sourceforge.atunes.gui.views.menus.PlayListMenu">
+		<constructor-arg value="PLAYLIST"/>
+	</bean>
+	<bean id="playerMenu" class="net.sourceforge.atunes.gui.views.menus.PlayerMenu" init-method="initialize">
+		<constructor-arg value="PLAYER"/>
+	</bean>
+	<bean id="deviceMenu" class="net.sourceforge.atunes.gui.views.menus.DeviceMenu" init-method="initialize">
+		<constructor-arg value="DEVICE"/>
+	</bean>
+	<bean id="helpMenu" class="net.sourceforge.atunes.gui.views.menus.HelpMenu" init-method="initialize">
+		<constructor-arg value="HELP"/>
+	</bean>
+	
+	<bean id="playListPopupMenu" class="net.sourceforge.atunes.gui.views.menus.PlayListPopupMenu" init-method="initialize"/>
+	
+	<bean id="playListMenuFiller" class="net.sourceforge.atunes.gui.views.menus.PlayListMenuFiller" scope="prototype"/>
+	
+	<bean id="contextPanelsContainer" class="net.sourceforge.atunes.gui.views.panels.ContextPanelContainer" init-method="initialize"/>
+	
+	
+	<bean id="navigationControlsInTreePanel" class="net.sourceforge.atunes.gui.views.panels.NavigationControlPanel" scope="prototype" init-method="initialize">
+		<property name="filter" ref="navigatorFilterPanel"/>
+	</bean>
+	<bean id="navigationControlsInTablePanel" class="net.sourceforge.atunes.gui.views.panels.NavigationControlPanel" scope="prototype" init-method="initialize">
+		<property name="filter" ref="navigatorTableFilterPanel"/>
+	</bean>
+	
+	<bean id="navigationTreePanel" class="net.sourceforge.atunes.gui.views.panels.NavigationTreePanel" init-method="initialize">
+		<property name="controlPanel" ref="navigationControlsInTreePanel"></property>
+	</bean>
+	<bean id="navigationTablePanel" class="net.sourceforge.atunes.gui.views.panels.NavigationTablePanel" init-method="initialize">
+		<property name="controlPanel" ref="navigationControlsInTablePanel"></property>
+	</bean>
+
+	<bean id="navigationTableModel" class="net.sourceforge.atunes.gui.NavigationTableModel"/>
+	
+	<bean id="navigationTable" class="net.sourceforge.atunes.gui.views.controls.NavigationTable">
+		<constructor-arg ref="lookAndFeelManager"/>
+		<property name="model" ref="navigationTableModel"/>
+		<property name="columnModel" ref="navigationTableColumnModel"/>
+	</bean>
+	
+	<bean id="playListPanel" class="net.sourceforge.atunes.gui.views.panels.PlayListPanel" init-method="initialize"/>
+	<bean id="playListSelectorPanel" class="net.sourceforge.atunes.gui.views.panels.PlayListSelectorPanel" init-method="initialize"/>
+	<bean id="playListSelectorWrapper" class="net.sourceforge.atunes.kernel.modules.playlist.PlayListSelectorWrapper" init-method="initialize"/>
+	
+	<bean id="playListTableModel" class="net.sourceforge.atunes.kernel.modules.playlist.PlayListTableModel">
+		<property name="columnSet" ref="playListColumnSet"/>
+	</bean>
+	<bean id="playListTable" class="net.sourceforge.atunes.gui.views.controls.PlayListTable" init-method="initialize"/>
+
+    <!-- Filters -->
+	<bean id="playListFilterPanel" class="net.sourceforge.atunes.gui.views.panels.FilterPanel" init-method="initialize"/>	
+	<bean id="navigatorFilterPanel" class="net.sourceforge.atunes.gui.views.panels.FilterPanel" init-method="initialize"/>
+	<bean id="navigatorTableFilterPanel" class="net.sourceforge.atunes.gui.views.panels.FilterPanel" init-method="initialize"/>
+	
+	<bean id="playListFilterPanelController" class="net.sourceforge.atunes.kernel.modules.filter.FilterController" init-method="initialize">
+		<constructor-arg ref="playListFilterPanel"/>
+	</bean>
+
+	<bean id="navigatorFilterPanelController" class="net.sourceforge.atunes.kernel.modules.filter.FilterController" init-method="initialize">
+		<constructor-arg ref="navigatorFilterPanel"/>
+	</bean>
+
+	<bean id="navigatorTableFilterPanelController" class="net.sourceforge.atunes.kernel.modules.filter.FilterController" init-method="initialize">
+		<constructor-arg ref="navigatorTableFilterPanel"/>
+	</bean>
+	
+	<bean id="navigationTableFilter" class="net.sourceforge.atunes.kernel.modules.filter.NavigationTableFilter"/>
+	<bean id="navigationTreeFilter" class="net.sourceforge.atunes.kernel.modules.filter.NavigationTreeFilter"/>
+	<bean id="playListFilter" class="net.sourceforge.atunes.kernel.modules.filter.PlayListFilter"/>
+	
+	<!-- End filters -->
+	
+	<bean id="colorBeanFactory" class="net.sourceforge.atunes.kernel.modules.state.ColorBeanFactory"/>
+	<bean id="fontBeanFactory" class="net.sourceforge.atunes.kernel.modules.state.FontBeanFactory" scope="prototype"/>
+
+	<bean id="commonTrayIcon" class="net.sourceforge.atunes.kernel.modules.tray.CommonTrayIcon" scope="prototype">
+		<property name="trayIconFiller">
+			<bean class="net.sourceforge.atunes.kernel.modules.tray.CommonTrayIconFiller"/>
+		</property>
+	</bean>
+	<bean id="macOsTrayIcon" class="net.sourceforge.atunes.kernel.modules.tray.MacTrayIcon" scope="prototype">
+		<property name="trayIconFiller">
+			<bean class="net.sourceforge.atunes.kernel.modules.tray.MacTrayIconFiller"/>
+		</property>
+	</bean>
+
+	<bean id="playerTrayIconsBuilder" class="net.sourceforge.atunes.kernel.modules.tray.PlayerTrayIconsBuilder" scope="prototype"/>
+
+    <bean id="commonPlayerTrayIconsHandler" class="net.sourceforge.atunes.kernel.modules.tray.CommonPlayerTrayIconsHandler" scope="prototype"/>
+    <bean id="macPlayerTrayIconsHandler" class="net.sourceforge.atunes.kernel.modules.tray.MacPlayerTrayIconsHandler" scope="prototype"/>
+    
+    
+    <bean class="net.sourceforge.atunes.kernel.modules.fullscreen.FullScreenController" scope="prototype" init-method="initialize"/>
+    <bean id="fullScreenImageSizeCalculator" class="net.sourceforge.atunes.kernel.modules.fullscreen.FullScreenImageSizeCalculator"/>
+    <bean id="paintCoversBackgroundWorker" class="net.sourceforge.atunes.kernel.modules.fullscreen.PaintCoversBackgroundWorker" scope="prototype"/>
+    
+    <bean id="covers" class="net.sourceforge.atunes.kernel.modules.fullscreen.CoverFlow" scope="prototype" init-method="initialize"/>
+    <bean id="fullScreenCoverImageRetriever" class="net.sourceforge.atunes.kernel.modules.fullscreen.FullScreenCoverImageRetriever"/>
+
+
+	<!-- TABLE CELL RENDERERS -->
+	<bean id="abstractTableCellRenderer" class="net.sourceforge.atunes.gui.AbstractTableCellRendererCode" abstract="true"/>
+	<bean class="net.sourceforge.atunes.gui.ColorMutableTableCellRendererCode" parent="abstractTableCellRenderer" scope="prototype"/>
+	<bean class="net.sourceforge.atunes.gui.ComponentOrientationTableCellRendererCode" parent="abstractTableCellRenderer" scope="prototype"/>
+	<bean id="stringTableCellRendererCode" class="net.sourceforge.atunes.gui.StringTableCellRendererCode" parent="abstractTableCellRenderer" scope="prototype"/>
+	<bean id="contextTableRowPanel" class="net.sourceforge.atunes.kernel.modules.context.ContextTableRowPanelRendererCode" parent="abstractTableCellRenderer" abstract="true"/>
+	<bean class="net.sourceforge.atunes.kernel.modules.context.artist.AlbumsTableCellRendererCode" parent="contextTableRowPanel" scope="prototype"/>
+	<bean id="youtubeResultsTableCellRendererCode" class="net.sourceforge.atunes.kernel.modules.context.youtube.YoutubeResultsTableCellRendererCode" parent="contextTableRowPanel" scope="prototype"/>
+	<bean id="eventsResultsTableCellRendererCode" class="net.sourceforge.atunes.kernel.modules.context.event.EventsResultsTableCellRendererCode" parent="contextTableRowPanel" scope="prototype"/>
+	<bean class="net.sourceforge.atunes.gui.ImageIconTableCellRendererCode" parent="abstractTableCellRenderer" scope="prototype"/>
+	<bean class="net.sourceforge.atunes.gui.IntegerTableCellRendererCode" parent="abstractTableCellRenderer" scope="prototype"/>
+	<bean class="net.sourceforge.atunes.gui.NavigationTableCellRendererCode" parent="abstractTableCellRenderer" scope="prototype" init-method="initialize"/>
+	<bean class="net.sourceforge.atunes.gui.PlaybackStateTableCellRendererCode" parent="abstractTableCellRenderer" scope="prototype"/>
+	<bean class="net.sourceforge.atunes.gui.PlayListTableCellRendererCode" parent="abstractTableCellRenderer" scope="prototype"/>
+	<bean class="net.sourceforge.atunes.gui.PlayListTextAndIconTableCellRendererCode" parent="abstractTableCellRenderer" scope="prototype"/>
+	<bean class="net.sourceforge.atunes.gui.PropertyTableCellRendererCode" parent="abstractTableCellRenderer" scope="prototype"/>
+	<bean class="net.sourceforge.atunes.kernel.modules.context.similar.SimilarArtistTableCellRendererCode" parent="contextTableRowPanel" scope="prototype"/>
+	<bean class="net.sourceforge.atunes.gui.TextAndIconTableCellRendererCode" parent="abstractTableCellRenderer" scope="prototype"/>
+	<bean class="net.sourceforge.atunes.kernel.modules.context.TrackInfoTableCellRendererCode" scope="prototype"/>
+	
+	<!-- COLUMN MODELS -->
+	<bean id="abstractCommonColumnModel" class="net.sourceforge.atunes.gui.AbstractCommonColumnModel" abstract="true"/>
+	<bean class="net.sourceforge.atunes.gui.AlbumTableColumnModel" parent="abstractCommonColumnModel" scope="prototype" init-method="initialize"/>
+	<bean id="navigationTableColumnModel" class="net.sourceforge.atunes.gui.NavigationTableColumnModel" parent="abstractCommonColumnModel" scope="prototype" init-method="initialize">
+		<property name="model" ref="navigationTableModel"/>
+		<property name="columnSet" ref="navigatorColumnSet"/>
+	</bean>
+	<bean id="playlistColumnModel" class="net.sourceforge.atunes.gui.PlayListColumnModel" parent="abstractCommonColumnModel" scope="prototype" init-method="initialize"/>
+	
+	<bean id="playlistTableColumnDecorator" class="net.sourceforge.atunes.gui.ColumnDecorator" scope="prototype">
+		<property name="columnModel" ref="playlistColumnModel"/>
+		<property name="table" ref="playListTable"/>
+	</bean>
+	
+	<!-- DRAG AND DROP PROCESSORS -->
+	<bean id="internalImportProcessor" class="net.sourceforge.atunes.kernel.modules.draganddrop.InternalImportProcessor" scope="prototype"/>
+	<bean id="externalImportProcessor" class="net.sourceforge.atunes.kernel.modules.draganddrop.ExternalImportProcessor" scope="prototype"/>
+	<bean id="externalDragAndDropDataExtractor" class="net.sourceforge.atunes.kernel.modules.draganddrop.ExternalDragAndDropDataExtractor" scope="prototype"/>
+	<bean id="navigatorToPlayListDragAndDropProcessor" class="net.sourceforge.atunes.kernel.modules.draganddrop.NavigatorToPlayListDragAndDropProcessor" scope="prototype"/>
+
+	<!-- COLORS -->
+	<bean id="unknownElementForegroundColor" class="java.awt.Color">
+		<constructor-arg value="1.0"/>
+		<constructor-arg value="0"/>
+		<constructor-arg value="0"/>
+	</bean>
+	
+	<bean id="controlsBuilder" class="net.sourceforge.atunes.gui.views.controls.ControlsBuilder"/>
+	<bean class="net.sourceforge.atunes.gui.views.controls.ToggleButtonFlowPanel" scope="prototype" init-method="initialize"/>
+	<bean id="toggleButtonOfFlowPanelCreator" class="net.sourceforge.atunes.gui.views.controls.ToggleButtonOfFlowPanelCreator" scope="prototype"/>
+	<bean class="net.sourceforge.atunes.kernel.modules.context.ContextTable" scope="prototype" init-method="initialize"/>
+	
+	<bean id="columnSetPopupMenu" class="net.sourceforge.atunes.gui.views.controls.ColumnSetPopupMenu" scope="prototype"/>
+	
+	
+	<bean class="net.sourceforge.atunes.kernel.modules.statistics.StatsDialogController" scope="prototype" init-method="initialize">
+		<constructor-arg ref="statsDialog"/>
+	</bean>
+	
+	<bean id="coverNavigatorController" class="net.sourceforge.atunes.kernel.modules.covernavigator.CoverNavigatorController" init-method="addBindings">
+		<constructor-arg ref="coverNavigatorDialog"/>
+	</bean>
+	<bean id="coverNavigationListSelectionListener" class="net.sourceforge.atunes.kernel.modules.covernavigator.CoverNavigationListSelectionListener" scope="prototype"/>
+
+
+
+	<bean id="columnSortIconGenerator" class="net.sourceforge.atunes.gui.lookandfeel.ColumnSortIconGenerator" scope="prototype"/>
+
+	<bean id="lookAndFeelTableHeaderCellRenderer" class="net.sourceforge.atunes.gui.lookandfeel.LookAndFeelTableHeaderCellRenderer" scope="prototype"/>
+	<bean id="substanceLookAndFeelTableHeaderCellRenderer" class="net.sourceforge.atunes.gui.lookandfeel.substance.SubstanceLookAndFeelTableHeaderCellRenderer" scope="prototype"/>
+
+	<bean id="radioBrowserController" class="net.sourceforge.atunes.kernel.modules.radio.RadioBrowserDialogController" init-method="initialize" scope="prototype"/>
+	
+	<bean id="remoteImage" class="net.sourceforge.atunes.gui.views.controls.RemoteImage" scope="prototype" init-method="initialize"/>
+	
+	<bean id="customSearchController" class="net.sourceforge.atunes.kernel.modules.search.CustomSearchController" init-method="initialize" scope="prototype"/>
+	<bean id="searchResultsController" class="net.sourceforge.atunes.kernel.modules.search.SearchResultsController" init-method="initialize" scope="prototype"/>
+	
+</beans>

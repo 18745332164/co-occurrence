@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+
+	default-autowire="byName" default-lazy-init="true">
+
+	<bean id="lastFmCache" class="net.sourceforge.atunes.kernel.modules.webservices.lastfm.LastFmCache">
+		<property name="configFile" value="/settings/ehcache-lastfm.xml"/>
+		<property name="cacheName" value="cache"></property>
+	</bean>
+	<bean id="lastFmService" class="net.sourceforge.atunes.kernel.modules.webservices.lastfm.LastFmService" init-method="initialize"/>
+	<bean id="lastFmAPIKey" class="net.sourceforge.atunes.kernel.modules.webservices.lastfm.LastFmAPIKey"/>
+	<bean id="lastFmLogin" class="net.sourceforge.atunes.kernel.modules.webservices.lastfm.LastFmLogin"/>
+	<bean id="lastFmUserServices" class="net.sourceforge.atunes.kernel.modules.webservices.lastfm.LastFmUserServices"/>
+	<bean id="lastFmAlbumServices" class="net.sourceforge.atunes.kernel.modules.webservices.lastfm.LastFmAlbumServices"/>
+	<bean id="lastFmArtistServices" class="net.sourceforge.atunes.kernel.modules.webservices.lastfm.LastFmArtistServices"/>
+	<bean id="lastFmSongServices" class="net.sourceforge.atunes.kernel.modules.webservices.lastfm.LastFmSongServices"/>
+	<bean class="net.sourceforge.atunes.kernel.modules.webservices.lastfm.SubmitNowPlayingInfoRunnable" scope="prototype"/>
+	<bean class="net.sourceforge.atunes.kernel.modules.webservices.lastfm.SubmitToLastFmRunnable" scope="prototype"/>
+	<bean id="lastFmSubmissionData" class="net.sourceforge.atunes.kernel.modules.webservices.lastfm.LastFmSubmissionData"/>
+
+	<bean id="lyricsCache" class="net.sourceforge.atunes.kernel.modules.webservices.lyrics.LyricsCache">
+		<property name="configFile" value="/settings/ehcache-lyrics.xml"/>
+		<property name="cacheName" value="lyrics"/>
+	</bean>
+	<bean id="lyricsService"
+		class="net.sourceforge.atunes.kernel.modules.webservices.lyrics.LyricsService">
+		
+		<property name="defaultLyricsEngines">
+			<list>
+				<bean class="net.sourceforge.atunes.kernel.modules.webservices.lyrics.LyricsEngineInfo">
+					<constructor-arg value="LyricWiki"/>
+					<constructor-arg value="net.sourceforge.atunes.kernel.modules.webservices.lyrics.LyricWikiEngine"/>
+					<constructor-arg value="true"/>
+				</bean>
+				<bean class="net.sourceforge.atunes.kernel.modules.webservices.lyrics.LyricsEngineInfo">
+					<constructor-arg value="LyricsDirectory"/>
+					<constructor-arg value="net.sourceforge.atunes.kernel.modules.webservices.lyrics.LyricsDirectoryEngine"/>
+					<constructor-arg value="true"/>
+				</bean>
+				<bean class="net.sourceforge.atunes.kernel.modules.webservices.lyrics.LyricsEngineInfo">
+					<constructor-arg value="LyrcEngine"/>
+					<constructor-arg value="net.sourceforge.atunes.kernel.modules.webservices.lyrics.LyrcEngine"/>
+					<constructor-arg value="false"/>
+				</bean>
+				<bean class="net.sourceforge.atunes.kernel.modules.webservices.lyrics.LyricsEngineInfo">
+					<constructor-arg value="Winampcn"/>
+					<constructor-arg value="net.sourceforge.atunes.kernel.modules.webservices.lyrics.WinampcnEngine"/>
+					<constructor-arg value="false"/>
+				</bean>
+				<bean class="net.sourceforge.atunes.kernel.modules.webservices.lyrics.LyricsEngineInfo">
+					<constructor-arg value="LyrDB"/>
+					<constructor-arg value="net.sourceforge.atunes.kernel.modules.webservices.lyrics.LyrDBEngine"/>
+					<constructor-arg value="false"/>
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="youtubeService" class="net.sourceforge.atunes.kernel.modules.webservices.youtube.YoutubeService"/>
+	<bean id="youtubeResultXmlAnalyzer" class="net.sourceforge.atunes.kernel.modules.webservices.youtube.YoutubeResultXmlAnalyzer"/>
+
+</beans>

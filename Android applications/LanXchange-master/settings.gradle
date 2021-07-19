@@ -1,0 +1,13 @@
+include 'core'
+include 'swing'
+include 'android'
+include 'cli'
+
+// name root project
+rootProject.name = "lanxchange" 
+
+// configure subproject dirs
+project(":core").projectDir = file("modules/core")
+project(":swing").projectDir = file("modules/swing")
+project(":android").projectDir = file("modules/android")
+project(":cli").projectDir = file("modules/cli")

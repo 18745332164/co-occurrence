@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_trip_calc"
+        android:enabled="true"
+        android:title="@string/menu_calc"
+        android:icon="@drawable/ic_gauge"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_fuel_price"
+        android:enabled="true"
+        android:title="@string/menu_fuel_price"
+        android:icon="@drawable/ic_cash_multiple"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_trip_expenses"
+        android:enabled="true"
+        android:title="@string/menu_trip_expenses"
+        android:icon="@drawable/ic_wallet"
+        app:showAsAction="ifRoom"/>
+</menu>

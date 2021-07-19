@@ -1,0 +1,43 @@
+#!/bin/bash
+
+set -e
+
+# arguments
+TRACK="$1"
+shift
+
+# constants
+HERE="`dirname \"$0\"`"
+APK="apks/fruit-radar-google-play-release.apk"
+METADATA_OUTPUT='/tmp/fruit-radar-metadata'
+
+cd "$HERE/.."
+
+if ! which fastlane > /dev/null; then
+    echo "fastlane is not installed. It will be installed now."
+    gem install fastlane
+fi
+
+if ! [ -f "$APK" ]; then
+    echo "ERROR: expected file: $APK"
+    echo "       This script assumes that you have run the file"
+    echo "       $HERE/create-google-play-release and there"
+    echo "       is a file named 'fruit-radar-google-play-release.apk'"
+    echo "       in the 'apks' folder."
+    exit 1
+fi
+
+echo "#### create metadata folder $METADATA_OUTPUT ####"
+"$HERE/create-google-play-metadata" "$METADATA_OUTPUT"
+
+echo "#### fastlane env ####"
+# for debugging and error reporting
+fastlane env
+
+echo "#### deploy ####"
+fastlane supply \
+    --track "$TRACK" \
+    --apk "$APK" \
+    --metadata_path "$METADATA_OUTPUT" \
+    "$@"
+

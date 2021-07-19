@@ -1,0 +1,294 @@
+// define what is required to build the desktop release (swing)
+def desktopProjects() {
+    [project('core'), project('cli'), project('swing')]
+}
+
+// common settings for desktop (swing) projects
+configure(desktopProjects()) {
+    apply plugin: 'java'
+    sourceCompatibility = 1.7
+    targetCompatibility = 1.7
+    compileJava.options.encoding = "UTF-8"
+}
+
+configure([project('swing')]) {
+    sourceCompatibility = 1.7
+    targetCompatibility = 1.7
+}
+
+configure([project('cli')]) {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+}
+
+// configure paths
+def signPath = "/mnt/veracrypt1"
+def buildPath = "/tmp/lxcbuild"
+def jnaPath = "lib/swing/jna-4.2.1-win-stripped.jar"
+
+
+
+///////////////////////////////////
+//
+// main tasks
+//
+///////////////////////////////////
+
+// Builds the desktop (swing) release
+task releaseDesktop() {
+    description "Builds the desktop release with the swing gui."
+    dependsOn "cleanBuildEnv"
+    dependsOn desktopProjects().build
+    dependsOn "prepareJar"
+    dependsOn "prepareJar2"
+    dependsOn "prepareJar3"
+    dependsOn "desktopJar"
+    dependsOn "packDesktop"
+    doLast {
+        copy {
+            from (buildPath + "/lxc.zip")
+            into ("releases/stable")
+        }
+        println "Done. Results in releases/stable. Unpack anywhere to install."
+    }
+}
+
+// Builds the desktop release and packs all files for the automatic update
+task packUpdate(dependsOn: desktopProjects().build) {
+    description "Builds the desktop release and packs it as automatic update."
+    
+    // Check versions, signing environment
+    dependsOn "prepareUpdate"
+    
+    // interactive setup & checks complete, normal build
+    dependsOn "cleanBuildEnv"
+    dependsOn desktopProjects().build
+    dependsOn "prepareJar"
+    dependsOn "prepareJar2"
+    dependsOn "prepareJar3"
+    dependsOn "desktopJar"
+    dependsOn "packDesktop2"
+    dependsOn "signUpdate"
+    dependsOn "packSignedFiles"
+    
+    // order
+    desktopProjects().build.each {
+        it.mustRunAfter ":prepareUpdate"
+    }
+    
+    doLast {
+        // copy update master file
+        copy {
+            from signPath + "/update_master.zip"
+            into "update"
+        }
+        // done!
+        println("Done. Commit and push directory \"update\" to apply (do not forget aws!)")
+    }
+}
+
+///////////////////////////////////
+//
+// internal tasks
+//
+///////////////////////////////////
+
+task cleanBuildEnv() {
+    deleteRecursive(buildPath)
+}
+
+task prepareJar(type: Copy) {
+    mustRunAfter desktopProjects().build
+    mustRunAfter "cleanBuildEnv"
+
+    def jna_file = file(jnaPath)
+    def outputDir = file("${buildDir}/unpacked/dist")
+
+    from zipTree(jna_file)
+    into buildPath + "/jar"
+    exclude "META-INF/*"
+}
+
+task prepareJar2(type: Copy) {
+    mustRunAfter "prepareJar"
+
+    from "lib/swing/lxcwin64.dll"
+    into buildPath + "/jar/win32-x86-64"
+    rename("lxcwin64.dll", "lxcwin.dll")
+}
+
+task prepareJar3(type: Copy) {
+    mustRunAfter "prepareJar2"
+
+    from "lib/swing/lxcwin32.dll"
+    into buildPath + "/jar/win32-x86"
+    rename("lxcwin32.dll", "lxcwin.dll")
+}
+
+// create main jar
+task desktopJar(type: Zip) {
+    mustRunAfter "prepareJar3"
+    
+    archiveName "lanxchange.jar"
+    destinationDir file(buildPath)
+    
+    // create manifest on the fly
+    def manifest = project('swing').jar.manifest
+    manifest.attributes("Main-Class": "de.tobifleig.lxc.plaf.swing.Main")
+    manifest.writeTo(buildPath + "/jar/META-INF/MANIFEST.MF")
+    
+    from buildPath + "/jar"
+    from "Ubuntu-R.ttf"
+    from "lxc_updates.pub"
+    from desktopProjects().sourceSets.main.output.classesDir
+}
+
+
+// pack desktop release
+task packDesktop(type: Zip) {
+    mustRunAfter "desktopJar"
+    
+    archiveName "lxc.zip"
+    destinationDir file(buildPath)
+    
+    from (".")
+    include ("img/*.png")
+    include ("COPYING")
+    include ("3rd_party_licenses/font_license.txt")
+    include ("lxc")
+    include ("lxc.exe")
+    
+    from (buildPath + "/lanxchange.jar")
+    include ("lanxchange.jar")
+}
+
+// pack desktop release
+// alternative version that includes the version number file, required for updates
+task packDesktop2(type: Zip) {
+    mustRunAfter "desktopJar"
+
+    archiveName "lxc.zip"
+    destinationDir file(buildPath)
+
+    from (".")
+    include ("img/*.png")
+    include ("COPYING")
+    include ("3rd_party_licenses/font_license.txt")
+    include ("lxc")
+    include ("lxc.exe")
+
+    from (buildPath + "/lanxchange.jar")
+    include ("lanxchange.jar")
+
+    from ("update/v")
+    include ("v")
+}
+
+// sign update
+task signUpdate(type: JavaExec) {
+    mustRunAfter "packDesktop"
+    
+    doFirst {
+        // prepare signing environment
+        deleteIfExists(signPath + "/lxc.zip")
+        deleteIfExists(signPath + "/update_master.zip")
+        deleteIfExists(signPath + "/lxc.sign")
+        
+        // copy update into signing environment
+        copy {
+            from (buildPath + "/lxc.zip")
+            into (signPath)
+        }
+    }
+    
+    // sign
+    main = "de.tobifleig.lxc.Signer"
+    workingDir = signPath
+}
+
+// zip signed update
+task packSignedFiles(type: Zip) {
+    mustRunAfter "signUpdate"
+    
+    archiveName "update_master.zip"
+    destinationDir file(signPath)
+    
+    from signPath
+    include "lxc.zip"
+    include "lxc.sign"
+}
+
+// querys for version info and checks signing environment
+task prepareUpdate() << {
+    
+    // Cannot pack without signing environment!
+    def signDir = new File(signPath)
+    if (!signDir.isDirectory()) {
+        throw new InvalidUserDataException("Missing signing environment (" + signPath + ")")
+    }
+    
+    // interactive mode required for this
+    if (System.console() == null) {
+        throw new InvalidUserDataException("This task requires an interactive console (run from terminal)")
+    }
+    
+    // read update system metadata
+    def mainClassFile = new File("modules/core/src/main/java/de/tobifleig/lxc/LXC.java")
+    ext.newversion = -1
+    mainClassFile.eachLine { line ->
+        def matcher = line =~ "\\s*public static final int versionId = ([0-9]+);"
+        if (matcher) {
+            ext.newversion = matcher.group(1)
+        }
+    }
+    if (ext.newversion == -1) {
+        throw new InvalidUserDataException("Cannot read version number from modules/core/src/main/java/de/tobifleig/lxc/LXC.java")
+    }
+    def oldversion = -1
+    def oldversionstring = ""
+    new File("update/v").withReader { oldversion = it.readLine(); oldversionstring = it.readLine()}  
+    if (oldversionstring == null || oldversion == -1 || oldversionstring.isEmpty()) {
+        throw new InvalidUserDataException("Cannot read old version information from update/v")
+    }
+    
+    // check if version number was incremented
+    if (ext.newversion <= oldversion) {
+        throw new InvalidUserDataException("Version number (" + ext.newversion + ") must be greater than the current version (" + oldversion + ")!")
+    }
+    
+    // prompt for new version text
+    println("Old description for version " + oldversion + " is: " + oldversionstring)
+    ext.newversionstring = System.console().readLine("Enter new description: ")
+    if (ext.newversionstring == null || ext.newversionstring.isEmpty()) {
+        throw new InvalidUserDataException("Description cannot be empty")
+    }
+
+    // write new version file
+    new File("update/v").withWriter { out ->
+        out.println(ext.newversion)
+        out.println(ext.newversionstring)
+    }
+}
+
+///////////////////////////////////
+//
+// helpers
+//
+///////////////////////////////////
+
+void deleteIfExists(String path) {
+    def file = new File(path)
+    if (file.exists()) {
+        file.delete()
+    }
+}
+
+void deleteRecursive(String path) {
+    def file = file(path)
+    if (file.isDirectory()) {
+        file.list().each{ f ->
+            deleteRecursive(path + "/" + f)
+        }
+    }
+    assert !file.exists() || file.delete()
+}

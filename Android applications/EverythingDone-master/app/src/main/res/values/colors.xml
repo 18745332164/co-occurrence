@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="thing">
+        <item>@color/blue_grey_500</item>
+        <item>@color/my_cyan</item>
+        <item>@color/blue_grey_deep_blue</item>
+        <item>@color/blue_grey_deep_grey</item>
+        <item>@color/brown</item>
+        <item>@color/blue_deep</item>
+        <item>@color/pine_green</item>
+        <item>@color/my_purple</item>
+        <item>@color/elegant_orange</item>
+        <item>@color/Aein_red</item>
+    </array>
+
+    <color name="my_cyan">#00B1C6</color>
+    <color name="pine_green">#21A675</color>
+    <color name="blue_grey_500">#607D8B</color>
+    <color name="blue_grey_deep_grey">#364656</color>
+    <color name="blue_grey_deep_blue">#366686</color>
+    <color name="blue_deep">#166096</color>
+    <color name="brown">#96766B</color>
+    <color name="my_purple">#665696</color>
+    <color name="elegant_orange">#D28656</color> <!-- Don't forget #D96D37 -->
+    <color name="Aein_red">#AE6060</color>
+
+    <array name="thing_dark"> <!-- overlap a 36% alpha black block -->
+        <item>#526B77</item> <!-- blue_grey_500 -->
+        <item>#0098AA</item> <!-- my_cyan -->
+        <item>#2E5873</item> <!-- blue_grey_deep_blue -->
+        <item>#2E3C4A</item> <!-- blue_grey_deep_grey -->
+        <item>#81655C</item> <!-- brown -->
+        <item>#135281</item> <!-- blue_deep -->
+        <item>#1C8F64</item> <!-- pine_green -->
+        <item>#584A81</item> <!-- my_purple -->
+        <item>#865637</item> <!-- elegant_orange -->
+        <item>#6F3D3D</item> <!-- Aein_red -->
+    </array>
+
+    <array name="thing_light"> <!-- overlap a 66% alpha white block -->
+        <item>#CAD2D5</item> <!-- blue_grey_500 -->
+        <item>#B2DFE4</item> <!-- my_cyan -->
+        <item>#C0CCD4</item> <!-- blue_grey_deep_blue -->
+        <item>#C0C4C8</item> <!-- blue_grey_deep_grey -->
+        <item>#D8D0CD</item> <!-- brown -->
+        <item>#B8CAD8</item> <!-- blue_deep -->
+        <item>#C6E8DB</item> <!-- pine_green -->
+        <item>#D7D3E4</item> <!-- my_purple -->
+        <item>#F0D6C5</item> <!-- elegant_orange -->
+        <item>#E3C9C9</item> <!-- Aein_red -->
+    </array>
+
+    <color name="bg_activity_things">#EEEEEE</color>
+
+    <color name="app_accent">#FFEB3B</color>
+
+    <color name="black_87p">#DE000000</color>
+    <color name="black_86p">#DB000000</color>
+    <color name="black_76p">#C4000000</color>
+    <color name="black_69p">#B0000000</color>
+    <color name="black_66p">#A8000000</color>
+    <color name="black_54">#6D6D6D</color>
+    <color name="black_54p">#8A000000</color>
+    <color name="black_50p">#80000000</color>
+    <color name="black_26p">#42000000</color>
+    <color name="black_14p">#24000000</color>
+    <color name="black_10p">#1A000000</color>
+
+    <color name="white_86p">#DBFFFFFF</color>
+    <color name="white_76p">#C4FFFFFF</color>
+    <color name="white_66p">#A8FFFFFF</color>
+    <color name="white_54p">#89FFFFFF</color>
+    <color name="white_50p">#80FFFFFF</color>
+
+    <color name="control_highlight_light">#66FFFFFF</color>
+
+    <color name="bg_snackbar">#323232</color>
+
+    <color name="error">#DD2C00</color>
+
+    <color name="bg_unpicked">#E6E6E6</color>
+
+    <color name="app_pink">#E91E63</color>
+
+    <color name="bg_statusbar_lollipop">#24000000</color>
+
+</resources>

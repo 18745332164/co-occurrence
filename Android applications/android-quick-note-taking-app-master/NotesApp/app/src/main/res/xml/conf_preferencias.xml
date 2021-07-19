@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/preferences_basicConfiguration">
+        <SwitchPreference
+            android:key="notifications"
+            android:defaultValue="false"
+            android:title="@string/preferences_notificationsTitle"
+            android:summary="@string/preferences_notificationsSummary" />
+        <CheckBoxPreference
+            android:key="orden"
+            android:defaultValue="false"
+            android:title="@string/preferences_ordenTitle"
+            android:summary="@string/preferences_ordenSummary" />
+        <CheckBoxPreference
+            android:key="maps"
+            android:defaultValue="false"
+            android:title="@string/preferences_mapsTitle"
+            android:summary="@string/preferences_mapsSummary" />
+        <ListPreference
+            android:dialogTitle="@string/preferences_LanguageTitle"
+            android:entries="@array/languages"
+            android:defaultValue="default"
+            android:entryValues="@array/languagesCodes"
+            android:key="language"
+            android:summary="@string/preferences_LanguageSummary"
+            android:title="@string/preferences_LanguageTitle" />
+    </PreferenceCategory>
+</PreferenceScreen>

@@ -1,0 +1,18 @@
+#!/bin/bash
+
+cd "`dirname \"$0\"`"
+
+version="$1"
+
+new_commits_short="`./commits-since \"$version\"`"
+
+echo "Version $version"
+echo
+for new_commit in $new_commits; do
+    issue_references="`git log -1 --pretty=full \"$new_commit\" | grep -E '/issues/|#[0-9]+'`"
+    if [ -n "$issue_references" ]; then
+        echo "- `git log -1 --pretty='%h %s' \"$new_commit\"`"
+        echo "$issue_references"
+    fi
+done
+

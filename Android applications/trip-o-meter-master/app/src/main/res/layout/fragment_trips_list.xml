@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ae.apps.tripmeter.fragments.expenses.TripsListFragment">
+
+    <com.ae.apps.common.views.EmptyRecyclerView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        app:layoutManager="LinearLayoutManager"
+        tools:listitem="@layout/fragment_trip"/>
+
+    <RelativeLayout
+        android:id="@+id/empty_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/padding_large"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="@dimen/margin_extra_large"
+            android:drawablePadding="@dimen/padding_medium"
+            android:drawableTop="@drawable/icon_trip_round"
+            android:gravity="center"
+            android:text="@string/str_empty_list_trips"
+            android:textSize="@dimen/text_size_large"/>
+    </RelativeLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>

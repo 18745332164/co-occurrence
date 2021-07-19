@@ -1,0 +1,39 @@
+apply plugin: 'com.android.application'
+android {
+    compileSdkVersion 22
+    buildToolsVersion '28.0.2'
+    defaultConfig {
+        minSdkVersion 8
+        //setting this above 10 makes the menu overflow button disappear
+        //setting this below 11, if multiple views are on screen they can't receive multiple separated events (honeycomb split touch events)
+        //this was not an issue in version 1.x where we were using an opengl screen but now we have plain good old views
+        //so we need to get rid of the overflow button and create a menu interface if we want the much more important split events
+        //we are now free to target the top
+        targetSdkVersion 22
+        versionCode 20302
+        versionName "2.3.2"
+    }
+
+    signingConfigs {
+        release {
+            storeFile file('/home/marcopar/Dropbox/pc/keystore/androidkeystore')
+            storePassword System.getenv("KEYSTORE_PASSWORD")
+            keyAlias System.getenv("KEY_ALIAS")
+            keyPassword System.getenv("KEY_PASSWORD")
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+        }
+        debug {
+            debuggable true
+            signingConfig signingConfigs.release
+        }
+    }
+}
+dependencies {
+    implementation 'com.android.support:appcompat-v7:22.+'
+    implementation 'com.android.support:support-v4:22.+'
+}

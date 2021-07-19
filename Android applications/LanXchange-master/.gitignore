@@ -1,0 +1,16 @@
+/nbproject/
+build.xml
+manifest.mf
+/build/
+lxc.cfg
+lxc.log
+lxc_oldlog*.log
+/bin/
+/gen/
+/libs/android-support-v4.jar
+/dist/
+/out/
+/.idea/
+/.navigation/
+/.gradle/
+local.properties

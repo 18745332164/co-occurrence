@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="a2dp.Vol"
+    android:installLocation="internalOnly"
+
+    android:versionCode="169"
+    android:versionName="2.13.0.4">
+
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission
+        android:name="android.permission.CHANGE_WIFI_STATE"
+        android:required="false" />
+    <uses-permission
+        android:name="android.permission.ACCESS_WIFI_STATE"
+        android:required="false" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:description="@string/accessDescription"
+        android:fullBackupContent="@xml/backup_descriptor"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:persistent="true">
+        <receiver android:name=".ConnectWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/connect_widget_info" />
+        </receiver>
+
+        <activity android:name=".ConnectWidgetConfigureActivity">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".main"
+            android:description="@string/accessDescription"
+            android:icon="@drawable/icon5"
+            android:label="@string/app_name"
+            android:launchMode="singleTop"
+            android:multiprocess="false">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".service"
+            android:enabled="true"
+            android:label="@string/app_name" />
+
+        <activity
+            android:name=".ManageData"
+            android:enabled="true"
+            android:finishOnTaskLaunch="false"
+            android:icon="@drawable/icon5"
+            android:label="@string/app_name"
+            android:launchMode="singleTop"
+            android:multiprocess="false"
+            android:parentActivityName=".main">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="a2dp.Vol.main" />
+        </activity>
+        <activity
+            android:name=".Preferences"
+            android:enabled="true"
+            android:icon="@drawable/icon5"
+            android:label="@xml/preferences"
+            android:launchMode="singleInstance"
+            android:parentActivityName=".main">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="a2dp.Vol.main" />
+        </activity>
+
+        <receiver android:name=".Starter">
+            <intent-filter>
+                <category android:name="android.intent.category.HOME" />
+
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".Widget"
+            android:icon="@drawable/car2"
+            android:label="@string/app_name">
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget" />
+
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".ALauncher"
+            android:enabled="true"
+            android:label="@string/app_name" />
+
+        <service android:name=".Connector"/>
+
+        <activity
+            android:name=".EditDevice"
+            android:parentActivityName=".main">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="a2dp.Vol.main" />
+        </activity>
+        <activity android:name=".AppChooser" />
+        <activity android:name=".CustomIntentMaker" /> <!-- <activity android:name=".ProviderList" /> -->
+        <service android:name=".StoreLoc" />
+
+        <activity
+            android:name=".PackagesChooser"
+            android:label="@string/title_activity_packages_chooser"
+            android:parentActivityName=".main">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="a2dp.Vol.main" />
+        </activity>
+
+        <service
+            android:name=".NotificationCatcher"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
+        <!--
+     ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        -->
+        <activity
+            android:name=".LocViewer"
+            android:label="@string/title_activity_loc_viewer"
+            android:parentActivityName=".main"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="a2dp.Vol.main" />
+        </activity>
+    </application>
+
+</manifest>

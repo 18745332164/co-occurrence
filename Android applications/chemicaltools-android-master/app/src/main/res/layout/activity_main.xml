@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.njzjz.chemicaltools.MainActivity"
+    android:background="@android:color/background_light">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/background_light"
+        android:weightSum="1"
+        android:id="@+id/linearLayout"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+        <RelativeLayout
+            android:id="@+id/relativeLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/elementText"
+            android:imeOptions="actionSend"
+            android:inputType="text"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.06"
+            android:maxLines="1"
+            android:hint="@string/elementEditText_name"
+            android:layout_toLeftOf="@+id/elementButton"
+            android:layout_toStartOf="@+id/elementButton"
+            android:drawableRight="@drawable/numberpicker_down_normal_holo_light"
+            />
+
+
+            <Button
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="@string/elementButton_name"
+                android:id="@+id/elementButton"
+                android:layout_gravity="center_horizontal"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/relativeLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/elementTextview"
+            android:layout_weight="0.06"
+            android:layout_marginTop="11dp"
+            android:text="@string/elementTextview_name"
+            android:textSize="18dp"
+            android:textColor="@color/abc_primary_text_material_light"
+            android:scrollbars="vertical"
+            android:layout_toEndOf="@+id/elementImage"
+            android:layout_toRightOf="@+id/elementImage"
+            android:layout_marginLeft="10dp"/>
+
+            <ImageView
+                android:id="@+id/elementImage"
+                android:layout_width="115dp"
+                android:scaleType="centerCrop"
+                android:layout_height="155dp"
+                android:layout_alignTop="@+id/elementTextview"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

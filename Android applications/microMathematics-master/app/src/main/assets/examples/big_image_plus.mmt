@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<micromath xmlns:mmt="http://micromath.mkulesh.com">
+  <formulaList documentVersion="2" author="" title="" description="" textWidth="60" significantDigits="6" scale="0.48993" redefineAllowed="false">
+    <image_fragment fileName="asset:/images/landscape_orientation.png" embedded="false" originalSize="false" width="113" height="67" colorType="auto" />
+    <text_fragment inRightOfPrevious="true">
+      <term key="text" text="Use landscape orientation for this example" />
+    </text_fragment>
+    <text_fragment numbering="true">
+      <term key="text" text="Parameters of the X-axis" />
+    </text_fragment>
+    <equation>
+      <term key="leftTerm" text="N" />
+      <term key="rightTerm" text="800" />
+    </equation>
+    <equation inRightOfPrevious="true">
+      <term key="leftTerm" text="x1" />
+      <term key="rightTerm" text="-2" />
+    </equation>
+    <equation inRightOfPrevious="true">
+      <term key="leftTerm" text="x2" />
+      <term key="rightTerm" text="2" />
+    </equation>
+    <equation inRightOfPrevious="true">
+      <term key="leftTerm" text="dx" />
+      <term key="rightTerm" code="divide">
+        <term key="leftTerm" code="abs_layout">
+          <term key="argTerm" code="minus">
+            <term key="leftTerm" text="x2" />
+            <term key="rightTerm" text="x1" />
+          </term>
+        </term>
+        <term key="rightTerm" text="N" />
+      </term>
+    </equation>
+    <equation>
+      <term key="leftTerm" text="x" />
+      <term key="rightTerm" code="equidistant_interval">
+        <term key="minValue" text="x1" />
+        <term key="nextValue" code="plus">
+          <term key="leftTerm" text="x1" />
+          <term key="rightTerm" text="dx" />
+        </term>
+        <term key="maxValue" text="x2" />
+      </term>
+    </equation>
+    <result disableCalculation="false" hideResultField="false" arrayLength="7">
+      <term key="leftTerm" text="x" />
+      <term key="rightTerm" text="" />
+    </result>
+    <text_fragment numbering="true">
+      <term key="text" text="Parameters of the Y-axis" />
+    </text_fragment>
+    <equation>
+      <term key="leftTerm" text="M" />
+      <term key="rightTerm" text="500" />
+    </equation>
+    <equation inRightOfPrevious="true">
+      <term key="leftTerm" text="y1" />
+      <term key="rightTerm" text="-3" />
+    </equation>
+    <equation inRightOfPrevious="true">
+      <term key="leftTerm" text="y2" />
+      <term key="rightTerm" text="3" />
+    </equation>
+    <equation inRightOfPrevious="true">
+      <term key="leftTerm" text="dy" />
+      <term key="rightTerm" code="divide">
+        <term key="leftTerm" code="abs_layout">
+          <term key="argTerm" code="minus">
+            <term key="leftTerm" text="y2" />
+            <term key="rightTerm" text="y1" />
+          </term>
+        </term>
+        <term key="rightTerm" text="M" />
+      </term>
+    </equation>
+    <equation>
+      <term key="leftTerm" text="y" />
+      <term key="rightTerm" code="equidistant_interval">
+        <term key="minValue" text="y1" />
+        <term key="nextValue" code="plus">
+          <term key="leftTerm" text="y1" />
+          <term key="rightTerm" text="dy" />
+        </term>
+        <term key="maxValue" text="y2" />
+      </term>
+    </equation>
+    <result disableCalculation="false" hideResultField="false" arrayLength="7">
+      <term key="leftTerm" text="y" />
+      <term key="rightTerm" text="" />
+    </result>
+    <text_fragment numbering="true">
+      <term key="text" text="Function: " />
+    </text_fragment>
+    <equation inRightOfPrevious="true">
+      <term key="leftTerm" text="F(x,y)" />
+      <term key="rightTerm" code="sin">
+        <term key="argTerm" code="mult">
+          <term key="leftTerm" text="5" />
+          <term key="rightTerm" code="mult">
+            <term key="leftTerm" code="power">
+              <term key="leftTerm" text="x" />
+              <term key="rightTerm" text="2" />
+            </term>
+            <term key="rightTerm" code="minus">
+              <term key="leftTerm" text="y" />
+              <term key="rightTerm" text="x" />
+            </term>
+          </term>
+        </term>
+      </term>
+    </equation>
+    <text_fragment numbering="true">
+      <term key="text" text="Plot of this function" />
+    </text_fragment>
+    <plot_contour plotStyle="contour" width="1300" height="550" axes_style="boxed" xLabelsNumber="4" yLabelsNumber="4" gridLineColor="#FF838383" zLabelsNumber="10" colorMap="grayscale">
+      <term key="yMaxValue" text="3" />
+      <term key="yMinValue" text="-3" />
+      <term key="xMinValue" text="-2" />
+      <term key="zFunction" code="content:com.mkulesh.micromath.link.F:2">
+        <term key="argTerm1" text="x" />
+        <term key="argTerm2" text="y" />
+      </term>
+      <term key="xMaxValue" text="2.0" />
+    </plot_contour>
+  </formulaList>
+</micromath>

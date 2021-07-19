@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">AndroDNS</string>
+    <string-array name="query_classes">
+        <item>IN</item>
+        <item>CH</item>
+        <item>HS</item>
+    </string-array>
+    <string-array name="protocols">
+        <item>DNS</item>
+        <item>DoT</item>
+        <item>DoH</item>
+    </string-array>
+    <string name="title_activity_history">HistoryActivity</string>
+    <string name="title_activity_bookmarks">Bookmarked queries</string>
+    <string name="history">History</string>
+    <string name="bookmarks">Bookmarked queries</string>
+    <string name="help">Help</string>
+</resources>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?> 
+ <!-- 
+ ~ Copyright (c) 2009 Andrew <andrewdubya@gmail> 
+ ~ Copyright (c) 2009 Edu Zamora <edu.zasu@gmail.com> 
+ ~ Copyright (c) 2009 Daniel Svaerd <daniel.svard@gmail.com> 
+ ~ Copyright (c) 2009 Nicolas Raoul <nicolas.raoul@gmail.com> 
+ ~ Copyright (c) 2010 Norbert Nagold <norbert.nagold@gmail.com> 
+ ~ This program is free software; you can redistribute it and/or modify it under 
+ ~ the terms of the GNU General Public License as published by the Free Software 
+ ~ Foundation; either version 3 of the License, or (at your option) any later 
+ ~ version. 
+ ~ 
+ ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
+ ~ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A 
+ ~ PARTICULAR PURPOSE. See the GNU General Public License for more details. 
+ ~ 
+ ~ You should have received a copy of the GNU General Public License along with 
+ ~ this program.  If not, see <http://www.gnu.org/licenses/>. 
+ --> 
+ 
+<!--
+~ Copyright (c) 2009 Casey Link <unnamedrambler@gmail.com>
+~
+~ This program is free software; you can redistribute it and/or modify it under
+~ the terms of the GNU General Public License as published by the Free Software
+~ Foundation; either version 3 of the License, or (at your option) any later
+~ version.
+~
+~ This program is distributed in the hope that it will be useful, but WITHOUT ANY
+~ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+~ PARTICULAR PURPOSE. See the GNU General Public License for more details.
+~
+~ You should have received a copy of the GNU General Public License along with
+~ this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<resources>
+    <string-array name="error_reporting_choice_labels">
+        <item>Toujours envoyer un rapport d\'erreur</item>
+        <item>Ne jamais envoyer de rapport d’erreur</item>
+        <item>Me demander</item>
+    </string-array>
+    <string-array name="leech_action_labels">
+        <item>Suspendre la carte</item>
+        <item>Étiqueter uniquement</item>
+    </string-array>
+    <string-array name="new_order_labels">
+        <item>Nouvelles cartes dans un ordre aléatoire</item>
+        <item>Nouvelles cartes dans l’ordre d’ajout</item>
+    </string-array>
+    <string-array name="cram_deck_conf_order_labels">
+        <item>Les plus anciennes en premier</item>
+        <item>Au hasard</item>
+        <item>Intervalles croissants</item>
+        <item>Intervalles décroissants</item>
+        <item>Les plus échouées</item>
+        <item>L’ordre d’ajout</item>
+        <item>Les plus urgentes d’abord</item>
+        <item>Les dernières ajoutées d’abord</item>
+        <item>Retard relatif</item>
+    </string-array>
+    <string-array name="add_to_cur_labels">
+        <item>Utilisez le paquet courant</item>
+        <item>Décider par type de note</item>
+    </string-array>
+    <string-array name="new_spread_labels">
+        <item>Mélangez nouvelles cartes et révisions</item>
+        <item>Nouvelles cartes après les révisions</item>
+        <item>Nouvelles cartes avant les révisions</item>
+    </string-array>
+    <string-array name="override_font_labels">
+        <item>Lorsque aucune police n’est spécifié sur la carte</item>
+        <item>Toujours</item>
+    </string-array>
+    <string-array name="day_theme_labels">
+        <item>Lumineux</item>
+        <item>Clair</item>
+    </string-array>
+    <string-array name="night_theme_labels">
+        <item>Noir</item>
+        <item>Sombre</item>
+    </string-array>
+    <string-array name="html_size_code_labels">
+        <item>xx-petite</item>
+        <item>x-petite</item>
+        <item>petite</item>
+        <item>moyenne</item>
+        <item>grande</item>
+        <item>x-grande</item>
+        <item>xx-grande</item>
+    </string-array>
+    <!--
+    #7794 - it\'s better to use @string references in non-translated arrays as this handles
+    changes in the array ordering better
+     -->
+    <string name="gesture_no_action">Aucune action</string>
+    <string name="gesture_answer_1">Bouton de réponse 1</string>
+    <string name="gesture_answer_2">Bouton de réponse 2</string>
+    <string name="gesture_answer_3">Bouton de réponse 3</string>
+    <string name="gesture_answer_4">Bouton de réponse 4</string>
+    <string name="gesture_answer_green">Réponse recommandée (vert)</string>
+    <string name="gesture_answer_better_recommended">Réponse meilleure que celle recommandée</string>
+    <string name="gesture_tag_note">Note d\'étiquette</string>
+    <string name="gesture_lookup">Vérifier l\'expression</string>
+    <string name="gesture_play">Lire le média</string>
+    <string name="gesture_abort_learning">Abandonner l\'apprentissage</string>
+    <string name="gesture_flag_red">Activer/désactiver la balise rouge</string>
+    <string name="gesture_flag_orange">Activer/désactiver la balise orange</string>
+    <string name="gesture_flag_green">Activer/désactiver la balise verte</string>
+    <string name="gesture_flag_blue">Activer/désactiver la balise bleue</string>
+    <string name="gesture_flag_remove">Retirer la balise</string>
+    <string name="gesture_page_up">Remonter</string>
+    <string name="gesture_page_down">Descendre</string>
+    <string name="gesture_abort_sync">Abandonner l\'apprentissage et la synchronisation</string>
+    <string name="gesture_toggle_whiteboard">Activer le tableau blanc</string>
+    <string name="record_voice">Enregistrer la voix</string>
+    <string name="replay_voice">Réentendre la voix</string>
+</resources>

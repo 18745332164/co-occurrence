@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/button_user" android:key="user">
+        <PreferenceScreen android:title="@string/button_login" android:key="login"/>
+        <PreferenceScreen android:title="@string/setting_QQ" android:key="qq" />
+        <!--
+        <PreferenceScreen android:title="@string/setting_wechat" android:key="wechat" />
+        -->
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/button_exam">
+        <ListPreference android:title="@string/setting_mode"
+            android:key="examMode"
+            android:defaultValue="0"
+            android:entryValues="@array/settings_entry_values_examMode"
+            android:entries="@array/settings_entries_examMode"/>
+        <ListPreference android:title="@string/setting_elementnumber_limit"
+            android:key="elementnumber_limit"
+            android:defaultValue="118"
+            android:entryValues="@array/settings_entry_values_elementnumber_limit"
+            android:entries="@array/settings_entries_elementnumber_limit"/>
+        <CheckBoxPreference android:title="@string/setting_examOptionMode"
+            android:key="setting_examOptionMode"
+            android:defaultValue="false"
+            android:summaryOn="@string/setting_examOptionModeOn"
+            android:summaryOff="@string/setting_examOptionModeOff"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/button_acid">
+        <EditTextPreference android:title="pKw"
+            android:key="pKw"
+            android:defaultValue="14">
+        </EditTextPreference>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/setting_others">
+        <PreferenceScreen android:title="@string/setting_clearSettings"
+            android:key="clearSettings">
+        </PreferenceScreen>
+        <PreferenceScreen android:title="@string/setting_update"
+            android:key="update">
+        </PreferenceScreen>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/button_About">
+        <PreferenceScreen
+            android:title="@string/setting_rate"
+            android:summary="@string/setting_rate_sum">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="market://details?id=com.njzjz.chemicaltools"/>
+
+        </PreferenceScreen>
+        <PreferenceScreen android:title="@string/setting_feedback"
+            android:summary="njzjz@msn.com">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="mailto:njzjz@msn.com?subject=Chemical Tools App Feedback"/>
+        </PreferenceScreen>
+        <PreferenceScreen android:title="@string/setting_website"
+            android:summary="http://chem.njzjz.win/">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="http://chem.njzjz.win/"/>
+        </PreferenceScreen>
+        <PreferenceScreen android:title="@string/button_About"
+            android:key="about">
+        </PreferenceScreen>
+    </PreferenceCategory>
+</PreferenceScreen>

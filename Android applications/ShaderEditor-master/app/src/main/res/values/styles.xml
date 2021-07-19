@@ -1,0 +1,63 @@
+<resources>
+	<style
+		name="AppTheme"
+		parent="Theme.AppCompat.NoActionBar">
+		<item name="background">@android:color/transparent</item>
+		<item name="colorPrimary">@color/primary</item>
+		<item name="colorPrimaryDark">@color/primary_dark</item>
+		<item name="colorAccent">@color/accent</item>
+		<item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+	</style>
+	<style
+		name="SplashTheme"
+		parent="@style/AppTheme">
+		<item name="android:windowBackground">@drawable/background_splash</item>
+	</style>
+	<style
+		name="PreviewTheme"
+		parent="Theme.AppCompat.NoActionBar">
+		<item name="android:windowNoTitle">true</item>
+		<item name="android:windowFullscreen">true</item>
+		<item name="android:windowContentOverlay">@null</item>
+	</style>
+	<style
+		name="Title"
+		parent="@android:style/TextAppearance.Medium">
+	</style>
+	<style
+		name="Subtitle"
+		parent="@android:style/TextAppearance.Small">
+		<item name="android:textSize">12sp</item>
+	</style>
+	<style
+		name="ListItem"
+		parent="@android:style/TextAppearance.Medium">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:textColor">@drawable/drawer_item_selector</item>
+	</style>
+	<style
+		name="ListItemSecondary"
+		parent="@android:style/TextAppearance.Small">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:textColor">@drawable/drawer_item_selector</item>
+	</style>
+	<style
+		name="FAB"
+		parent="Widget.Design.FloatingActionButton">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_margin">20dp</item>
+		<item name="android:layout_alignParentBottom">true</item>
+		<item name="elevation">4dp</item>
+	</style>
+	<style name="FABLeft" parent="FAB">
+		<item name="android:layout_alignParentStart">true</item>
+		<item name="android:layout_alignParentLeft">true</item>
+	</style>
+	<style name="FABRight" parent="FAB">
+		<item name="android:layout_alignParentEnd">true</item>
+		<item name="android:layout_alignParentRight">true</item>
+	</style>
+</resources>

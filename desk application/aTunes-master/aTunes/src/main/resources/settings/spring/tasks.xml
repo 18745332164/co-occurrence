@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+	
+	default-autowire="byName" default-lazy-init="true">
+	
+	<bean id="taskService" class="net.sourceforge.atunes.kernel.TaskService">
+		<property name="scheduledThreadPoolSize" value="2"/>
+		<property name="scheduledThreadPoolSuffix" value="ScheduledThreadPool-"/>
+		<property name="threadPoolCoreSize" value="0"/>
+		<property name="threadPoolMaximumSize" value="10"/>
+		<property name="threadPoolSuffix" value="ThreadPool-"/>
+	</bean>
+
+	<bean id="backgroundWorkerFactory" class="net.sourceforge.atunes.gui.SwingBackgroundWorkerFactory"/>
+
+	
+	
+	<bean id="fillPictureBackgroundWorker" class="net.sourceforge.atunes.gui.views.dialogs.properties.FillPictureBackgroundWorker" scope="prototype"/>
+	<bean id="removeFromDiskBackgroundWorker" class="net.sourceforge.atunes.kernel.modules.repository.RemoveFoldersFromDiskBackgroundWorker" scope="prototype"/>
+	<bean id="calculateSynchronizationBetweenDeviceAndPlaylistBackgroundWorker" class="net.sourceforge.atunes.kernel.modules.repository.CalculateSynchronizationBetweenDeviceAndPlayListBackgroundWorker" scope="prototype"/>
+	<bean id="applySynchronizationBetweenDeviceAndPlayListBackgroundWorker" class="net.sourceforge.atunes.kernel.modules.repository.ApplySynchronizationBetweenDeviceAndPlayListBackgroundWorker" scope="prototype"/>
+	<bean id="contextInformationBackgroundWorker" class="net.sourceforge.atunes.kernel.modules.context.ContextInformationBackgroundWorker" scope="prototype"/>
+	<bean id="macOSXPlayerEngineSelectionDialogSearchPlayerEngineBackgroundWorker" class="net.sourceforge.atunes.kernel.modules.os.MacOSXPlayerEngineSelectionDialogSearchPlayerEngineBackgroundWorker" scope="prototype"/>
+	<bean id="testLastFmLoginBackgroundWorker" class="net.sourceforge.atunes.kernel.modules.state.TestLastFmLoginBackgroundWorker" scope="prototype"/>
+	<bean id="getInsidePictureBackgroundWorker" class="net.sourceforge.atunes.kernel.modules.tags.GetInsidePictureBackgroundWorker" scope="prototype"/>
+	<bean id="validateAndProcessPreferencesBackgroundWorker" class="net.sourceforge.atunes.kernel.modules.state.ValidateAndProcessPreferencesBackgroundWorker" scope="prototype"/>
+	<bean id="retrieveRadioBrowserDataBackgroundWorker" class="net.sourceforge.atunes.kernel.modules.radio.RetrieveRadioBrowserDataBackgroundWorker" scope="prototype"/>
+	<bean id="deleteDownloadedPodcastFeedBackgroundWorker" class="net.sourceforge.atunes.kernel.modules.podcast.DeleteDownloadedPodcastFeedBackgroundWorker" scope="prototype"/>
+	<bean id="generateAndShowAlbumPanelsBackgroundWorker" class="net.sourceforge.atunes.kernel.modules.covernavigator.GenerateAndShowAlbumPanelsBackgroundWorker" scope="prototype"/>
+	<bean id="podcastFeedEntryDownloader" class="net.sourceforge.atunes.kernel.modules.podcast.PodcastFeedEntryDownloader" scope="prototype"/>
+	<bean id="removeLovedSongBackgroundWorker" class="net.sourceforge.atunes.kernel.modules.webservices.RemoveLovedSongBackgroundWorker" scope="prototype"/>
+	<bean id="openBrowserBackgroundWorker" class="net.sourceforge.atunes.utils.OpenBrowserBackgroundWorker" scope="prototype"/>
+	<bean id="openFileBackgroundWorker" class="net.sourceforge.atunes.utils.OpenFileBackgroundWorker" scope="prototype"/>
+	<bean id="addLovedSongBackgroundWorker" class="net.sourceforge.atunes.kernel.modules.webservices.AddLovedSongBackgroundWorker" scope="prototype"/>
+</beans>

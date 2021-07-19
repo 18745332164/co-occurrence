@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="iconArray">
+        <item>@drawable/red_apple</item>
+        <item>@drawable/blue_apple</item>
+        <item>@drawable/lime_apple</item>
+        <item>@drawable/gray_apple</item>
+        <item>@drawable/gas</item>
+        <item>@drawable/orange_apple</item>
+        <item>@drawable/deviation</item>
+    </string-array>
+</resources>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tv_rv_chooser_fragment"
+    android:layout_width="280dp"
+    android:layout_height="40dp"
+    android:paddingStart="12dp"
+    android:paddingLeft="12dp"
+    android:paddingRight="16dp"
+    android:paddingEnd="16dp"
+    android:gravity="center_vertical"
+    android:drawablePadding="4dp"
+    android:textColor="@color/black_54p"
+    android:textSize="16sp"
+    android:maxLines="2"
+    android:ellipsize="end"
+    android:background="@drawable/selectable_item_background"/>

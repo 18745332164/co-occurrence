@@ -1,0 +1,3 @@
+include ':BlurBenchmark', ':tablefixedheader'
+
+//, ':paralloid' , ':ne10blur'

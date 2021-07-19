@@ -1,0 +1,69 @@
+apply plugin: 'com.android.application'
+apply plugin: 'realm-android'
+
+android {
+    compileSdkVersion rootProject.sdkVersion
+    buildToolsVersion rootProject.buildTools
+
+    defaultConfig {
+        applicationId 'io.realm.examples.unittesting'
+        targetSdkVersion rootProject.sdkVersion
+        minSdkVersion rootProject.minSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        // Needed for jUnit4 support.
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            signingConfig signingConfigs.debug
+        }
+        debug {
+            minifyEnabled false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+}
+
+
+dependencies {
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+
+    testImplementation 'io.reactivex.rxjava2:rxjava:2.1.13'
+
+    // Testing
+    testImplementation 'junit:junit:4.12'
+    // Seen quite many issues when bumping from 3.8 (due to AndroidX)
+    // 4.1 seems to be the only one not exibiting these. Some of the relevant links
+    // - https://github.com/robolectric/robolectric/issues/4015
+    // - https://github.com/roObolectric/robolectric/issues/5082
+    // - https://stackoverflow.com/questions/29072148/mockito-with-robolectric-classcastexception-occurred-when-creating-the-proxy/36720803
+    testImplementation "org.robolectric:robolectric:4.1"
+    testImplementation "org.mockito:mockito-core:1.10.19"
+    testImplementation 'org.robolectric:shadows-support-v4:3.0'
+
+    testImplementation "org.powermock:powermock-module-junit4:1.6.5"
+    testImplementation "org.powermock:powermock-module-junit4-rule:1.6.5"
+    testImplementation "org.powermock:powermock-api-mockito:1.6.5"
+    testImplementation "org.powermock:powermock-classloading-xstream:1.6.5"
+
+
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    // Set this dependency to use JUnit 4 rules
+    androidTestImplementation 'com.android.support.test:rules:1.0.2'
+    // Set this dependency to build and run Espresso tests
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}

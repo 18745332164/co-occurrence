@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+	
+	default-autowire="byName" default-lazy-init="true" default-init-method="initialize">
+	
+	<bean id="addAlbumMostPlayedAction1" class="net.sourceforge.atunes.kernel.actions.AddAlbumsMostPlayedAction">
+		<property name="albums" value="1"/>
+		<property name="i18nKey" value="ADD_ALBUM_MOST_PLAYED"/>
+	</bean>
+	<bean id="addAlbumMostPlayedAction5" class="net.sourceforge.atunes.kernel.actions.AddAlbumsMostPlayedAction">
+		<property name="albums" value="5"/>
+		<property name="i18nKey" value="ADD_5_ALBUMS_MOST_PLAYED"/>
+	</bean>
+	<bean id="addAlbumMostPlayedAction10" class="net.sourceforge.atunes.kernel.actions.AddAlbumsMostPlayedAction">
+		<property name="albums" value="10"/>
+		<property name="i18nKey" value="ADD_10_ALBUMS_MOST_PLAYED"/>
+	</bean>
+	
+	<bean class="net.sourceforge.atunes.kernel.actions.AddAlbumWithSelectedArtistsAction"/>
+	
+	<bean id="addArtistsMostPlayedAction1" class="net.sourceforge.atunes.kernel.actions.AddArtistsMostPlayedAction">
+		<property name="artists" value="1"/>
+		<property name="i18nKey" value="ADD_ARTIST_MOST_PLAYED"/>
+	</bean>
+	<bean id="addArtistsMostPlayedAction5" class="net.sourceforge.atunes.kernel.actions.AddArtistsMostPlayedAction">
+		<property name="artists" value="5"/>
+		<property name="i18nKey" value="ADD_5_ARTISTS_MOST_PLAYED"/>
+	</bean>
+	<bean id="addArtistsMostPlayedAction10" class="net.sourceforge.atunes.kernel.actions.AddArtistsMostPlayedAction">
+		<property name="artists" value="10"/>
+		<property name="i18nKey" value="ADD_10_ARTISTS_MOST_PLAYED"/>
+	</bean>
+
+	<bean id="addBannedSongInLastFMAction" class="net.sourceforge.atunes.kernel.actions.AddBannedSongInLastFMAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.AddFavoriteRadioAction"/>
+	<bean id="addFolderToRepositoryAction" class="net.sourceforge.atunes.kernel.actions.AddFolderToRepositoryAction"/>
+	<bean id="addLovedSongInLastFMAction" class="net.sourceforge.atunes.kernel.actions.AddLovedSongInLastFMAction"/>
+	<bean id="addPodcastFeedAction" class="net.sourceforge.atunes.kernel.actions.AddPodcastFeedAction"/>
+	<bean id="addRadioAction" class="net.sourceforge.atunes.kernel.actions.AddRadioAction"/>
+
+	<bean id="addRandomSongsAction10" class="net.sourceforge.atunes.kernel.actions.AddRandomSongsAction">
+		<property name="songs" value="10"/>
+		<property name="i18nKey" value="ADD_10_RANDOM_SONGS"/>
+	</bean> 
+	<bean id="addRandomSongsAction50" class="net.sourceforge.atunes.kernel.actions.AddRandomSongsAction">
+		<property name="songs" value="50"/>
+		<property name="i18nKey" value="ADD_50_RANDOM_SONGS"/>
+	</bean> 
+	<bean id="addRandomSongsAction100" class="net.sourceforge.atunes.kernel.actions.AddRandomSongsAction">
+		<property name="songs" value="100"/>
+		<property name="i18nKey" value="ADD_100_RANDOM_SONGS"/>
+	</bean> 
+
+	<bean id="addSongsMostPlayedAction10" class="net.sourceforge.atunes.kernel.actions.AddSongsMostPlayedAction">
+		<property name="songs" value="10"/>
+		<property name="i18nKey" value="ADD_10_SONGS_MOST_PLAYED"/>
+	</bean> 
+	<bean id="addSongsMostPlayedAction50" class="net.sourceforge.atunes.kernel.actions.AddSongsMostPlayedAction">
+		<property name="songs" value="50"/>
+		<property name="i18nKey" value="ADD_50_SONGS_MOST_PLAYED"/>
+	</bean> 
+	<bean id="addSongsMostPlayedAction100" class="net.sourceforge.atunes.kernel.actions.AddSongsMostPlayedAction">
+		<property name="songs" value="100"/>
+		<property name="i18nKey" value="ADD_100_SONGS_MOST_PLAYED"/>
+	</bean> 
+
+	<bean id="addToPlayListFromDeviceNavigationView" class="net.sourceforge.atunes.kernel.actions.AddToPlayListAction"/>
+	<bean id="addToPlayListFromFavoritesNavigationView" class="net.sourceforge.atunes.kernel.actions.AddToPlayListAction"/>
+	<bean id="addToPlayListFromPodcastNavigationView" class="net.sourceforge.atunes.kernel.actions.AddToPlayListAction"/>
+	<bean id="addToPlayListFromRadioNavigationView" class="net.sourceforge.atunes.kernel.actions.AddToPlayListAction"/>
+	<bean id="addToPlayListFromRepositoryNavigationView" class="net.sourceforge.atunes.kernel.actions.AddToPlayListAction"/>
+
+    <bean id="addToPlayListAfterCurrentAudioObjectFromDeviceNavigationView" class="net.sourceforge.atunes.kernel.actions.AddToPlayListAfterCurrentAudioObjectAction"/>
+    <bean id="addToPlayListAfterCurrentAudioObjectFromFavoritesNavigationView" class="net.sourceforge.atunes.kernel.actions.AddToPlayListAfterCurrentAudioObjectAction"/>
+    <bean id="addToPlayListAfterCurrentAudioObjectFromPodcastNavigationView" class="net.sourceforge.atunes.kernel.actions.AddToPlayListAfterCurrentAudioObjectAction"/>
+    <bean id="addToPlayListAfterCurrentAudioObjectFromRadioNavigationView" class="net.sourceforge.atunes.kernel.actions.AddToPlayListAfterCurrentAudioObjectAction"/>
+    <bean id="addToPlayListAfterCurrentAudioObjectFromRepositoryNavigationView" class="net.sourceforge.atunes.kernel.actions.AddToPlayListAfterCurrentAudioObjectAction"/>
+
+	<bean id="addUnplayedSongsAction10" class="net.sourceforge.atunes.kernel.actions.AddUnplayedSongsAction">
+		<property name="songs" value="10"/>
+		<property name="i18nKey" value="ADD_10_UNPLAYED_SONGS"/>
+	</bean> 
+	<bean id="addUnplayedSongsAction50" class="net.sourceforge.atunes.kernel.actions.AddUnplayedSongsAction">
+		<property name="songs" value="50"/>
+		<property name="i18nKey" value="ADD_50_UNPLAYED_SONGS"/>
+	</bean> 
+	<bean id="addUnplayedSongsAction100" class="net.sourceforge.atunes.kernel.actions.AddUnplayedSongsAction">
+		<property name="songs" value="100"/>
+		<property name="i18nKey" value="ADD_100_UNPLAYED_SONGS"/>
+	</bean> 
+
+
+	<bean id="arrangePlayListColumnsAction" class="net.sourceforge.atunes.kernel.actions.ArrangePlayListColumnsAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.AutoScrollPlayListAction"/>
+	
+	<bean class="net.sourceforge.atunes.kernel.actions.AutoSetCoversAction" scope="prototype"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.AutoSetGenresAction" scope="prototype"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.AutoSetLyricsAction" scope="prototype"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.AutoSetTagFromFileNamePatternAction" scope="prototype"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.AutoSetTagFromFolderNamePatternAction" scope="prototype"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.AutoSetTitlesAction" scope="prototype"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.AutoSetTracksAction" scope="prototype"/>
+	
+	<bean id="checkUpdatesAction" class="net.sourceforge.atunes.kernel.actions.CheckUpdatesAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.ClearCachesAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.ClearPlayListAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.ClearTagNavigatorAction" scope="prototype"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.ClearTagPlaylistAction" scope="prototype"/>
+	<bean id="closeOtherPlayListsAction" class="net.sourceforge.atunes.kernel.actions.CloseOtherPlaylistsAction"/>
+	<bean id="closePlayListAction" class="net.sourceforge.atunes.kernel.actions.ClosePlaylistAction"/>
+	<bean id="collapseTreesAction" class="net.sourceforge.atunes.kernel.actions.CollapseTreesAction"/>
+	<bean id="connectDeviceAction" class="net.sourceforge.atunes.kernel.actions.ConnectDeviceAction"/>
+	<bean id="copyPlayListToDeviceAction" class="net.sourceforge.atunes.kernel.actions.CopyPlayListToDeviceAction">
+		<property name="playListObjectFilter">
+			<ref bean="playListLocalAudioObjectFilter"/>
+		</property>
+	</bean>
+	
+	<bean id="copyToDeviceFromFavoritesNavigationView" class="net.sourceforge.atunes.kernel.actions.CopyToDeviceAction"/>
+	<bean id="copyToDeviceFromPodcastNavigationView" class="net.sourceforge.atunes.kernel.actions.CopyToDeviceAction"/>
+	<bean id="copyToDeviceFromRepositoryNavigationView" class="net.sourceforge.atunes.kernel.actions.CopyToDeviceAction"/>
+
+	<bean class="net.sourceforge.atunes.kernel.actions.CopyToRepositoryAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.CreatePlayListWithSelectedAlbumsAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.CreatePlayListWithSelectedArtistsAction"/>
+
+	<bean id="addArtistTopTracksToPlayListFromRepositoryNavigationView" class="net.sourceforge.atunes.kernel.actions.AddArtistTopTracksToPlayListAction"/>
+	<bean id="addArtistTopTracksToPlayListFromFavoritesNavigationView" class="net.sourceforge.atunes.kernel.actions.AddArtistTopTracksToPlayListAction"/>
+
+	<bean id="customSearchAction" class="net.sourceforge.atunes.kernel.actions.CustomSearchAction"/>
+	<bean id="disconnectDeviceAction" class="net.sourceforge.atunes.kernel.actions.DisconnectDeviceAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.DownloadPodcastEntryAction"/>
+	<bean id="editDynamicPlayListAction" class="net.sourceforge.atunes.kernel.actions.EditDynamicPlayListAction"/>
+	<bean id="editPreferencesAction" class="net.sourceforge.atunes.kernel.actions.EditPreferencesAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.EditRadioAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.EditTagNavigatorAction" scope="prototype"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.EditTagPlaylistAction" scope="prototype"/>
+	<bean id="editTitlesFromRepositoryViewAction" class="net.sourceforge.atunes.kernel.actions.EditTitlesAction"/>
+	<bean id="editTitlesFromFavoritesViewAction" class="net.sourceforge.atunes.kernel.actions.EditTitlesAction"/>
+	<bean id="editTitlesFromDeviceViewAction" class="net.sourceforge.atunes.kernel.actions.EditTitlesAction"/>
+	<bean id="exitAction" class="net.sourceforge.atunes.kernel.actions.ExitAction"/>
+
+	<bean id="exportNavigatorSelectionFromRepositoryViewAction" class="net.sourceforge.atunes.kernel.actions.ExportNavigatorSelectionAction"/>	
+	<bean id="exportNavigatorSelectionFromFavoritesViewAction" class="net.sourceforge.atunes.kernel.actions.ExportNavigatorSelectionAction"/>	
+	<bean class="net.sourceforge.atunes.kernel.actions.ExportPlayListAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.ExportPlayListSelectionAction"/>
+	
+	<bean id="expandTreesAction" class="net.sourceforge.atunes.kernel.actions.ExpandTreesAction"/>
+	
+	<bean id="extractPictureFromDeviceNavigationView" class="net.sourceforge.atunes.kernel.actions.ExtractPictureAction"/>
+	<bean id="extractPictureFromFavoritesNavigationView" class="net.sourceforge.atunes.kernel.actions.ExtractPictureAction"/>
+	<bean id="extractPictureFromRepositoryNavigationView" class="net.sourceforge.atunes.kernel.actions.ExtractPictureAction"/>
+	
+	<bean class="net.sourceforge.atunes.kernel.actions.FillDeviceWithRandomSongsAction">
+		<property name="freeMemory" value="50"/>
+	</bean>
+	<bean id="fullScreenAction" class="net.sourceforge.atunes.kernel.actions.FullScreenAction"/>
+	<bean id="goToWebSiteAction" class="net.sourceforge.atunes.kernel.actions.GoToWebSiteAction"/>
+	<bean id="goToWikiAction" class="net.sourceforge.atunes.kernel.actions.GoToWikiAction"/>
+	<bean id="importLovedTracksFromLastFMAction" class="net.sourceforge.atunes.kernel.actions.ImportLovedTracksFromLastFMAction"/>
+	<bean id="importToRepositoryAction" class="net.sourceforge.atunes.kernel.actions.ImportToRepositoryAction"/>
+	<bean id="loadPlayListAction" class="net.sourceforge.atunes.kernel.actions.LoadPlayListAction"/>
+	<bean id="loadNewPlayListAction" class="net.sourceforge.atunes.kernel.actions.LoadNewPlayListAction"/>
+	<bean id="makeDonationAction" class="net.sourceforge.atunes.kernel.actions.MakeDonationAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.MarkPodcastEntryListenedAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.MarkPodcastListenedAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.MoveAfterCurrentAudioObjectAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.MoveDownAction"/>
+	<bean id="moveFolderFromNavigatorAction" class="net.sourceforge.atunes.kernel.actions.MoveFolderFromNavigatorAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.MoveToBottomAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.MoveToTopAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.MoveUpAction"/>
+	<bean id="muteAction" class="net.sourceforge.atunes.kernel.actions.MuteAction"/>
+	<bean id="newDynamicPlayListAction" class="net.sourceforge.atunes.kernel.actions.NewDynamicPlayListAction"/>
+	<bean id="newPlayListAction" class="net.sourceforge.atunes.kernel.actions.NewPlayListAction"/>
+	<bean id="nextPlayListAction" class="net.sourceforge.atunes.kernel.actions.NextPlayListAction"/>
+	<bean id="normalizeModeAction" class="net.sourceforge.atunes.kernel.actions.NormalizeModeAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.OpenFolderAction"/>
+	
+	<bean id="openFolderFromDeviceNavigationTable" class="net.sourceforge.atunes.kernel.actions.OpenFolderFromNavigatorTableAction"/>
+	<bean id="openFolderFromFavoritesNavigationTable" class="net.sourceforge.atunes.kernel.actions.OpenFolderFromNavigatorTableAction"/>
+	<bean id="openFolderFromRepositoryNavigationTable" class="net.sourceforge.atunes.kernel.actions.OpenFolderFromNavigatorTableAction"/>
+	<bean id="openFolderFromDeviceNavigationTree" class="net.sourceforge.atunes.kernel.actions.OpenFolderFromNavigatorTreeAction"/>
+	<bean id="openFolderFromFavoritesNavigationTree" class="net.sourceforge.atunes.kernel.actions.OpenFolderFromNavigatorTreeAction"/>
+	<bean id="openFolderFromRepositoryNavigationTree" class="net.sourceforge.atunes.kernel.actions.OpenFolderFromNavigatorTreeAction"/>
+	
+	<bean id="playAction" class="net.sourceforge.atunes.kernel.actions.PlayAction"/>
+	<bean id="nextAction" class="net.sourceforge.atunes.kernel.actions.PlayNextAudioObjectAction"/>
+	<bean id="playNowAction" class="net.sourceforge.atunes.kernel.actions.PlayNowAction"/>
+	<bean id="previousAction" class="net.sourceforge.atunes.kernel.actions.PlayPreviousAudioObjectAction"/>
+	<bean id="previousPlayListAction" class="net.sourceforge.atunes.kernel.actions.PreviousPlayListAction"/>
+	<bean id="refreshDeviceAction" class="net.sourceforge.atunes.kernel.actions.RefreshDeviceAction"/>
+	<bean id="refreshFolderFromNavigatorAction" class="net.sourceforge.atunes.kernel.actions.RefreshFolderFromNavigatorAction"/>
+	<bean id="refreshRepositoryAction" class="net.sourceforge.atunes.kernel.actions.RefreshRepositoryAction"/>
+	<bean id="removeDuplicatesFromPlayListAction" class="net.sourceforge.atunes.kernel.actions.RemoveDuplicatesFromPlayListAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.RemoveFromDiskAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.RemoveFromFavoritesAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.RemoveFromPlayListAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.RemoveLovedSongInLastFmAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.RemoveOldPodcastEntryAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.RemovePodcastFeedAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.RemoveRadioAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.RenameAudioFileInNavigationTableAction"/>
+	<bean id="renamePlayListAction" class="net.sourceforge.atunes.kernel.actions.RenamePlaylistAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.RenamePodcastFeedAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.RenameRadioLabelAction"/>
+	<bean id="repairAlbumNamesAction" class="net.sourceforge.atunes.kernel.actions.RepairAlbumNamesAction"/>
+	<bean id="repairGenresAction" class="net.sourceforge.atunes.kernel.actions.RepairGenresAction"/>
+	<bean id="repairTrackNumbersAction" class="net.sourceforge.atunes.kernel.actions.RepairTrackNumbersAction"/>
+	<bean id="repeatModeAction" class="net.sourceforge.atunes.kernel.actions.RepeatModeAction"/>
+	<bean id="reportBugOrFeatureRequestAction" class="net.sourceforge.atunes.kernel.actions.ReportBugOrFeatureRequestAction"/>
+	<bean id="repositoryLoadCancelAction" class="net.sourceforge.atunes.kernel.actions.RepositoryLoadCancelAction"/>
+	<bean id="repositoryLoadInBackgroundAction" class="net.sourceforge.atunes.kernel.actions.RepositoryLoadInBackgroundAction"/>
+	<bean id="ripCDAction" class="net.sourceforge.atunes.kernel.actions.RipCDAction"/>
+	<bean id="savePlayListAction" class="net.sourceforge.atunes.kernel.actions.SavePlayListAction"/>
+	<bean id="savePlayListSelectionAction" class="net.sourceforge.atunes.kernel.actions.SavePlayListSelectionAction"/>
+	<bean id="saveM3UPlayListAction" class="net.sourceforge.atunes.kernel.actions.SaveM3UPlayListAction"/>
+	<bean id="saveM3UPlayListSelectionAction" class="net.sourceforge.atunes.kernel.actions.SaveM3UPlayListSelectionAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.SearchArtistAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.SearchArtistAtAction"/>
+	
+	<bean id="setAsPlaylistFromDeviceNavigationView" class="net.sourceforge.atunes.kernel.actions.SetAsPlayListAction"/>
+	<bean id="setAsPlaylistFromFavoritesNavigationView" class="net.sourceforge.atunes.kernel.actions.SetAsPlayListAction"/>
+	<bean id="setAsPlaylistFromPodcastNavigationView" class="net.sourceforge.atunes.kernel.actions.SetAsPlayListAction"/>
+	<bean id="setAsPlaylistFromRadioNavigationView" class="net.sourceforge.atunes.kernel.actions.SetAsPlayListAction"/>
+	<bean id="setAsPlaylistFromRepositoryNavigationView" class="net.sourceforge.atunes.kernel.actions.SetAsPlayListAction"/>
+	
+	<bean class="net.sourceforge.atunes.kernel.actions.SetFavoriteAlbumFromNavigatorAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.SetFavoriteArtistFromNavigatorAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.SetFavoriteSongFromNavigatorAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.SetPlayListSelectionAsFavoriteAlbumAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.SetPlayListSelectionAsFavoriteArtistAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.SetPlayListSelectionAsFavoriteSongAction"/>
+	<bean id="showAboutAction" class="net.sourceforge.atunes.kernel.actions.ShowAboutAction"/>
+	<bean id="showAlbumsInNavigatorAction" class="net.sourceforge.atunes.kernel.actions.ShowAlbumsInNavigatorAction"/>
+	<bean id="showArtistsInNavigatorAction" class="net.sourceforge.atunes.kernel.actions.ShowArtistsInNavigatorAction"/>
+	<bean id="showContextAction" class="net.sourceforge.atunes.kernel.actions.ShowContextAction"/>
+	<bean id="showCoverNavigatorAction" class="net.sourceforge.atunes.kernel.actions.ShowCoverNavigatorAction"/>
+	<bean id="showEqualizerAction" class="net.sourceforge.atunes.kernel.actions.ShowEqualizerAction"/>
+	<bean id="showFoldersInNavigatorAction" class="net.sourceforge.atunes.kernel.actions.ShowFoldersInNavigatorAction"/>
+	<bean id="showGenresInNavigatorAction" class="net.sourceforge.atunes.kernel.actions.ShowGenresInNavigatorAction"/>
+	<bean id="showLogAction" class="net.sourceforge.atunes.kernel.actions.ShowLogAction"/>
+	<bean id="showNavigationTableAction" class="net.sourceforge.atunes.kernel.actions.ShowNavigationTableAction"/>
+	<bean id="showNavigationTableFilterAction" class="net.sourceforge.atunes.kernel.actions.ShowNavigationTableFilterAction"/>
+	<bean id="showNavigationTreeAction" class="net.sourceforge.atunes.kernel.actions.ShowNavigationTreeAction"/>
+	<bean id="showNavigatorAction" class="net.sourceforge.atunes.kernel.actions.ShowNavigatorAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.ShowNavigatorTableItemInfoAction"/>
+	<bean id="showOSDAction" class="net.sourceforge.atunes.kernel.actions.ShowOSDAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.ShowPlayListItemInfoAction"/>
+	<bean id="showRecommendedEventsFromLastFMAction" class="net.sourceforge.atunes.kernel.actions.ShowRecommendedEventsFromLastFMAction"/>
+	<bean id="showRadioBrowserAction" class="net.sourceforge.atunes.kernel.actions.ShowRadioBrowserAction"/>
+	<bean id="showStatsAction" class="net.sourceforge.atunes.kernel.actions.ShowStatsAction"/>
+	<bean id="showStatusBarAction" class="net.sourceforge.atunes.kernel.actions.ShowStatusBarAction"/>
+	<bean id="showYearsInNavigatorAction" class="net.sourceforge.atunes.kernel.actions.ShowYearsInNavigatorAction"/>
+	<bean id="shuffleModeAction" class="net.sourceforge.atunes.kernel.actions.ShuffleModeAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.ShufflePlayListAction"/>
+	<bean id="sortPlayListAscendingAction" class="net.sourceforge.atunes.kernel.actions.SortPlayListColumnAscendingAction"/>
+	<bean id="sortPlayListDescendingAction" class="net.sourceforge.atunes.kernel.actions.SortPlayListColumnDescendingAction"/>
+	<bean id="stopAfterCurrentTrack" class="net.sourceforge.atunes.kernel.actions.StopAfterCurrentAudioObjectAction"/>
+	<bean id="stopAction" class="net.sourceforge.atunes.kernel.actions.StopCurrentAudioObjectAction"/>
+	<bean id="syncDeviceWithPlayListAction" class="net.sourceforge.atunes.kernel.actions.SynchronizeDeviceWithPlayListAction"/>
+	<bean id="toggleOSDSettingAction" class="net.sourceforge.atunes.kernel.actions.ToggleOSDSettingAction"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.ToggleWindowVisibilityAction"/>
+	<bean id="volumeDownAction" class="net.sourceforge.atunes.kernel.actions.VolumeDownAction"/>
+	<bean id="volumeUpAction" class="net.sourceforge.atunes.kernel.actions.VolumeUpAction"/>
+	<bean id="similarModeAction" class="net.sourceforge.atunes.kernel.actions.SimilarArtistsModeAction"/>
+	
+	<bean id="removeCommonPrefixAction" class="net.sourceforge.atunes.kernel.actions.RemoveCommonPrefixFromTitlesAction" scope="prototype"/>
+	<bean id="removeCommonSuffixAction" class="net.sourceforge.atunes.kernel.actions.RemoveCommonSuffixFromTitlesAction" scope="prototype"/>
+	
+	
+	<!-- Remote Actions -->
+	<bean id="remoteAction" class="net.sourceforge.atunes.kernel.actions.RemoteAction" abstract="true"/>
+	<bean class="net.sourceforge.atunes.kernel.actions.AddToPlayListRemoteAction" parent="remoteAction">
+		<property name="commandName" value="add"/>
+	</bean>
+	<bean class="net.sourceforge.atunes.kernel.actions.FullScreenRemoteAction" parent="remoteAction">
+		<property name="commandName" value="fullscreen"/>
+		<property name="synchronousResponse" value="false"></property>
+	</bean>
+	<bean class="net.sourceforge.atunes.kernel.actions.NewPlayListRemoteAction" parent="remoteAction">
+		<property name="commandName" value="newPlaylist"/>
+	</bean>
+	<bean class="net.sourceforge.atunes.kernel.actions.PlayNextAudioObjectRemoteAction" parent="remoteAction">
+		<property name="commandName" value="next"/>
+	</bean>
+	<bean class="net.sourceforge.atunes.kernel.actions.PlayPreviousAudioObjectRemoteAction" parent="remoteAction">
+		<property name="commandName" value="previous"/>
+	</bean>
+	<bean class="net.sourceforge.atunes.kernel.actions.PlayRemoteAction" parent="remoteAction">
+		<property name="commandName" value="play"/>
+	</bean>
+	<bean class="net.sourceforge.atunes.kernel.actions.PrintHelpToRemoteAction" parent="remoteAction">
+		<property name="commandName" value="help"/>
+	</bean>
+	<bean class="net.sourceforge.atunes.kernel.actions.PrintSongInfoRemoteAction" parent="remoteAction">
+		<property name="commandName" value="song"/>
+	</bean>
+	<bean class="net.sourceforge.atunes.kernel.actions.PrintSongListRemoteAction" parent="remoteAction">
+		<property name="commandName" value="list"/>
+	</bean>
+	<bean class="net.sourceforge.atunes.kernel.actions.PrintVolumeRemoteAction" parent="remoteAction">
+		<property name="commandName" value="volume"/>
+	</bean>
+	<bean class="net.sourceforge.atunes.kernel.actions.RepeatModeRemoteAction" parent="remoteAction">
+		<property name="commandName" value="repeat"/>
+	</bean>
+	<bean class="net.sourceforge.atunes.kernel.actions.RipCDRemoteAction" parent="remoteAction">
+		<property name="commandName" value="cdripper"/>
+	</bean>
+	<bean class="net.sourceforge.atunes.kernel.actions.ShowOSDRemoteAction" parent="remoteAction">
+		<property name="commandName" value="showOSD"/>
+	</bean>
+	<bean class="net.sourceforge.atunes.kernel.actions.ShuffleModeRemoteAction" parent="remoteAction">
+		<property name="commandName" value="shuffle"/>
+	</bean>
+	<bean class="net.sourceforge.atunes.kernel.actions.SkipToRemoteAction" parent="remoteAction">
+		<property name="commandName" value="goto"/>
+	</bean>
+	<bean class="net.sourceforge.atunes.kernel.actions.StopCurrentAudioObjectRemoteAction" parent="remoteAction">
+		<property name="commandName" value="stop"/>
+	</bean>
+	<bean class="net.sourceforge.atunes.kernel.actions.VolumeDownRemoteAction" parent="remoteAction">
+		<property name="commandName" value="volDOWN"/>
+	</bean>
+	<bean class="net.sourceforge.atunes.kernel.actions.VolumeUpRemoteAction" parent="remoteAction">
+		<property name="commandName" value="volUP"/>
+	</bean>
+</beans>

@@ -1,0 +1,45 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context="com.ywwynm.everythingdone.activities.DetailActivity"
+      tools:ignore="AlwaysShowAction">
+
+    <item
+        android:id="@+id/act_add_attachment"
+        android:icon="@drawable/act_add_attachment"
+        android:title="@string/act_add_attachment"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/act_check_list"
+        android:icon="@drawable/act_enable_check_list"
+        android:title="@string/act_enable_check_list"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/act_change_color"
+        android:icon="@drawable/act_change_color"
+        android:title="@string/act_change_background"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/act_undo"
+        android:title="@string/act_undo"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/act_redo"
+        android:title="@string/act_redo"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/act_copy_content"
+        android:title="@string/act_copy_content"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/act_abandon_new_thing"
+        android:title="@string/act_abandon_new_thing"
+        app:showAsAction="never" />
+
+</menu>

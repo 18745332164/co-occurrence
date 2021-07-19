@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".appwidgets.single.BaseThingWidgetConfiguration">
+
+    <View
+        android:id="@+id/view_status_bar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/app_accent"/>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_below="@id/view_status_bar"
+        android:background="@color/app_accent"
+        app:contentInsetStart="72dp"
+        app:titleTextColor="@color/black_54p"/>
+
+    <com.ywwynm.everythingdone.views.StablerRecyclerView
+        android:id="@+id/rv_things"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/actionbar"
+        android:paddingTop="6dp"
+        android:clipToPadding="false"
+        android:paddingLeft="@dimen/rv_things_padding"
+        android:paddingRight="@dimen/rv_things_padding"
+        android:scrollbars="vertical"
+        android:scrollbarStyle="outsideOverlay"
+        android:theme="@style/Theme.AppCompat.Light"/>
+
+    <View
+        android:id="@+id/actionbar_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_below="@id/actionbar"
+        android:background="@drawable/actionbar_shadow"/>
+
+    <FrameLayout
+        android:id="@+id/fl_app_widget_preview_and_ui_config"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/iv_app_widget_preview_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/cd_app_widget_preview_background"/>
+
+        <com.ywwynm.everythingdone.views.StablerRecyclerView
+            android:id="@+id/rv_app_widget_preview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:overScrollMode="never"/>
+
+        <LinearLayout
+            android:id="@+id/ll_widget_ui_config"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="bottom"
+            android:gravity="center_vertical"
+            android:background="@color/black_14p">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:textColor="@color/white_86p"
+                android:text="@string/app_widget_config_alpha"
+                android:textAllCaps="true"/>
+
+            <SeekBar
+                android:id="@+id/sb_app_widget_alpha"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"/>
+
+            <Button
+                android:id="@+id/bt_finish_set_alpha_app_widget"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="0dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textColor="@color/white_86p"
+                android:text="@string/act_finish"/>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</RelativeLayout>

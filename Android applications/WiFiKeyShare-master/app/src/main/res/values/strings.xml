@@ -1,0 +1,156 @@
+<!--
+  ~ WiFiKeyShare. Share Wi-Fi passwords with QR codes or NFC tags.
+  ~ Copyright (C) 2016, 2018 Bruno Parmentier <dev@brunoparmentier.be>
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <!-- Application name -->
+    <string name="app_name" translatable="false">WiFiKeyShare</string>
+
+    <!-- General actions -->
+    <string name="action_cancel">Cancel</string>
+    <string name="action_close">Close</string>
+    <string name="action_got_it">Got it</string>
+    <string name="action_ok">OK</string>
+
+    <!-- Various -->
+    <string name="password">Password</string>
+    <string name="view_password">View password</string>
+
+    <!-- Wi-Fi list activity -->
+    <string name="wifilist_activity_title">@string/app_name</string>
+    <!-- No root detected dialog -->
+    <string name="wifilist_dialog_noroot_title">No root access</string>
+    <string name="wifilist_dialog_noroot_msg">
+        Wi-Fi passwords couldn\'t be retrieved as your device is not rooted. You will have to add
+        them manually for each network you want to share.
+    </string>
+    <!-- Long-tap on Wi-Fi network dialog -->
+    <string name="wifilist_dialog_view_password" translatable="false">@string/view_password</string>
+    <string name="wifilist_dialog_clear_password">Clear saved password</string>
+    <string name="wifilist_dialog_title_ssid">SSID</string>
+    <string name="wifilist_dialog_title_security">Security</string>
+    <string name="wifilist_dialog_title_password" translatable="false">@string/password</string>
+
+    <!-- Wi-Fi network activity -->
+    <string name="wifi_activity_title">Wi-Fi Network</string>
+    <!-- Password needed dialog -->
+    <string name="wifi_dialog_password_title">Wi-Fi password needed</string>
+    <string name="wifi_dialog_password_msg">Enter the Wi-Fi password for %1$s:</string>
+    <string name="wifi_dialog_password_hint" translatable="false">@string/password</string>
+    <string name="wifi_dialog_password_show">Show password</string>
+    <string name="wifi_dialog_view_password" translatable="false">@string/view_password</string>
+
+    <!-- QR code fragment -->
+    <string name="qrcode_fragment_tab_title">QR code</string>
+
+    <!-- NFC fragment -->
+    <string name="nfc_fragment_tab_title">NFC</string>
+    <string name="write_to_tag">Write to tag</string>
+    <string name="write_to_tag_msg">Scan now an NFC tag to write the Wi-Fi configuration</string>
+    <string name="nfc_tag_written">Successfully wrote to NFC tag</string>
+    <string name="nfc_tag_read">NFC tag read</string>
+    <string name="open_nfc_settings">Open NFC settings</string>
+    <string name="error_turn_nfc_on">Please turn NFC on</string>
+    <string name="error_nfc_not_available">NFC is not available on your device</string>
+    <string name="error_wep_to_nfc_not_supported">Writing WEP configuration to NFC tag is not supported</string>
+    <string name="error_wep_password_length">WEP password must be 5 or 13 characters</string>
+    <string name="error_wpa_password_length">WPA password must be between 8 and 63 characters</string>
+    <string name="error_nfc_tag_write">Error while writing to tag</string>
+
+    <!-- Confirm connect to Wi-Fi network activity -->
+    <string name="confirm_connection_action_connect">Connect</string>
+    <string name="confirm_connection_status_unable_to_connect">Unable to connect to network</string>
+    <string name="confirm_connection_status_wifi_connected">Connected</string>
+    <string name="confirm_connection_title_connect_to_network">Connect to network</string>
+    <string name="confirm_connection_prompt_connect_to_network">Connect to network %1$s?</string>
+
+    <!-- About dialog -->
+    <string name="about_dialog_title">About</string>
+    <!-- HTML text for the About dialog box -->
+    <!-- Note: please keep the <![CDATA[...]]> section -->
+    <string name="about_dialog_msg_description">
+        <![CDATA[
+        <p>Version %s</p>
+
+        <p><a href="http://wifikeysha.re">http://wifikeysha.re</a></p>
+
+        <p>WiFiKeyShare lets you easily share your Wi-Fi password by generating a QR code or by writing it to an NFC tag.<p>
+
+        <p>This application is free software (GPLv3+). You can find the source code at
+        <a href="https://github.com/bparmentier/WiFiKeyShare">https://github.com/bparmentier/WiFiKeyShare</a>.</p>
+
+        <p>Please report any issue at <a href="https://github.com/bparmentier/WiFiKeyShare/issues">https://github.com/bparmentier/WiFiKeyShare/issues</a>.</p>
+        ]]>
+    </string>
+    <string name="about_dialog_msg_license_title">
+        <![CDATA[
+        <strong>License</strong>
+        ]]>
+    </string>
+    <string name="about_dialog_msg_license">
+        <![CDATA[
+        <p>Copyright &copy; 2016, 2018 Bruno Parmentier</p>
+
+        <p>This program is free software: you can redistribute it and/or modify
+        it under the terms of the GNU General Public License as published by
+        the Free Software Foundation, either version 3 of the License, or
+        (at your option) any later version.</p>
+
+        <p>This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+        GNU General Public License for more details.</p>
+
+        <p>You should have received a copy of the GNU General Public License
+        along with this program. If not, see
+        <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>.</p>
+        ]]>
+    </string>
+    <string name="about_dialog_msg_credits_title">
+        <![CDATA[
+        <strong>Credits</strong>
+        ]]>
+    </string>
+    <string name="about_dialog_msg_credits">
+        <![CDATA[
+        <p>WiFiKeyShare was built using the following libraries:</p>
+
+        &nbsp;&nbsp;&bull;&nbsp;<a href="https://developer.android.com/tools/support-library/index.html">Android Support</a><br />
+        &nbsp;&nbsp;&bull;&nbsp;<a href="https://github.com/Chainfire/libsuperuser">libsuperuser</a><br />
+        &nbsp;&nbsp;&bull;&nbsp;<a href="https://github.com/zxing/zxing">ZXing</a><br />
+        &nbsp;&nbsp;&bull;&nbsp;<a href="https://github.com/wordpress-mobile/PasscodeLock-Android">PasscodeLock-Android</a>
+        ]]>
+    </string>
+
+    <!-- Strings related to Settings -->
+    <string name="settings_activity_title" translatable="false">@string/settings</string>
+    <string name="settings">Settings</string>
+    <string name="pin_lock_title">PIN lock</string>
+    <string name="pin_lock_summary">Protect app by PIN</string>
+
+    <!-- Passcode lock -->
+    <string name="passcode_manage">Manage PIN lock</string>
+    <string name="passcode_enter_old_passcode">Enter your old PIN</string>
+    <string name="passcode_re_enter_passcode">Re-enter your PIN</string>
+    <string name="passcode_change_passcode">Change PIN</string>
+    <string name="passcode_set">PIN set</string>
+    <string name="passcode_wrong_passcode">Wrong PIN</string>
+    <string name="passcode_preference_title">PIN lock</string>
+    <string name="passcode_turn_off">Turn PIN lock off</string>
+    <string name="passcode_turn_on">Turn PIN lock on</string>
+    <string name="passcodelock_prompt_message">Enter your PIN</string>
+</resources>

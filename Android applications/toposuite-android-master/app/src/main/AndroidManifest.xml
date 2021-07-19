@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ch.hgdev.toposuite"
+    android:versionCode="70"
+    android:versionName="1.3.0">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:name="ch.hgdev.toposuite.App"
+        android:allowBackup="true"
+        android:supportsRtl="false"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name="ch.hgdev.toposuite.entry.MainActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".points.PointsManagerActivity"
+            android:label="@string/title_activity_points_manager" />
+        <activity
+            android:name=".points.PointsImporterActivity"
+            android:label="@string/points_import"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.EDIT" />
+                <action android:name="android.intent.action.SENDTO" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <!--
+                Dirty workaround for the LTOP and PTP files support. Indeed,
+                if we put a pathPattern for the *.KOO, *.COO and *.ptp files, it becomes
+                impossible to import anything from GMail to TopoSuite...
+                -->
+                <!--<data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*"
+                    android:scheme="content" />-->
+
+                <!-- TODO make something nicer... -->
+
+                <!--
+                    Work around Android stupid PatternMatcher in order to allow opening files with
+                    "." in their name.
+                -->
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\.coo"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\.coo"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\.coo"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\..*\\.coo"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\..*\\..*\\.coo"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\.coo"
+                    android:scheme="file" />
+
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\.COO"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\.COO"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\.COO"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\..*\\.COO"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\..*\\..*\\.COO"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\.COO"
+                    android:scheme="file" />
+
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\.koo"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\.koo"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\.koo"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\..*\\.koo"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\..*\\..*\\.koo"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\.koo"
+                    android:scheme="file" />
+
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\.KOO"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\.KOO"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\.KOO"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\..*\\.KOO"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\..*\\..*\\.KOO"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\.KOO"
+                    android:scheme="file" />
+
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\.ptp"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\.ptp"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\.ptp"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\..*\\.ptp"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\..*\\..*\\.ptp"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\.ptp"
+                    android:scheme="file" />
+
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\.PTP"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\.PTP"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\.PTP"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\..*\\.PTP"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\..*\\..*\\.PTP"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\.PTP"
+                    android:scheme="file" />
+
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\.csv"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\.csv"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\..*\\.csv"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\..*\\..*\\.csv"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\.csv"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\..*\\.csv"
+                    android:scheme="file" />
+
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\.CSV"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\.CSV"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\.CSV"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\..*\\.CSV"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\..*\\..*\\.CSV"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\.CSV"
+                    android:scheme="file" />
+
+                <data android:mimeType="text/coo" />
+                <data android:mimeType="text/csv" />
+                <data android:mimeType="text/koo" />
+                <data android:mimeType="text/ptp" />
+                <data android:mimeType="text/comma-separated-values" />
+                <data android:mimeType="application/octet-stream" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="ch.hgdev.toposuite.calculation.activities.gisement.GisementActivity"
+            android:label="@string/title_activity_gisement" />
+        <activity
+            android:name="ch.hgdev.toposuite.history.HistoryActivity"
+            android:label="@string/title_activity_history" />
+        <activity
+            android:name="ch.hgdev.toposuite.calculation.activities.abriss.AbrissActivity"
+            android:label="@string/title_activity_abriss" />
+        <activity
+            android:name="ch.hgdev.toposuite.calculation.activities.polarsurvey.PolarSurveyActivity"
+            android:label="@string/title_activity_polar_survey" />
+        <activity
+            android:name="ch.hgdev.toposuite.calculation.activities.abriss.AbrissResultsActivity"
+            android:label="@string/title_activity_abriss_results" />
+        <activity
+            android:name="ch.hgdev.toposuite.calculation.activities.leveortho.LeveOrthoActivity"
+            android:label="@string/title_activity_leve_ortho" />
+        <activity
+            android:name="ch.hgdev.toposuite.calculation.activities.leveortho.LeveOrthoResultsActivity"
+            android:label="@string/title_activity_leve_ortho_results" />
+        <activity
+            android:name="ch.hgdev.toposuite.calculation.activities.cheminortho.CheminementOrthoActivity"
+            android:label="@string/title_activity_cheminement_ortho" />
+        <activity
+            android:name="ch.hgdev.toposuite.calculation.activities.cheminortho.CheminementOrthoResultsActivity"
+            android:label="@string/title_activity_cheminement_ortho_results" />
+        <activity
+            android:name="ch.hgdev.toposuite.calculation.activities.polarsurvey.PolarSurveyResultsActivity"
+            android:label="@string/title_activity_polar_survey_results" />
+        <activity
+            android:name="ch.hgdev.toposuite.calculation.activities.pointproj.PointProjectionActivity"
+            android:label="@string/title_activity_point_projection" />
+        <activity
+            android:name="ch.hgdev.toposuite.calculation.activities.pointproj.PointProjectionResultActivity"
+            android:label="@string/title_activity_point_projection_result" />
+        <activity
+            android:name="ch.hgdev.toposuite.calculation.activities.polarimplantation.PolarImplantationActivity"
+            android:label="@string/title_activity_polar_implantation" />
+        <activity
+            android:name="ch.hgdev.toposuite.calculation.activities.orthoimpl.OrthogonalImplantationActivity"
+            android:label="@string/title_activity_orthogonal_implantation" />
+        <activity
+            android:name="ch.hgdev.toposuite.calculation.activities.orthoimpl.OrthoImplantationResultsActivity"
+            android:label="@string/title_activity_ortho_implantation_results" />
+        <activity
+            android:name="ch.hgdev.toposuite.calculation.activities.polarimplantation.PolarImplantationResultsActivity"
+            android:label="@string/title_activity_polar_implantation_results" />
+        <activity
+            android:name="ch.hgdev.toposuite.calculation.activities.circle.CircleActivity"
+            android:label="@string/title_activity_circle" />
+        <activity
+            android:name="ch.hgdev.toposuite.calculation.activities.trianglesolver.TriangleSolverActivity"
+            android:label="@string/title_activity_triangle_solver" />
+        <activity
+            android:name="ch.hgdev.toposuite.calculation.activities.surface.SurfaceActivity"
+            android:label="@string/title_activity_surface" />
+        <activity
+            android:name="ch.hgdev.toposuite.calculation.activities.circcurvesolver.CircularCurvesSolverActivity"
+            android:label="@string/title_activity_circular_curve_solver" />
+        <activity
+            android:name="ch.hgdev.toposuite.help.HelpActivity"
+            android:label="@string/title_activity_help" />
+        <activity
+            android:name="ch.hgdev.toposuite.calculation.activities.linesintersec.LinesIntersectionActivity"
+            android:label="@string/title_activity_lines_intersection" />
+        <activity
+            android:name="ch.hgdev.toposuite.calculation.activities.circlesintersection.CirclesIntersectionActivity"
+            android:label="@string/title_activity_circles_intersection" />
+        <activity
+            android:name="ch.hgdev.toposuite.calculation.activities.freestation.FreeStationActivity"
+            android:label="@string/title_activity_free_station" />
+        <activity
+            android:name="ch.hgdev.toposuite.calculation.activities.freestation.FreeStationResultsActivity"
+            android:label="@string/title_activity_free_station_results" />
+        <activity
+            android:name="ch.hgdev.toposuite.calculation.activities.linecircleintersection.LineCircleIntersectionActivity"
+            android:label="@string/title_activity_line_circle_intersection" />
+        <activity
+            android:name="ch.hgdev.toposuite.settings.SettingsActivity"
+            android:label="@string/title_activity_settings" />
+        <activity
+            android:name="ch.hgdev.toposuite.settings.AboutActivity"
+            android:label="@string/title_activity_about" />
+        <activity
+            android:name="ch.hgdev.toposuite.calculation.activities.limdispl.LimitDisplacementActivity"
+            android:label="@string/title_activity_limit_displacement" />
+        <activity
+            android:name="ch.hgdev.toposuite.calculation.activities.limdispl.LimitDisplacementResultsActivity"
+            android:label="@string/title_activity_limit_displacement_results" />
+        <activity
+            android:name="ch.hgdev.toposuite.calculation.activities.circularsegmentation.CircularSegmentationActivity"
+            android:label="@string/title_activity_circular_segmentation" />
+        <activity
+            android:name="ch.hgdev.toposuite.calculation.activities.circularsegmentation.CircularSegmentationResultsActivity"
+            android:label="@string/title_activity_circular_segmentation_results" />
+        <activity
+            android:name="ch.hgdev.toposuite.calculation.activities.axisimpl.AxisImplantationActivity"
+            android:label="@string/title_activity_axis_implantation" />
+        <activity
+            android:name="ch.hgdev.toposuite.calculation.activities.axisimpl.AxisImplantationResultsActivity"
+            android:label="@string/title_activity_axis_implantation_results" />
+        <activity
+            android:name="ch.hgdev.toposuite.jobs.JobsActivity"
+            android:label="@string/title_activity_jobs" />
+
+        <activity
+            android:name=".jobs.JobImporterActivity"
+            android:label="@string/job_import"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.EDIT" />
+                <action android:name="android.intent.action.SENDTO" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\.tpst"
+                    android:scheme="file" />
+                <!--
+                    Work around Android stupid PatternMatcher in order to allow opening files with
+                    "." in their name.
+                -->
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\.tpst"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\.tpst"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\..*\\.tpst"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\..*\\..*\\.tpst"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\.tpst"
+                    android:scheme="file" />
+
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\.TPST"
+                    android:scheme="file" />
+                <!--
+                    Work around Android stupid PatternMatcher in order to allow opening files with
+                    "." in their name.
+                -->
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\.TPST"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\.TPST"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\..*\\.TPST"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\..*\\..*\\.TPST"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\.TPST"
+                    android:scheme="file" />
+
+                <data android:mimeType="application/json" />
+            </intent-filter>
+        </activity>
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}"
+            android:exported="false"
+            android:grantUriPermissions="true">
+
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_provider" />
+        </provider>
+    </application>
+
+</manifest>

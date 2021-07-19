@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ microMathematics - Extended Visual Calculator
+  ~ Copyright (C) 2014-2021 by Mikhail Kulesh
+  ~
+  ~ This program is free software: you can redistribute it and/or modify it under the terms of the GNU
+  ~ General Public License as published by the Free Software Foundation, either version 3 of the License,
+  ~ or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+  ~ even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+  ~ GNU General Public License for more details. You should have received a copy of the GNU General
+  ~ Public License along with this program.
+  -->
+
+<merge xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/dialog_content_padding"
+            android:paddingTop="@dimen/dialog_content_padding"
+            android:orientation="vertical"
+            android:gravity="center_horizontal" >
+
+           <androidx.appcompat.widget.AppCompatImageButton
+               style="@style/DialogImageButtonStyle"
+               android:id="@+id/dialog_button_insert_before"
+               android:contentDescription="@string/dialog_new_formula_insert_before"
+               android:src="@drawable/ic_add_before" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    style="@style/DialogImageButtonStyle"
+                    android:id="@+id/dialog_button_insert_left"
+                    android:contentDescription="@string/dialog_new_formula_insert_left"
+                    android:src="@drawable/ic_add_left" />
+
+                <View
+	                android:layout_width="68dp"
+	                android:layout_height="match_parent" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    style="@style/DialogImageButtonStyle"
+                    android:id="@+id/dialog_button_insert_right"
+                    android:contentDescription="@string/dialog_new_formula_insert_right"
+                    android:src="@drawable/ic_add_right" />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                style="@style/DialogImageButtonStyle"
+                android:id="@+id/dialog_button_insert_after"
+                android:contentDescription="@string/dialog_new_formula_insert_after"
+                android:src="@drawable/ic_add_after" />
+
+            <View
+                style="@style/HorizontalDividerStyle"
+                android:layout_marginBottom="@dimen/dialog_content_padding"
+                android:layout_marginTop="@dimen/dialog_content_padding" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    style="@style/DialogImageButtonStyle"
+                    android:id="@+id/dialog_button_new_equation"
+                    android:contentDescription="@string/math_new_equation"
+                    android:src="@drawable/p_equation" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    style="@style/DialogImageButtonStyle"
+                    android:id="@+id/dialog_button_new_result"
+                    android:contentDescription="@string/math_new_result"
+                    android:src="@drawable/p_result" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    style="@style/DialogImageButtonStyle"
+                    android:id="@+id/dialog_button_new_function_plot"
+                    android:contentDescription="@string/math_new_function_plot"
+                    android:src="@drawable/p_plot_function" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    style="@style/DialogImageButtonStyle"
+                    android:id="@+id/dialog_button_new_contour_plot"
+                    android:contentDescription="@string/math_new_contour_plot"
+                    android:src="@drawable/p_plot_contour" />
+                
+                <androidx.appcompat.widget.AppCompatImageButton
+                    style="@style/DialogImageButtonStyle"
+                    android:id="@+id/dialog_button_new_text_fragment"
+                    android:contentDescription="@string/math_new_text_fragment"
+                    android:src="@drawable/p_text_fragment" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/dialog_button_new_image_fragment"
+                    style="@style/DialogImageButtonStyle"
+                    android:contentDescription="@string/math_new_image_fragment"
+                    android:src="@drawable/p_image_fragment" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</merge>

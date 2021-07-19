@@ -1,0 +1,107 @@
+<resources>
+    <string name="app_name">Chemical Tools</string>
+    <string name="app_website" translatable="false">https://www.zgchemicals.mobi/</string>
+    <!-- Elements -->
+    <string name="elementButton_name">Search</string>
+    <string name="elementOutput_name">Atomic Number: %1$d\nElement Name: %5$s\nSymbol: %3$s\nStandard atomic weight: %4$s\nOrigin of the name: %6$s</string>
+    <string name="elementTextview_name">Welcome to search for elements!</string>
+    <string name="elementEditText_name">Please input the atomic number or name of an element.</string>
+    <string name="error_name">Error!</string>
+    <string name="elementWikipedia">Visit Wikipedia</string>
+    <!-- Mass -->
+    <string name="massTextview_name">Welcome to calculate mass of chemicals.</string>
+    <string name="massOutput_name">%1$s\nMolar mass: %2$.2f.</string>
+    <string name="massEditText_name">Please input chemical formula.</string>
+    <string name="massButton_name">Calculate</string>
+    <string name="massper_name">%2$s (%3$d itoms): atomic weight is %4$s and mass fraction is %5$.2f%%.</string>
+    <string name="juhao">.</string>
+    <!-- Exam -->
+    <string name="examTextview_name">Welcome to exam.</string>
+    <string name="examOutputRight_name">Your answer was right.</string>
+    <string name="examOutputWrong_name">Your answer was wrong.\nThe correct answer: %1$s\nThe question: %3$s \nYour answer: %2$s</string>
+    <string name="examEditText_name">Please input symbol of the element.</string>
+    <string name="examEditText_name_elementname">Please input the Chinese name of the element.</string>
+    <string name="examEditText_name_number">Please input the atomic number of the element.</string>
+    <string name="examEditText_name_IUPAC">Please input the name of the element.</string>
+    <string name="examButton_name">Input</string>
+    <string name="examScoreOutput_name">Total: %1$d Correct: %2$d Correct rate:%3$.2f%%</string>
+    <string name="examShare_name">Hey! I answered %1$d questions on the app Chemical Tools and the correct rate is %2$.2f%%. Would like to have a try?</string>
+    <!-- acid -->
+    <string name="acidc_name">c</string>
+    <string name="acidpK_name">pKa or pKb</string>
+    <string name="acidpKa">pKa</string>
+    <string name="basepKb">pKb</string>
+    <string name="acidname">Acid name</string>
+    <string name="basename">Base name</string>
+    <string name="acidpHOut_name">The pH of the solution is %1$.2f.</string>
+    <string name="acid_name">Acid</string>
+    <string name="base_name">Base</string>
+    <!-- drawer -->
+    <string name="drawer_open" translatable="false">drawer_open</string>
+    <string name="drawer_close" translatable="false">drawer_close</string>
+    <string name="button_element">Search Elements</string>
+    <string name="button_mass">Calculate Mass</string>
+    <string name="button_gas">Calculate Gas</string>
+    <string name="button_exam">Exam</string>
+    <string name="button_acid">Calculate Acid or Base</string>
+    <string name="button_deviation">Calculate Deviation</string>
+    <string name="button_Settings">Settings</string>
+    <string name="button_Share">Share</string>
+    <string name="button_About">About</string>
+    <string name="button_Github">Github</string>
+    <string name="button_open">Open</string>
+    <string name="button_notUsed">You\'ve never used this function. Have a try!</string>
+    <string name="button_doyouknow">Do you know?</string>
+    <string name="Change">Change</string>
+    <string name="gas_welcome">Use pV=nRT to calculate gas. Have a try!</string>
+    <!-- Settings -->
+    <string name="setting_elementnumber_limit">Atomic Number Limit</string>
+    <string name="setting_rate">Rate this app</string>
+    <string name="setting_rate_sum">Like the app?Please consider leaving a review in the Store!</string>
+    <string name="setting_feedback">Feedback</string>
+    <string name="setting_clearSettings">Clear settings</string>
+    <string name="setting_others">Others</string>
+    <string name="setting_message">Do you want to clear settings?</string>
+    <string name="postive_button">Yes</string>
+    <string name="negative_button">NO</string>
+    <string name="setting_examOptionMode">Giving options</string>
+    <string name="setting_examOptionModeOn">You\'ll be gived options when answering questions.</string>
+    <string name="setting_examOptionModeOff">You need to answer questions by yourself.</string>
+    <string name="setting_update">Update this app</string>
+    <string name="setting_website">Visit the website</string>
+    <string name="setting_QQ">Sign in QQ account</string>
+    <string name="setting_wechat">Sign in Wechat account</string>
+    <!--  测试模式  -->
+    <string name="setting_mode">Exam Mode</string>
+    <string name="setting_mode_0">Answer symbols for elements according to Chinese names</string>
+    <string name="setting_mode_1">Answer atomic numbers according to Chinese names</string>
+    <string name="setting_mode_2">Answer IUPAC names according to Chinese names</string>
+    <string name="setting_mode_3">Answer Chinese names according to symbols for elements</string>
+    <string name="setting_mode_4">Answer atomic numbers according to symbols for elements</string>
+    <string name="setting_mode_5">Answer IUPAC names according to symbols for elements</string>
+    <string name="setting_mode_6">Answer Chinese names according to atomic numbers</string>
+    <string name="setting_mode_7">Answer symbols for elements according to atomic numbers</string>
+    <string name="setting_mode_8">Answer IUPAC names according to atomic numbers</string>
+    <string name="setting_mode_9">Answer Chinese names according to IUPAC names</string>
+    <string name="setting_mode_10">Answer symbols for elements according to IUPAC names</string>
+    <string name="setting_mode_11">Answer atomic numbers according to IUPAC names</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="button_login">Login</string>
+    <string name="button_user">User center</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="action_sign_out">Sign Out</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="button_rank">排行榜</string>
+    <string name="deviationEditText_name">Please input numbers.</string>
+</resources>

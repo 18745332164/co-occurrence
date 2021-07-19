@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.actionbartest.MainActivity" >
+
+    <item
+        android:id="@+id/action_share"
+        android:icon="@drawable/ic_menu_share"
+        android:tint="#FFFFFF"
+        android:title="@string/button_Share"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_settings"
+        android:title="@string/button_Settings"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_Feedback"
+        android:title="@string/setting_feedback"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_About"
+        android:title="@string/button_About"
+        app:showAsAction="never" />
+</menu>

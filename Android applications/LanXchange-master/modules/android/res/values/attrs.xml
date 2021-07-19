@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="AboutElement">
+        <attr name="headerText" format="string"/>
+        <attr name="contentText" format="string"/>
+    </declare-styleable>
+    <declare-styleable name="HelpElement">
+        <attr name="questionText" format="string"/>
+        <attr name="answerText" format="string"/>
+    </declare-styleable>
+</resources>

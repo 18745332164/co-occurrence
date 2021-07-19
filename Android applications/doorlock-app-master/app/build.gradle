@@ -1,0 +1,55 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.github.triplet.play'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "de.binary_kitchen.doorlock_app"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 8
+        versionName "2.5"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    signingConfigs {
+        config
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.config
+            resValue "string", "app_version", "${defaultConfig.versionName}-release"
+        }
+        debug {
+            resValue "string", "app_version", "${defaultConfig.versionName}-debug"
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation 'com.takisoft.fix:preference-v7:27.1.1.1'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
+
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+    android.signingConfigs.config.storeFile = file(keystoreProperties['storeFile'])
+    android.signingConfigs.config.storePassword = keystoreProperties['storePassword']
+    android.signingConfigs.config.keyAlias = keystoreProperties['keyAlias']
+    android.signingConfigs.config.keyPassword = keystoreProperties['keyPassword']
+} else {
+    android.buildTypes.release.signingConfig = null
+}
+
+play{
+    jsonFile = file('google_api_key.json')
+    track = 'production'
+    uploadImages = true
+}

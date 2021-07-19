@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="add_color">Add</string>
+    <string name="palette_name">Palette Name</string>
+    <string name="save_button">Save</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="save_dialog">Save Dialog</string>
+    <string name="delete_saved_object">Delete File</string>
+    <string name="delete_file_ask">Delete Color Palette?</string>
+    <string name="answer_yes">Yes</string>
+    <string name="answer_no">No</string>
+    <string name="edit_dialog">Edit Palette Name</string>
+    <string name="delete_this_color">Delete This Color</string>
+    <string name="success_add_color">Successfully added color</string>
+    <string name="allready_added_color">Already added this color</string>
+    <string name="admob_inter_app_pub">ca-app-pub-8446606602742080/5303685851</string>
+    <string name="success_add_palette">Successfully Added to Your Colors</string>
+    <string name="success_delete_item">Successfully Delete Item</string>
+    <string name="success_edit_name">Successfully Edited Palette Name</string>
+    <string name="exit_app">Exit Application</string>
+    <string name="exit_app_ask">Exit ColorHub?</string>
+    <string name="action_about_us">About Us</string>
+    <string name="action_share_this_app">Share This App</string>
+    <string name="action_rate_this_app">Rate This App</string>
+    <string name="action_more_app">More</string>
+</resources>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ microMathematics - Extended Visual Calculator
+  ~ Copyright (C) 2014-2021 by Mikhail Kulesh
+  ~
+  ~ This program is free software: you can redistribute it and/or modify it under the terms of the GNU
+  ~ General Public License as published by the Free Software Foundation, either version 3 of the License,
+  ~ or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+  ~ even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+  ~ GNU General Public License for more details. You should have received a copy of the GNU General
+  ~ Public License along with this program.
+  -->
+
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:micromath="http://schemas.android.com/apk/res-auto" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/dialog_content_padding"
+            android:paddingTop="@dimen/dialog_content_padding"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <com.mkulesh.micromath.widgets.HorizontalNumberPicker
+                android:id="@+id/dialog_picker_width"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                micromath:label="@string/dialog_plot_settings_width"
+                micromath:minWidth="80dp" />
+
+            <com.mkulesh.micromath.widgets.HorizontalNumberPicker
+                android:id="@+id/dialog_picker_height"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                micromath:label="@string/dialog_plot_settings_height"
+                micromath:minWidth="80dp" />
+
+            <LinearLayout
+                android:id="@+id/dialog_dimension_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <View
+                    style="@style/HorizontalDividerStyle"
+                    android:layout_marginBottom="@dimen/dialog_content_padding"
+                    android:layout_marginTop="@dimen/dialog_content_padding" />
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical" >
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/dialog_button_contour"
+                        style="@style/RadioButtonStyle"
+                        android:text="@string/dialog_surface_settings_contour" />
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/dialog_button_surface"
+                        style="@style/RadioButtonStyle"
+                        android:text="@string/dialog_surface_settings_surface" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <View
+                style="@style/HorizontalDividerStyle"
+                android:layout_marginBottom="@dimen/dialog_content_padding"
+                android:layout_marginTop="@dimen/dialog_content_padding" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/dialog_button_axes_boxed"
+                    style="@style/RadioButtonStyle"
+                    android:text="@string/dialog_plot_settings_axes_boxed" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/dialog_button_axes_crossed"
+                    style="@style/RadioButtonStyle"
+                    android:checked="true"
+                    android:text="@string/dialog_plot_settings_axes_crossed" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/dialog_button_axes_none"
+                    style="@style/RadioButtonStyle"
+                    android:text="@string/dialog_plot_settings_axes_none" />
+            </RadioGroup>
+
+            <LinearLayout
+                android:id="@+id/dialog_surface_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <View
+                    style="@style/HorizontalDividerStyle"
+                    android:layout_marginBottom="@dimen/dialog_content_padding"
+                    android:layout_marginTop="@dimen/dialog_content_padding" />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/dialog_checkbox_mesh_lines"
+                    style="@style/CheckBoxStyle"
+                    android:checked="false"
+                    android:text="@string/dialog_surface_settings_mesh_lines" />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/dialog_checkbox_mesh_fill"
+                    style="@style/CheckBoxStyle"
+                    android:checked="false"
+                    android:text="@string/dialog_surface_settings_mesh_fill" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:baselineAligned="false"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        style="@style/DialogTextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="@dimen/dialog_content_padding"
+                        android:text="@string/dialog_surface_settings_mesh_opacity" />
+
+                    <com.larswerkman.holocolorpicker.OpacityBar
+                        android:id="@+id/dialog_colorpicker_mesh_opacity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <com.mkulesh.micromath.widgets.HorizontalNumberPicker
+                    android:id="@+id/dialog_picker_rotation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    micromath:label="@string/dialog_surface_settings_rotation"
+                    micromath:minWidth="80dp" />
+
+                <com.mkulesh.micromath.widgets.HorizontalNumberPicker
+                    android:id="@+id/dialog_picker_elevation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    micromath:label="@string/dialog_surface_settings_elevation"
+                    micromath:minWidth="80dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</merge>

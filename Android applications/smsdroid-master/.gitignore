@@ -1,0 +1,17 @@
+bin
+gen
+.ant-targets-build.xml
+local.properties
+build.properties
+doc
+*.zip
+*.swp
+.gradle
+.DS_Store
+build
+*.iml
+.idea
+gradle.properties
+release.ks
+release.properties
+crowdin.yaml

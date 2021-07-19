@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+	
+	default-autowire="byName" default-lazy-init="true">
+
+	<bean id="dateFormatter" class="net.sourceforge.atunes.utils.DateFormatter"/>
+
+	<bean id="temporalDiskStorage" class="net.sourceforge.atunes.utils.TempFolder"/>
+	<bean id="clipboard" class="net.sourceforge.atunes.utils.ClipboardFacade"/>
+	<bean id="desktop" class="net.sourceforge.atunes.utils.DesktopUtils"/>
+	
+	<bean id="collatorFactory" class="net.sourceforge.atunes.utils.Collator"/>
+	<bean id="collator" factory-bean="collatorFactory" factory-method="getCollator"/>
+	
+	<bean id="unknownObjectChecker" class="net.sourceforge.atunes.kernel.modules.repository.UnknownObjectChecker"/>
+	
+	<bean id="xmlSerializerService" class="net.sourceforge.atunes.utils.XMLSerializerService"/>
+	
+	<bean id="xstreamFactory" class="net.sourceforge.atunes.utils.XStreamFactory">
+		<property name="aliases">
+			<map>
+				<entry key="Repository" value="net.sourceforge.atunes.kernel.modules.repository.Repository"/>
+				<entry key="RepositoryStats" value="net.sourceforge.atunes.kernel.modules.statistics.Statistics"/>
+				<entry key="RepositoryStructure" value="net.sourceforge.atunes.kernel.modules.repository.RepositoryStructure"/>
+				<entry key="SongStats" value="net.sourceforge.atunes.kernel.modules.statistics.AudioObjectStats"/>
+				<entry key="RankList" value="net.sourceforge.atunes.model.RankList"/>
+				<entry key="StatisticsAlbum" value="net.sourceforge.atunes.kernel.modules.statistics.StatisticsAlbum"/>
+				<entry key="AudioFile" value="net.sourceforge.atunes.kernel.modules.repository.AudioFile"/>
+				<entry key="Radio" value="net.sourceforge.atunes.kernel.modules.radio.Radio"/>
+				<entry key="PodcastFeed" value="net.sourceforge.atunes.kernel.modules.podcast.PodcastFeed"/>
+				<entry key="PodcastFeedEntry" value="net.sourceforge.atunes.kernel.modules.podcast.PodcastFeedEntry"/>
+				<entry key="Artist" value="net.sourceforge.atunes.kernel.modules.repository.Artist"/>
+				<entry key="Album" value="net.sourceforge.atunes.kernel.modules.repository.Album"/>
+				<entry key="Folder" value="net.sourceforge.atunes.kernel.modules.repository.Folder"/>
+				<entry key="Genre" value="net.sourceforge.atunes.kernel.modules.repository.Genre"/>
+				<entry key="DefaultTag" value="net.sourceforge.atunes.kernel.modules.tags.DefaultTag"/>
+				<entry key="PlayList" value="net.sourceforge.atunes.kernel.modules.playlist.PlayList"/>
+				<entry key="Favorites" value="net.sourceforge.atunes.kernel.modules.favorites.Favorites"/>
+			</map>
+		</property>
+		<property name="omitFields">
+			<map>
+				<entry key="net.sourceforge.atunes.kernel.modules.radio.Radio">
+					<list>
+						<value>title</value>
+						<value>artist</value>
+						<value>songInfoAvailable</value>
+					</list>
+				</entry>
+				<entry key="net.sourceforge.atunes.utils.PointedList">
+					<list>
+						<value>list</value>
+					</list>
+				</entry>
+				<entry key="net.sourceforge.atunes.kernel.modules.playlist.PlayListPointedList">
+					<list>
+						<value>list</value>
+					</list>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="kryoSerializerService" class="net.sourceforge.atunes.utils.KryoSerializerService"/>
+	
+	<bean id="kryoFactory" class="net.sourceforge.atunes.utils.KryoFactory">
+		<property name="classes">
+			<list>
+				<value>net.sourceforge.atunes.kernel.modules.repository.Folder</value>
+     			<value>net.sourceforge.atunes.kernel.modules.repository.Repository</value>
+				<value>net.sourceforge.atunes.kernel.modules.repository.RepositoryStructure</value>
+				<value>net.sourceforge.atunes.kernel.modules.repository.AudioFile</value>
+				<value>net.sourceforge.atunes.kernel.modules.repository.Artist</value>
+				<value>net.sourceforge.atunes.kernel.modules.repository.Album</value>
+				<value>net.sourceforge.atunes.kernel.modules.repository.Genre</value>
+				<value>net.sourceforge.atunes.kernel.modules.repository.Year</value>
+				<value>net.sourceforge.atunes.kernel.modules.tags.DefaultTag</value>
+				<value>net.sourceforge.atunes.kernel.modules.favorites.Favorites</value>
+				<value>net.sourceforge.atunes.kernel.modules.statistics.Statistics</value>
+				<value>net.sourceforge.atunes.kernel.modules.statistics.StatisticsAlbum</value>
+				<value>net.sourceforge.atunes.kernel.modules.statistics.AudioObjectStats</value>
+				<value>net.sourceforge.atunes.model.RankList</value>
+				<value>net.sourceforge.atunes.kernel.modules.playlist.ListOfPlayLists</value>
+				<value>net.sourceforge.atunes.kernel.modules.playlist.PlayList</value>
+				<value>net.sourceforge.atunes.utils.PointedList</value>
+				<value>net.sourceforge.atunes.kernel.modules.podcast.PodcastFeed</value>
+				<value>net.sourceforge.atunes.model.FeedType</value>
+				<value>net.sourceforge.atunes.kernel.modules.podcast.PodcastFeedEntry</value>
+			</list>
+		</property>
+	</bean>
+	
+</beans>

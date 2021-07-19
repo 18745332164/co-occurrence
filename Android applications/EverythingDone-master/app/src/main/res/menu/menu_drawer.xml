@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/drawer_group_things_underway">
+        <item
+            android:id="@+id/drawer_underway"
+            android:title="@string/underway"
+            android:icon="@drawable/drawer_all"/>
+        <item
+            android:id="@+id/drawer_note"
+            android:title="@string/note"
+            android:icon="@drawable/drawer_note"/>
+        <item
+            android:id="@+id/drawer_reminder"
+            android:title="@string/reminder"
+            android:icon="@drawable/drawer_reminder"/>
+        <item
+            android:id="@+id/drawer_habit"
+            android:title="@string/habit"
+            android:icon="@drawable/drawer_habit"/>
+        <item
+            android:id="@+id/drawer_goal"
+            android:title="@string/goal"
+            android:icon="@drawable/drawer_goal"/>
+    </group>
+
+    <group
+        android:id="@+id/drawer_group_things_other">
+        <item
+            android:id="@+id/drawer_finished"
+            android:title="@string/finished"
+            android:icon="@drawable/drawer_finished"/>
+        <item
+            android:id="@+id/drawer_deleted"
+            android:title="@string/drawer_deleted"
+            android:icon="@drawable/drawer_deleted"/>
+    </group>
+
+    <group
+        android:id="@+id/drawer_group_app_items">
+        <item
+            android:id="@+id/drawer_settings"
+            android:title="@string/settings"
+            android:icon="@drawable/drawer_settings"/>
+
+        <item
+            android:id="@+id/drawer_help"
+            android:title="@string/help"
+            android:icon="@drawable/drawer_help"/>
+        <item
+            android:id="@+id/drawer_about"
+            android:title="@string/about"
+            android:icon="@drawable/drawer_about"/>
+    </group>
+
+</menu>

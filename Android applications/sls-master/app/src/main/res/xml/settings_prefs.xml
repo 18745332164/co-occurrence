@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceScreen
+        android:summary="@string/user_credentials_summary_no_napp"
+        android:title="@string/user_credentials_title">
+        <intent
+            android:action="android.intent.action.MAIN"
+            android:targetClass="com.adam.aslfms.UserCredsListActivity"
+            android:targetPackage="com.adam.aslfms" />
+    </PreferenceScreen>
+
+    <PreferenceScreen
+        android:summary="@string/show_supported_apps_list_summary"
+        android:title="@string/supported_apps_category_title">
+        <intent
+            android:action="android.intent.action.MAIN"
+            android:targetClass="com.adam.aslfms.MusicAppsActivity"
+            android:targetPackage="com.adam.aslfms" />
+    </PreferenceScreen>
+
+    <PreferenceScreen
+        android:summary="@string/options_summary"
+        android:title="@string/options_title">
+        <intent
+            android:action="android.intent.action.MAIN"
+            android:targetClass="com.adam.aslfms.OptionsActivity"
+            android:targetPackage="com.adam.aslfms" />
+    </PreferenceScreen>
+
+    <Preference
+        android:key="view_correction_rules"
+        android:title="Correction Rules"
+        android:summary="View and edit the list of rules for automatically correcting scrobbles" >
+        <intent
+            android:action="android.intent.action.MAIN"
+            android:targetClass="com.adam.aslfms.ViewCorrectionRulesActivity"
+            android:targetPackage="com.adam.aslfms" />
+    </Preference>
+
+    <PreferenceCategory android:title="@string/scrobble_cache_title" />
+    <Preference
+        android:key="scrobble_all_now"
+        android:title="@string/scrobble_now" />
+    <Preference
+        android:key="view_scrobble_cache"
+        android:summary="@string/view_sc_for_all_summary"
+        android:title="@string/view_sc" />
+
+    <PreferenceCategory android:title="@string/scrobble_status_title" />
+    <Preference
+        android:summary="@string/status_show_summary"
+        android:title="@string/status_show_title">
+        <intent
+            android:action="android.intent.action.MAIN"
+            android:targetClass="com.adam.aslfms.StatusActivity"
+            android:targetPackage="com.adam.aslfms" />
+    </Preference>
+
+    <PreferenceCategory android:title="@string/heart_and_copy" />
+    <Preference
+        android:icon="@drawable/heart"
+        android:key="my_heart_button"
+        android:summary="@string/heart_current_track"
+        android:title="@string/heart_title" />
+
+    <Preference
+        android:icon="@drawable/content_copy"
+        android:key="my_copy_button"
+        android:summary="@string/copy_current_track"
+        android:title="@string/copy_title" />
+
+</PreferenceScreen>

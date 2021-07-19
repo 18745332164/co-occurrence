@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content">
+
+<Button
+    android:id="@+id/WidgetButton"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@drawable/car2"
+    android:height="40dp"
+    android:lines="2"
+    android:minHeight="40dp"
+    android:minLines="2"
+    android:minWidth="40dp"
+    android:shadowColor="#000000"
+    android:text="@string/GetLocButtonString"
+    android:textColor="#FF0000"
+    android:textSize="12sp"
+    android:textStyle="bold"
+    android:width="40dp" >
+
+</Button>
+</LinearLayout>

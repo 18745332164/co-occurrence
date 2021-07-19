@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Shitter</string>
+    <string name="profile_image">Profile image</string>
+    <string name="login_pin">enter PIN</string>
+    <string name="login_verifier">login</string>
+    <string name="popup_tweet_hint" translatable="false">Tweet</string>
+    <string name="title_settings">Settings</string>
+    <string name="userlist_following" translatable="false">Following</string>
+    <string name="userlist_follower" translatable="false">Follower</string>
+    <string name="toolbar_userlist_retweet">Tweet retweeted by</string>
+    <string name="settings_background">Background</string>
+    <string name="settings_font">Font</string>
+    <string name="settings_button_popup">Popup</string>
+    <string name="settings_color_card">Card color</string>
+    <string name="settings_icon_color">Icon color</string>
+    <string name="highlight">Highlight</string>
+    <string name="settings_list_size">List size</string>
+    <string name="confirm_retry_button">retry</string>
+    <string name="settings_color_settings">Color settings</string>
+    <string name="data_consumption">Data consumption</string>
+    <string name="trend_setting">Trend location</string>
+    <string name="register_link">get PIN</string>
+    <string name="settings_image">enable images</string>
+    <string name="settings_clear_data">clear app data</string>
+    <string name="confirm_delete_tweet">delete tweet?</string>
+    <string name="confirm_delete_database">clear app data?</string>
+    <string name="tweet_sent_from">"sent from: "</string>
+    <string name="directmessage">Directmessage</string>
+    <string name="username">Username</string>
+    <string name="dm_message">Message</string>
+    <string name="confirm_cancel_message">cancel message?</string>
+    <string name="settings_logout">log out</string>
+    <string name="dm_answer">answer</string>
+    <string name="delete_dm">delete</string>
+    <string name="confirm_unfollow">unfollow user?</string>
+    <string name="confirm_block">block user?</string>
+    <string name="confirm_log_lout">log out?</string>
+    <string name="confirm_cancel_tweet">cancel tweet?</string>
+    <string name="image_preview">Image preview</string>
+    <string name="tweet_add_image">add new image</string>
+    <string name="send_tweet">send Tweet</string>
+    <string name="tweet_close">close editor</string>
+    <string name="profile_link">Link</string>
+    <string name="close_dm">Close direct message</string>
+    <string name="profile_location">Location</string>
+    <string name="profile_bio">Bio</string>
+    <string name="confirm_discard">discard changes?</string>
+    <string name="user_data">User data</string>
+    <string name="follows_you">follows you</string>
+    <string name="settings_enable_ans_load">load Tweet replies automatically</string>
+    <string name="settings_connections">Connection settings</string>
+    <string name="settings_hint_proxy_ip">enter IP address</string>
+    <string name="proxy_port">Port</string>
+    <string name="edit_proxyuser">Username</string>
+    <string name="proxy_password">Password</string>
+    <string name="settings_key1_hint">Consumer key</string>
+    <string name="settings_key2_hint">Consumer secret</string>
+    <string name="settings_info_link" translatable="false">https://github.com/nuclearfog/Shitter</string>
+    <string name="confirm_mute">mute user?</string>
+    <string name="item_list_pb_desc">Profile of the list owner</string>
+    <string name="list_appbar">Lists</string>
+    <string name="edit_location_hint">enter location</string>
+    <string name="edit_hint_link">enter website link</string>
+    <string name="edit_hint_enter_descr">enter profile description</string>
+    <string name="settins_font">Font style</string>
+    <string name="page_profile_edior">edit profile</string>
+    <string name="delete_list">delete List</string>
+    <string name="confirm_delete_list">delete userlist?</string>
+    <string name="confirm_delete_message">delete message?</string>
+    <string name="confirm_unfollow_list">unfollow list?</string>
+    <string name="trend_range">Tweets</string>
+    <string name="enter_username">enter username</string>
+    <string name="profile_banner">Banner Image</string>
+    <string name="editprofile_add_banner">add banner</string>
+    <string name="settings_enable_hq_img">high quality</string>
+    <string name="settings_app_information">For app and licensing information visit:</string>
+    <string name="badge_twitter4j" translatable="false">Twitter4J Badge</string>
+    <string name="item_load_more">load more</string>
+    <string name="item_image_save">save image</string>
+    <string name="settings_enable_proxy">enable proxy</string>
+    <string name="settings_enable_proxy_auth">enable proxy authentication</string>
+    <string name="settings_setup_custom_keys">setup custom API keys</string>
+    <string name="confirm_back">back</string>
+    <string name="tweet_sensitive_media">Potentially sensitive content</string>
+    <string name="login_info">3 steps to login</string>
+    <string name="login_first_opt" translatable="false">1.</string>
+    <string name="login_sec_opt" translatable="false">2.</string>
+    <string name="login_trd_opt" translatable="false">3.</string>
+    <string name="userlist_public_sel">public</string>
+    <string name="userlist_enter_title">enter list title</string>
+    <string name="userlist_enter_descr">enter list description</string>
+    <string name="userlist_create">create userlist</string>
+    <string name="userlist_create_new_list">create a new userlist</string>
+    <string name="update_list">update list</string>
+    <string name="confirm_remove_user_from_list">remove user from list?</string>
+    <string name="descr_remove_user">remove user from list</string>
+    <string name="list_following_indicator">following list</string>
+    <string name="info_list_removed">Userlist removed</string>
+    <string name="info_list_followed">Userlist followed</string>
+    <string name="info_list_unfollowed">Userlist unfollowed</string>
+    <string name="descr_add_profile_image">change profile image</string>
+    <string name="app_info_twitter_link_1" translatable="false">https://support.twitter.com/articles/18311-the-twitter-rules</string>
+    <string name="app_info_twitter_link_2" translatable="false">https://help.twitter.com/rules-and-policies/twitter-api</string>
+    <string name="app_info_twitter_rules">The Twitter rules:</string>
+    <string name="button_backward">Rewind</string>
+    <string name="button_forward">Fast forward</string>
+    <string name="button_play_pause">Pause/Play</string>
+    <string name="button_share">share link</string>
+
+    <!-- toast messages to inform user -->
+    <string name="info_user_removed">User removed from list</string>
+    <string name="info_adding_user_to_list">adding user to list</string>
+    <string name="info_user_added_to_list">" user added to List"</string>
+    <string name="info_list_updated">Userlist updated</string>
+    <string name="info_list_created">Userlist created</string>
+    <string name="info_fetching_link">redirecting to Twitter login</string>
+    <string name="info_login_to_twitter">login to Twitter</string>
+    <string name="error_wrong_connection_settings">Wrong connection settings!</string>
+    <string name="info_cant_add_video">can\'t add video</string>
+    <string name="info_get_link">get Twitter PIN from browser first. Please press the first button!</string>
+    <string name="info_gps_attached">GPS position added</string>
+    <string name="info_tweet_retweeted">retweeted</string>
+    <string name="info_tweet_unretweeted">Retweet removed</string>
+    <string name="info_tweet_favored">Tweet added to favorites</string>
+    <string name="info_tweet_unfavored">Tweet removed from favorites</string>
+    <string name="info_user_muted">User muted</string>
+    <string name="info_user_unmuted">user unmuted</string>
+    <string name="info_dm_send">Directmessage sent</string>
+    <string name="info_image_saved">Image saved</string>
+    <string name="info_clipboard">Link copied to clipboard</string>
+    <string name="info_loading">loading..</string>
+    <string name="info_profile_updated">Profile updated</string>
+    <string name="info_followed">followed</string>
+    <string name="info_unfollowed">unfollowed</string>
+    <string name="info_user_blocked">blocked</string>
+    <string name="info_user_unblocked">unblocked</string>
+    <string name="info_tweet_removed">Tweet removed</string>
+    <string name="info_tweet_sent">Tweet sent</string>
+    <string name="info_location_pending">Location is pending, please wait.</string>
+    <string name="info_error">Error</string>
+
+    <!-- toast messages for error information -->
+    <string name="error_empty_tweet">Empty tweet!</string>
+    <string name="error_dm">enter username or message!</string>
+    <string name="error_not_found">Not found!</string>
+    <string name="error_enter_pin">enter PIN!</string>
+    <string name="error_limit_exceeded">"Rate limit exceeded! Retry after:"</string>
+    <string name="error_open_link">could not open link!</string>
+    <string name="error_cant_load_video">could not play video!</string>
+    <string name="error_image_loading">could not load image!</string>
+    <string name="error_file_not_found">File not found!</string>
+    <string name="error_rate_limit">Too many requests! Please wait 15 minutes.</string>
+    <string name="error_no_card_app">No card app found!</string>
+    <string name="error_no_media_app">No gallery app found!</string>
+    <string name="error_connection_failed">Connection failed!</string>
+    <string name="error_invalid_link">Invalid link!</string>
+    <string name="error_cant_copy_clipboard">can\'t copy link to clipboard!</string>
+    <string name="error_gps">could not fetch GPS data!</string>
+    <string name="error_token_not_set">Please get link first!</string>
+    <string name="error_dm_send">can\'t send direct message to this user!</string>
+    <string name="error_image_save">could not save Image</string>
+    <string name="error_not_authorized">Not authorized!</string>
+    <string name="error_file_format">File format not supported!</string>
+    <string name="error_request_token">API Keys are expired! please update app!</string>
+    <string name="error_empty_name">Empty user name!</string>
+    <string name="error_user_not_found">User not found!</string>
+    <string name="error_send_dm_to_user">cannot send dm to user!</string>
+    <string name="error_accesstoken">Invalid access! Please re-login!</string>
+    <string name="error_status_length">Tweet is too long!</string>
+    <string name="error_duplicate_status">Duplicate Tweet!</string>
+    <string name="error_dm_length">Directmessage is too long!</string>
+    <string name="error_list_title_empty">Empty list title!</string>
+    <string name="error_username_format">Wrong username format!</string>
+    <string name="error_cant_reply_to_tweet">You can\'t reply to this Tweet!</string>
+    <string name="error_corrupt_api_key">Error, corrupt API key!</string>
+    <string name="error_acc_update">Account update failed! Please check your input!</string>
+    <string name="error_api_access_denied">Error, API access denied! Please check your API Keys.</string>
+    <string name="error_api_key_expired">Error, API Keys expired! Please update app!</string>
+    <string name="error_mention_exceed">Too much mentions!</string>
+    <string name="error_twitter_search">Error, search query is too long or contains illegal characters!</string>
+    <string name="error_not_defined">Not defined Error!</string>
+
+    <!-- menu icon strings -->
+    <string name="menu_tweet">write Tweet</string>
+    <string name="menu_open_home_profile">open Profile</string>
+    <string name="menu_open_twitter_search">Twitter Search</string>
+    <string name="menu_open_settings">Settings</string>
+    <string name="menu_create_list">create Userlist</string>
+    <string name="menu_write_message">Directmessage</string>
+    <string name="menu_follow_user">follow</string>
+    <string name="menu_goto_lists">Userlists</string>
+    <string name="menu_app_info">About</string>
+    <string name="menu_block_user">block</string>
+    <string name="menu_unmute_user">unmute</string>
+    <string name="menu_follow_requested">follow requested</string>
+    <string name="menu_tweet_delete">delete Tweet</string>
+    <string name="menu_tweet_open_browser">open in browser</string>
+    <string name="menu_mute_user">mute</string>
+    <string name="menu_edit_profile">edit profile</string>
+    <string name="menu_edit_save">save</string>
+    <string name="menu_add_user">add user to list</string>
+    <string name="menu_edit_list">edit list</string>
+    <string name="menu_link_to_clipboard">copy Tweet link</string>
+    <string name="menu_list_follow">follow list</string>
+    <string name="menu_unfollow_list">unfollow list</string>
+    <string name="menu_user_unfollow">unfollow</string>
+    <string name="menu_user_unblock">unblock</string>
+
+    <string name="dialog_button_yes">Yes</string>
+    <string name="dialog_button_no">No</string>
+    <string name="dialog_button_cancel">Cancel</string>
+    <string name="dialog_button_ok">OK</string>
+</resources>

@@ -1,0 +1,13 @@
+.DS_Store
+bin
+gen
+local.properties
+target/
+build/
+networkmonitor/build
+.idea
+.gradle
+*.iml
+networkmonitor/*.iml
+signing.properties
+etc/*.apk
