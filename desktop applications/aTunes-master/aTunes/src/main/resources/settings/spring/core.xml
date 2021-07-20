@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-autowire="byName" default-lazy-init="true">
+
+	<bean id="beanFactory" class="net.sourceforge.atunes.BeanFactory"/>
+	
+	<bean id="stateService"
+		class="net.sourceforge.atunes.kernel.modules.state.ApplicationStateService" />
+
+	<bean class="net.sourceforge.atunes.ApplicationStarter" scope="prototype"/>
+	<bean id="applicationPropertiesLogger" class="net.sourceforge.atunes.ApplicationPropertiesLogger" scope="prototype"/>
+	<bean id="multipleInstancesCheck" class="net.sourceforge.atunes.MultipleInstancesCheck" scope="prototype"/>
+	<bean id="applicationArgumentsSender" class="net.sourceforge.atunes.ApplicationArgumentsSender" scope="prototype"/>
+
+	<bean id="kernel" class="net.sourceforge.atunes.kernel.Kernel"/>
+	<bean id="restarter" class="net.sourceforge.atunes.kernel.Finisher" scope="prototype"/>
+
+	<bean id="applicationArguments" class="net.sourceforge.atunes.ApplicationArguments"/>
+	
+	<bean id="errorReportCreator" class="net.sourceforge.atunes.ErrorReportCreator" scope="prototype"/>
+	<bean id="errorReporter" class="net.sourceforge.atunes.MailErrorReporter" scope="prototype">
+		<property name="url" value="http://www.atunes.org/bug_report_post.php"/>
+	</bean>
+	
+	<bean id="applicationStateGenerator" class="net.sourceforge.atunes.ApplicationStateGenerator" scope="prototype"/>
+
+	<bean id="statePlaylist" class="net.sourceforge.atunes.kernel.modules.state.ApplicationStatePlaylist" />
+	<bean id="stateRadio" class="net.sourceforge.atunes.kernel.modules.state.ApplicationStateRadio" />
+	<bean id="stateUI" class="net.sourceforge.atunes.kernel.modules.state.ApplicationStateUI" />
+	<bean id="stateRepository" class="net.sourceforge.atunes.kernel.modules.state.ApplicationStateRepository" />
+	<bean id="statePlayer" class="net.sourceforge.atunes.kernel.modules.state.ApplicationStatePlayer" />
+	<bean id="stateCore" class="net.sourceforge.atunes.kernel.modules.state.ApplicationStateCore" />
+	<bean id="stateContext" class="net.sourceforge.atunes.kernel.modules.state.ApplicationStateContext" />
+	<bean id="stateNavigation" class="net.sourceforge.atunes.kernel.modules.state.ApplicationStateNavigation" />
+	<bean id="stateRipper" class="net.sourceforge.atunes.kernel.modules.state.ApplicationStateRipper" />
+	<bean id="stateDevice" class="net.sourceforge.atunes.kernel.modules.state.ApplicationStateDevice" />
+	<bean id="statePodcast" class="net.sourceforge.atunes.kernel.modules.state.ApplicationStatePodcast" />
+	
+	<bean id="preferenceHelper" class="net.sourceforge.atunes.kernel.modules.state.PreferenceHelper"/>
+	<bean id="stateStore" class="net.sourceforge.atunes.kernel.modules.state.PreferencesCache">
+		<property name="configFile" value="/settings/ehcache-preferences.xml"/>
+		<property name="cacheName" value="preferences"/>
+	</bean>
+	
+	<bean id="localeBeanFactory" class="net.sourceforge.atunes.kernel.modules.state.LocaleBeanFactory"/>
+	<bean id="proxyBeanFactory" class="net.sourceforge.atunes.kernel.modules.state.ProxyBeanFactory"/>
+
+
+
+	<bean id="applicationLifeCycleListeners" class="net.sourceforge.atunes.kernel.ApplicationLifeCycleListeners" scope="prototype"/>
+	<bean id="deviceListeners" class="net.sourceforge.atunes.kernel.DeviceListeners" scope="prototype"/>
+	<bean id="favoritesListeners" class="net.sourceforge.atunes.kernel.FavoritesListeners" scope="prototype"/>
+	<bean id="playbackStateListeners" class="net.sourceforge.atunes.kernel.PlaybackStateListeners" init-method="initialize"/>
+	<bean id="playListEventListeners" class="net.sourceforge.atunes.kernel.PlayListEventListeners"/>
+	<bean id="stateChangeListeners" class="net.sourceforge.atunes.kernel.StateChangeListeners"/>
+
+	<bean id="preferencesPanels" class="java.util.ArrayList">
+		<constructor-arg>
+			<list>
+				<ref bean="generalPreferencesPanel"/>
+				<ref bean="repositoryPreferencesPanel"/>
+				<ref bean="playerPreferencesPanel"/>				
+				<ref bean="navigatorPreferencesPanel"/>
+				<ref bean="playListPreferencesPanel"/>
+				<ref bean="osdPreferencesPanel"/>
+				<ref bean="contextPreferencesPanel"/>
+				<ref bean="internetPreferencesPanel"/>
+				<ref bean="lastfmPreferencesPanel"/>
+				<ref bean="devicePreferencesPanel"/>
+				<ref bean="radioPreferencesPanel"/>
+				<ref bean="podcastFeedPreferencesPanel"/>
+				<ref bean="importPreferencesPanel"/>
+				<ref bean="exportPreferencesPanel"/>
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id="generalPreferencesPanel" class="net.sourceforge.atunes.kernel.modules.state.GeneralPanel" scope="prototype" init-method="initialize"/>
+	<bean id="repositoryPreferencesPanel" class="net.sourceforge.atunes.kernel.modules.state.RepositoryPanel" scope="prototype" init-method="initialize"/>
+	<bean id="playerPreferencesPanel" class="net.sourceforge.atunes.kernel.modules.state.PlayerPanel" scope="prototype" init-method="initialize"/>
+	<bean id="navigatorPreferencesPanel" class="net.sourceforge.atunes.kernel.modules.state.NavigatorPanel" scope="prototype" init-method="initialize"/>
+	<bean id="playListPreferencesPanel" class="net.sourceforge.atunes.kernel.modules.state.PlayListPrefPanel" scope="prototype"/>
+	<bean id="osdPreferencesPanel" class="net.sourceforge.atunes.kernel.modules.state.OSDPanel" scope="prototype" init-method="initialize"/>
+	<bean id="contextPreferencesPanel" class="net.sourceforge.atunes.kernel.modules.state.ContextPanel" scope="prototype" init-method="initialize"/>
+	<bean id="internetPreferencesPanel" class="net.sourceforge.atunes.kernel.modules.state.InternetPanel" scope="prototype" init-method="initialize"/>
+	<bean id="lastfmPreferencesPanel" class="net.sourceforge.atunes.kernel.modules.state.LastFmPanel" scope="prototype" init-method="initialize"/>	
+	<bean id="devicePreferencesPanel" class="net.sourceforge.atunes.kernel.modules.state.DevicePanel" scope="prototype" init-method="initialize"/>
+	<bean id="radioPreferencesPanel" class="net.sourceforge.atunes.kernel.modules.state.RadioPanel" scope="prototype"/>
+	<bean id="podcastFeedPreferencesPanel" class="net.sourceforge.atunes.kernel.modules.state.PodcastFeedPanel" scope="prototype" init-method="initialize"/>
+	<bean id="importPreferencesPanel" class="net.sourceforge.atunes.kernel.modules.state.ImportPanel" scope="prototype" init-method="initialize"/>
+	<bean id="exportPreferencesPanel" class="net.sourceforge.atunes.kernel.modules.state.ExportPanel" scope="prototype" init-method="initialize"/>
+	
+	<bean id="editPreferencesDialogController" class="net.sourceforge.atunes.kernel.modules.state.EditPreferencesDialogController" scope="prototype" init-method="initialize">
+		<constructor-arg ref="editPreferencesDialog"/>
+	</bean>
+	
+	
+	<bean id="startCounter" class="net.sourceforge.atunes.kernel.StartCounter" scope="prototype">
+		<property name="counterFile" value="counter.properties"/>
+		<property name="counterProperty" value="counter"/>
+		<property name="counterLevelNeededToFireAction" value="2"/>
+		<property name="actionToFire" ref="makeDonationAction"/>
+		<property name="dontFireActionProperty" value="dontFireActionAgain"/>
+		<property name="userDonatedProperty" value="userDonated"/>
+	</bean>
+
+	<bean id="notificationEngine" class="net.sourceforge.atunes.kernel.modules.notify.CommonNotificationEngine" abstract="true"/>
+	<bean id="defaultNotificationEngine" class="net.sourceforge.atunes.kernel.modules.notify.DefaultNotifications" parent="notificationEngine"/>
+	<bean id="growlNotificationEngine" class="net.sourceforge.atunes.kernel.modules.notify.GrowlNotificationEngine" parent="notificationEngine"/>
+	<bean id="libnotifyNotificationEngine" class="net.sourceforge.atunes.kernel.modules.notify.LibnotifyNotificationEngine" parent="notificationEngine"/>
+	
+	<bean class="net.sourceforge.atunes.kernel.modules.tags.EditTagDialogController" scope="prototype" init-method="initialize">
+		<constructor-arg ref="editTagDialog"></constructor-arg>
+	</bean>
+	
+	<bean id="fileManager" class="net.sourceforge.atunes.kernel.modules.repository.FileManager">
+		<property name="associatedFiles">
+			<list>
+				<value>properties</value>
+				<value>png</value>
+			</list>
+		</property>
+	</bean>
+
+    <!-- EXCEPTION HANDLER WITH ALL KNOWN EXCEPTIONS THAT DON'T WANT TO SHOW TO USER -->
+	<bean id="exceptionHandler" class="net.sourceforge.atunes.ExceptionHandler">
+		<property name="knownExceptions">
+			<list>
+				<bean class="net.sourceforge.atunes.KnownException">
+				    <!-- http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6933331 -->
+					<property name="exceptionClass" value="java.lang.IllegalStateException"/>
+					<property name="message" value="Buffers have not been created"/>
+				</bean>
+				<bean class="net.sourceforge.atunes.KnownException">
+				    <!-- Support for Tray Icon in Linux discontinued -->
+					<property name="exceptionClass" value="java.lang.ClassCastException"/>
+					<property name="message" value="net.sourceforge.atunes.gui.views.controls.JTrayIcon cannot be cast to java.awt.Component"/>
+				</bean>
+				<bean class="net.sourceforge.atunes.KnownException">
+				    <!-- Support for Tray Icon in Linux discontinued -->
+					<property name="exceptionClass" value="java.lang.UnsupportedOperationException"/>
+					<property name="message" value="The system tray is not supported on the current platform"/>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<!-- JVM STATISTICS -->
+	<bean class="net.sourceforge.atunes.utils.JavaCommittedHeapSpaceStatistic"/>
+	<bean class="net.sourceforge.atunes.utils.JavaCommittedNonHeapSpaceStatistic"/>
+	<bean class="net.sourceforge.atunes.utils.JavaGarbageCollectionCountStatistic"/>
+	<bean class="net.sourceforge.atunes.utils.JavaInitialHeapSpaceStatistic"/>
+	<bean class="net.sourceforge.atunes.utils.JavaInitialNonHeapSpaceStatistic"/>
+	<bean class="net.sourceforge.atunes.utils.JavaLoadedClassesCountStatistic"/>
+	<bean class="net.sourceforge.atunes.utils.JavaMaxHeapSpaceStatistic"/>
+	<bean class="net.sourceforge.atunes.utils.JavaMaxNonHeapSpaceStatistic"/>
+	<bean class="net.sourceforge.atunes.utils.JavaOsNameStatistic"/>
+	<bean class="net.sourceforge.atunes.utils.JavaRuntimeStatistic"/>
+	<bean class="net.sourceforge.atunes.utils.JavaThreadCountStatistic"/>
+	<bean class="net.sourceforge.atunes.utils.JavaTotalLoadedClassesCountStatistic"/>
+	<bean class="net.sourceforge.atunes.utils.JavaUnloadedClassesCountStatistic"/>
+	<bean class="net.sourceforge.atunes.utils.JavaUptimeStatistic"/>
+	<bean class="net.sourceforge.atunes.utils.JavaUsedHeapSpaceStatistic"/>
+	<bean class="net.sourceforge.atunes.utils.JavaUsedNonHeapSpaceStatistic"/>
+	
+
+    <bean id="checkUpdatesBackgroundWorker" class="net.sourceforge.atunes.kernel.modules.updates.CheckUpdatesBackgroundWorker" scope="prototype">
+    	<property name="downloadURLStart1" value="http://sourceforge.net/projects/atunes"/>
+    	<property name="downloadURLStart2" value="http://www.atunes.org"/>
+    </bean>
+    <bean class="net.sourceforge.atunes.kernel.modules.updates.VersionXmlParser" scope="prototype"/>
+    
+    <bean id="availableLanguages" class="java.util.ArrayList">
+    	<constructor-arg>
+    		<list>
+    			<bean class="java.util.Locale">
+    				<constructor-arg value="ar"/>
+    			</bean>
+    			<bean class="java.util.Locale">
+    				<constructor-arg value="ca"/>
+    			</bean>
+    			<bean class="java.util.Locale">
+    				<constructor-arg value="cs"/>
+    			</bean>
+    			<bean class="java.util.Locale">
+    				<constructor-arg value="da"/>
+    			</bean>
+    			<bean class="java.util.Locale">
+    				<constructor-arg value="de"/>
+    			</bean>
+    			<bean class="java.util.Locale">
+    				<constructor-arg value="el"/>
+    			</bean>
+    			<bean class="java.util.Locale">
+    				<constructor-arg value="en"/>
+    			</bean>
+    			<bean class="java.util.Locale">
+    				<constructor-arg value="es"/>
+    			</bean>
+    			<bean class="java.util.Locale">
+    				<constructor-arg value="eu"/>
+    			</bean>
+    			<bean class="java.util.Locale">
+    				<constructor-arg value="fr"/>
+    			</bean>
+    			<bean class="java.util.Locale">
+    				<constructor-arg value="gl"/>
+    			</bean>
+    			<bean class="java.util.Locale">
+    			    <!-- Hebrew translation and image files must have "iw" ID, not "he".
+    			         Bug in Java? Official ISO code is "he", "iw" being used previously. -->
+    				<constructor-arg value="he"/>
+    			</bean>
+    			<bean class="java.util.Locale">
+    				<constructor-arg value="hr"/>
+    			</bean>
+    			<bean class="java.util.Locale">
+    				<constructor-arg value="hu"/>
+    			</bean>
+    			<bean class="java.util.Locale">
+    				<constructor-arg value="it"/>
+    			</bean>
+    			<bean class="java.util.Locale">
+    				<constructor-arg value="ja"/>
+    			</bean>
+    			<bean class="java.util.Locale">
+    				<constructor-arg value="nl"/>
+    			</bean>
+    			<bean class="java.util.Locale">
+    				<constructor-arg value="no"/>
+    			</bean>
+    			<bean class="java.util.Locale">
+    				<constructor-arg value="pl"/>
+    			</bean>
+    			<bean class="java.util.Locale">
+    				<constructor-arg value="pt"/>
+    				<constructor-arg value="BR"/>
+    			</bean>
+    			<bean class="java.util.Locale">
+    				<constructor-arg value="pt"/>
+    			</bean>
+    			<bean class="java.util.Locale">
+    				<constructor-arg value="ru"/>
+    			</bean>
+    			<bean class="java.util.Locale">
+    				<constructor-arg value="sk"/>
+    			</bean>
+    			<bean class="java.util.Locale">
+    				<constructor-arg value="sv"/>
+    			</bean>
+    			<bean class="java.util.Locale">
+    				<constructor-arg value="tr"/>
+    			</bean>
+    			<bean class="java.util.Locale">
+    				<constructor-arg value="uk"/>
+    			</bean>
+    			<bean class="java.util.Locale">
+    				<constructor-arg value="zh"/>
+    				<constructor-arg value="TW"/>
+    			</bean>
+    			<bean class="java.util.Locale">
+    				<constructor-arg value="zh"/>
+    			</bean>
+    		</list>
+    	</constructor-arg>
+    </bean>
+	
+</beans>

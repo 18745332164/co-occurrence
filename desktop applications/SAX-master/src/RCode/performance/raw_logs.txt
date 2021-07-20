@@ -1,0 +1,62 @@
+data file: //work//psenin//perf//sampler//SAX//src//resources//dataset//300_signal1.txt
+data size: 536976
+SAX parameters: sliding window size 200, PAA size 11, alphabet size 7, NR strategy NONE
+Performing 20 SAX conversion runs for each algorithm implementation ... 
+single thread conversion: 168084, 2m48s84ms
+parallel conversion using 2 threads: 94324, 1m34s324ms
+parallel conversion using 3 threads: 65218, 1m5s218ms
+parallel conversion using 4 threads: 49658, 49s658ms
+parallel conversion using 5 threads: 40162, 40s162ms
+parallel conversion using 6 threads: 34053, 34s53ms
+parallel conversion using 7 threads: 33838, 33s838ms
+parallel conversion using 8 threads: 33389, 33s389ms
+parallel conversion using 9 threads: 31078, 31s78ms
+parallel conversion using 10 threads: 28591, 28s591ms
+parallel conversion using 11 threads: 27755, 27s755ms
+parallel conversion using 12 threads: 25848, 25s848ms
+parallel conversion using 13 threads: 24924, 24s924ms
+parallel conversion using 14 threads: 23357, 23s357ms
+parallel conversion using 15 threads: 22342, 22s342ms
+Epilog : job finished at ven. oct.  9 14:30:27 CEST 2015
+
+data file: //work//psenin//perf//sampler//SAX//src//resources//dataset//300_signal1.txt
+data size: 536976
+SAX parameters: sliding window size 200, PAA size 11, alphabet size 7, NR strategy EXACT
+Performing 20 SAX conversion runs for each algorithm implementation ... 
+single thread conversion: 172353, 2m52s353ms
+parallel conversion using 2 threads: 96906, 1m36s906ms
+parallel conversion using 3 threads: 66824, 1m6s824ms
+parallel conversion using 4 threads: 50832, 50s832ms
+parallel conversion using 5 threads: 41261, 41s261ms
+parallel conversion using 6 threads: 34821, 34s821ms
+parallel conversion using 7 threads: 35192, 35s192ms
+parallel conversion using 8 threads: 33798, 33s798ms
+parallel conversion using 9 threads: 31171, 31s171ms
+parallel conversion using 10 threads: 28755, 28s755ms
+parallel conversion using 11 threads: 27721, 27s721ms
+parallel conversion using 12 threads: 26368, 26s368ms
+parallel conversion using 13 threads: 23889, 23s889ms
+parallel conversion using 14 threads: 24101, 24s101ms
+parallel conversion using 15 threads: 20400, 20s400ms
+Epilog : job finished at ven. oct.  9 14:30:39 CEST 2015
+
+data file: //work//psenin//perf//sampler//SAX//src//resources//dataset//300_signal1.txt
+data size: 536976
+SAX parameters: sliding window size 200, PAA size 11, alphabet size 7, NR strategy MINDIST
+Performing 20 SAX conversion runs for each algorithm implementation ... 
+single thread conversion: 172719, 2m52s719ms
+parallel conversion using 2 threads: 89982, 1m29s982ms
+parallel conversion using 3 threads: 61304, 1m1s304ms
+parallel conversion using 4 threads: 46731, 46s731ms
+parallel conversion using 5 threads: 38813, 38s813ms
+parallel conversion using 6 threads: 33118, 33s118ms
+parallel conversion using 7 threads: 28827, 28s827ms
+parallel conversion using 8 threads: 25675, 25s675ms
+parallel conversion using 9 threads: 23969, 23s969ms
+parallel conversion using 10 threads: 20968, 20s968ms
+parallel conversion using 11 threads: 19904, 19s904ms
+parallel conversion using 12 threads: 18160, 18s160ms
+parallel conversion using 13 threads: 18051, 18s51ms
+parallel conversion using 14 threads: 20668, 20s668ms
+parallel conversion using 15 threads: 18962, 18s962ms
+Epilog : job finished at ven. oct.  9 14:29:22 CEST 2015

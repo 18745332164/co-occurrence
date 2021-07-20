@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="ehcache.xsd">
+
+	<diskStore path="ehcache.disk.store.dir/lastfm" />
+
+	<defaultCache maxElementsInMemory="500" eternal="true"
+		overflowToDisk="true" timeToIdleSeconds="300" timeToLiveSeconds="600"
+		diskPersistent="true" diskExpiryThreadIntervalSeconds="1"
+		memoryStoreEvictionPolicy="LFU" />
+
+
+    <!--  timeToIdle and timeToLive to one week -->
+	<cache name="cache" maxElementsInMemory="1"
+		maxElementsOnDisk="1000000" timeToIdleSeconds="604800" timeToLiveSeconds="604800" overflowToDisk="true"
+		diskSpoolBufferSizeMB="5" diskPersistent="true"
+		memoryStoreEvictionPolicy="LFU" />
+
+</ehcache>

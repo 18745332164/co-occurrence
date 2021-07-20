@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+	
+	default-autowire="byName" default-lazy-init="true">
+	
+	<bean id="allEncoders" class="java.util.ArrayList">
+		<constructor-arg>
+			<list>
+				<value>net.sourceforge.atunes.kernel.modules.cdripper.OggEncoder</value>
+				<value>net.sourceforge.atunes.kernel.modules.cdripper.LameEncoder</value>
+				<value>net.sourceforge.atunes.kernel.modules.cdripper.Mp4Encoder</value>
+				<value>net.sourceforge.atunes.kernel.modules.cdripper.NeroAacEncoder</value>
+				<value>net.sourceforge.atunes.kernel.modules.cdripper.FlacEncoder</value>
+				<value>net.sourceforge.atunes.kernel.modules.cdripper.WavEncoder</value>
+			</list>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="abstractEncoder" class="net.sourceforge.atunes.kernel.modules.cdripper.AbstractEncoder" abstract="true"/>
+	
+	<bean class="net.sourceforge.atunes.kernel.modules.cdripper.FlacEncoder" parent="abstractEncoder" scope="prototype"/>
+	<bean class="net.sourceforge.atunes.kernel.modules.cdripper.LameEncoder" parent="abstractEncoder" scope="prototype"/>
+	<bean class="net.sourceforge.atunes.kernel.modules.cdripper.Mp4Encoder" parent="abstractEncoder" scope="prototype"/>
+	<bean class="net.sourceforge.atunes.kernel.modules.cdripper.NeroAacEncoder" parent="abstractEncoder" scope="prototype"/>
+	<bean class="net.sourceforge.atunes.kernel.modules.cdripper.OggEncoder" parent="abstractEncoder" scope="prototype"/>
+	<bean class="net.sourceforge.atunes.kernel.modules.cdripper.WavEncoder" parent="abstractEncoder" scope="prototype"/>
+	<bean class="net.sourceforge.atunes.kernel.modules.cdripper.FakeEncoder" parent="abstractEncoder" scope="prototype"/>
+	
+	
+	<bean id="getCdInfoBackgroundWorker" class="net.sourceforge.atunes.kernel.modules.cdripper.GetCdInfoAndStartRippingBackgroundWorker" scope="prototype"/>
+	<bean id="fillSongTitlesBackgroundWorker" class="net.sourceforge.atunes.kernel.modules.cdripper.FillSongTitlesBackgroundWorker" scope="prototype"/>
+	<bean id="ripTracksBackgroundWorker" class="net.sourceforge.atunes.kernel.modules.cdripper.RipTracksBackgroundWorker" scope="prototype"/>
+
+	<bean class="net.sourceforge.atunes.kernel.modules.cdripper.CdRipper" scope="prototype"/>
+	<bean id="cdToWavConverterFactory" class="net.sourceforge.atunes.kernel.modules.cdripper.CdToWavConverterFactory" scope="prototype"/>
+	<bean id="cdToWavConverter" factory-bean="cdToWavConverterFactory" factory-method="createNewConverterForOS"/>
+	
+	<bean id="cdRipperFileNameCreator" class="net.sourceforge.atunes.kernel.modules.cdripper.CdRipperFileNameCreator" scope="prototype"/>
+	<bean id="cdRipperFolderNameCreator" class="net.sourceforge.atunes.kernel.modules.cdripper.CdRipperFolderNameCreator" scope="prototype"/>	
+
+</beans>

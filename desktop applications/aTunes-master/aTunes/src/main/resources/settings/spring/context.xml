@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+
+	default-autowire="byName" default-lazy-init="true">
+
+	<bean id="contextInformationTableFactory" class="net.sourceforge.atunes.kernel.modules.context.ContextInformationTableFactory"/>
+	<bean id="contextTableURLOpener" class="net.sourceforge.atunes.kernel.modules.context.ContextTableURLOpener"/>
+	<bean id="createPlaylistWithPopularTracksActionListener" class="net.sourceforge.atunes.kernel.modules.context.artist.CreatePlaylistWithPopularTracksActionListener"/>
+
+
+	<!-- CONTEXT PANELS -->
+
+	<bean id="contextPanels" class="java.util.ArrayList">
+		<constructor-arg>
+			<list>
+				<ref bean="audioObjectContextPanel" />
+				<ref bean="albumContextPanel" />
+				<ref bean="artistContextPanel" />
+				<ref bean="similarArtistsContextPanel" />
+				<ref bean="youtubeContextPanel" />
+				<ref bean="eventsContextPanel" />
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<!-- CONTENTS FOR EACH CONTEXT PANEL -->
+
+	<bean id="contextPanel" abstract="true"
+		class="net.sourceforge.atunes.kernel.modules.context.AbstractContextPanel" />
+
+	<bean id="albumContextPanel"
+		class="net.sourceforge.atunes.kernel.modules.context.album.AlbumContextPanel"
+		parent="contextPanel">
+		<property name="contents">
+			<list>
+				<ref bean="albumBasicInfoContent" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="artistContextPanel" lazy-init="true"
+		class="net.sourceforge.atunes.kernel.modules.context.artist.ArtistContextPanel"
+		parent="contextPanel">
+		<property name="contents">
+			<list>
+				<ref bean="artistBasicInfoContent" />
+				<ref bean="artistTopTracksContent" />
+				<bean
+					class="net.sourceforge.atunes.kernel.modules.context.artist.ArtistAlbumsSelector"
+					factory-method="getContextPanelContent">
+					<constructor-arg ref="beanFactory" />
+					<constructor-arg ref="stateContext" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="audioObjectContextPanel"
+		class="net.sourceforge.atunes.kernel.modules.context.audioobject.AudioObjectContextPanel"
+		parent="contextPanel">
+		<property name="contents">
+			<list>
+				<ref bean="audioObjectBasicInfoContent" />
+				<ref bean="lyricsContent" />
+			</list>
+		</property>
+	</bean>
+	<bean id="similarArtistsContextPanel"
+		class="net.sourceforge.atunes.kernel.modules.context.similar.SimilarArtistsContextPanel"
+		parent="contextPanel">
+		<property name="contents">
+			<list>
+				<ref bean="similarArtistsContent" />
+			</list>
+		</property>
+	</bean>
+	<bean id="youtubeContextPanel"
+		class="net.sourceforge.atunes.kernel.modules.context.youtube.YoutubeContextPanel"
+		parent="contextPanel">
+		<property name="contents">
+			<list>
+				<ref bean="youtubeContent" />
+			</list>
+		</property>
+	</bean>
+	<bean id="eventsContextPanel" class="net.sourceforge.atunes.kernel.modules.context.event.EventsContextPanel" parent="contextPanel">
+		<property name="contents">
+			<list>
+				<ref bean="eventsContent"/>
+			</list>
+		</property>
+	</bean>
+
+
+	<!-- DATA SOURCES -->
+
+	<bean id="audioObjectBasicInfoDataSource"
+		class="net.sourceforge.atunes.kernel.modules.context.audioobject.AudioObjectBasicInfoDataSource" />
+	<bean id="albumInfoDataSource"
+		class="net.sourceforge.atunes.kernel.modules.context.album.AlbumInfoDataSource" />
+	<bean id="artistInfoDataSource"
+		class="net.sourceforge.atunes.kernel.modules.context.artist.ArtistInfoDataSource" />
+	<bean id="artistAlbumsImagesDataSource"
+	    class="net.sourceforge.atunes.kernel.modules.context.artist.ArtistAlbumListImagesDataSource"/>
+	<bean id="artistPopularTracksDataSource"
+		class="net.sourceforge.atunes.kernel.modules.context.artist.ArtistPopularTracksDataSource" />
+	<bean id="lyricsDataSource"
+		class="net.sourceforge.atunes.kernel.modules.context.audioobject.LyricsDataSource" />
+	<bean id="similarArtistsDataSource"
+		class="net.sourceforge.atunes.kernel.modules.context.similar.SimilarArtistsDataSource" />
+	<bean id="youtubeDataSource"
+		class="net.sourceforge.atunes.kernel.modules.context.youtube.YoutubeDataSource" />
+	<bean id="eventsDataSource"
+		class="net.sourceforge.atunes.kernel.modules.context.event.EventsDataSource" />
+
+
+	<!-- CONTEXT PANEL CONTENTS -->
+
+	<bean id="contextPanelContent"
+		class="net.sourceforge.atunes.kernel.modules.context.AbstractContextPanelContent"
+		abstract="true"/>
+
+	<bean id="audioObjectBasicInfoContent"
+		class="net.sourceforge.atunes.kernel.modules.context.audioobject.AudioObjectBasicInfoContent"
+		parent="contextPanelContent">
+		<property name="dataSource" ref="audioObjectBasicInfoDataSource" />
+	</bean>
+
+	<bean id="albumBasicInfoContent"
+		class="net.sourceforge.atunes.kernel.modules.context.album.AlbumBasicInfoContent"
+		parent="contextPanelContent">
+		<property name="dataSource" ref="albumInfoDataSource" />
+	</bean>
+
+	<bean id="artistAlbumsContent"
+		class="net.sourceforge.atunes.kernel.modules.context.artist.ArtistAlbumsContent"
+		parent="contextPanelContent">
+		<property name="dataSource" ref="artistAlbumsImagesDataSource" />
+	</bean>
+
+	<bean id="artistAlbumsFlowContent"
+		class="net.sourceforge.atunes.kernel.modules.context.artist.ArtistAlbumsFlowContent"
+		parent="contextPanelContent">
+		<property name="dataSource" ref="artistAlbumsImagesDataSource" />
+	</bean>
+
+	<bean id="artistBasicInfoContent"
+		class="net.sourceforge.atunes.kernel.modules.context.artist.ArtistBasicInfoContent"
+		parent="contextPanelContent">
+		<property name="dataSource" ref="artistInfoDataSource" />
+	</bean>
+
+	<bean id="artistTopTracksContent"
+		class="net.sourceforge.atunes.kernel.modules.context.artist.ArtistTopTracksContent"
+		parent="contextPanelContent">
+		<property name="dataSource" ref="artistPopularTracksDataSource" />
+	</bean>
+
+	<bean id="lyricsContent"
+		class="net.sourceforge.atunes.kernel.modules.context.audioobject.LyricsContent"
+		parent="contextPanelContent">
+		<property name="dataSource" ref="lyricsDataSource" />
+	</bean>
+
+	<bean id="similarArtistsContent"
+		class="net.sourceforge.atunes.kernel.modules.context.similar.SimilarArtistsContent"
+		parent="contextPanelContent">
+		<property name="dataSource" ref="similarArtistsDataSource" />
+	</bean>
+
+	<bean id="youtubeContent"
+		class="net.sourceforge.atunes.kernel.modules.context.youtube.YoutubeContent"
+		parent="contextPanelContent">
+		<property name="dataSource" ref="youtubeDataSource" />
+	</bean>
+	
+	<bean id="eventsContent"
+	    class="net.sourceforge.atunes.kernel.modules.context.event.EventsContent"
+	    parent="contextPanelContent">
+	    <property name="dataSource" ref="eventsDataSource" />
+	</bean>
+	
+	<bean id="contextArtistTracksTableModel" class="net.sourceforge.atunes.kernel.modules.context.artist.ContextArtistTracksTableModel" scope="prototype"/>
+	
+	<!-- ACTIONS -->
+	<bean id="contextTableAction" class="net.sourceforge.atunes.kernel.modules.context.ContextTableAction" abstract="true"/>
+	
+	<bean class="net.sourceforge.atunes.kernel.modules.context.similar.ReadMoreContextTableAction" parent="contextTableAction" scope="prototype"/>
+	<bean class="net.sourceforge.atunes.kernel.modules.context.similar.SearchArtistContextTableAction" parent="contextTableAction" scope="prototype"/>
+	<bean class="net.sourceforge.atunes.kernel.modules.context.similar.AddAlbumArtistToPlayListContextTableAction" parent="contextTableAction" scope="prototype"/>
+	<bean class="net.sourceforge.atunes.kernel.modules.context.artist.OpenAlbumUrlAction" parent="contextTableAction" scope="prototype"/>
+	<bean id="openYoutubeVideoAction" class="net.sourceforge.atunes.kernel.modules.context.youtube.OpenYoutubeVideoAction" parent="contextTableAction" scope="prototype"/>
+	<bean id="openEventAction" class="net.sourceforge.atunes.kernel.modules.context.event.OpenEventAction" parent="contextTableAction" scope="prototype"/>
+
+
+    <!-- SEARCH FOR SIMILAR ARTISTS -->
+	<bean id="similarArtistSearchQueryDefault" class="java.lang.String">
+		<constructor-arg value="http://www.google.com/search?q=%A"/>
+	</bean>	
+	<bean id="similarArtistSearchQueryWildcard" class="java.lang.String">
+		<constructor-arg value="%A"/>
+	</bean>
+	
+	
+</beans>

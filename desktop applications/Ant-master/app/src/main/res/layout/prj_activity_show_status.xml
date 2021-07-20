@@ -1,0 +1,47 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/LibMatchMatch"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/activityToolbar"
+        android:layout_width="fill_parent"
+        android:layout_height="56dp"
+        android:elevation="2dp"
+        android:theme="@style/Toolbar" />
+
+    <TextView
+        style="@style/LibMatchWrap"
+        android:layout_below="@+id/activityToolbar"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="56dp"
+        android:gravity="center"
+        android:text="content" />
+
+
+    <RelativeLayout
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true">
+
+        <ImageView
+            android:id="@+id/test_sub_iv"
+            style="@style/LibMatchMatch"
+            android:src="@color/app_primary" />
+
+        <RelativeLayout
+
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true">
+
+            <ImageView
+                android:id="@+id/test_sub_iv2"
+                style="@style/LibMatchMatch"
+                android:src="@color/colorAccent" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+</LinearLayout>
+
+

@@ -1,0 +1,17 @@
+/bin
+/DIST
+/build
+/target
+/ArgoUML-*.tar.gz
+/ArgoUML-*.zip
+/ArgoUML-*.tgz
+/argouml.log
+/.classpath.full
+/.fbwarnings
+/.fbprefs
+/src/*/build-eclipse
+/src/*/.classpath
+/.project
+/src/*/.project
+/.settings
+/src/*/.settings

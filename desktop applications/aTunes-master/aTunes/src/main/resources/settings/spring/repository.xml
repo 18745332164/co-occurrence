@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-autowire="byName" default-lazy-init="true">
+	
+	<bean id="repositoryFromCacheProcessor" class="net.sourceforge.atunes.kernel.modules.repository.RepositoryFromCacheProcessor" scope="prototype"/>
+	<bean id="repositoryLoadedActions" class="net.sourceforge.atunes.kernel.modules.repository.RepositoryLoadedActions" scope="prototype"/>
+	<bean id="repositoryReader" class="net.sourceforge.atunes.kernel.modules.repository.RepositoryReader" scope="prototype"/>
+	<bean id="repositoryRemover" class="net.sourceforge.atunes.kernel.modules.repository.RepositoryRemover" scope="prototype"/>
+	<bean id="repositoryActions" class="net.sourceforge.atunes.kernel.modules.repository.RepositoryActionsHelper" scope="prototype"/>
+	<bean id="repositoryAddService" class="net.sourceforge.atunes.kernel.modules.repository.RepositoryAddService" scope="prototype"/>
+	
+	<bean id="audioObjectComparator" class="net.sourceforge.atunes.kernel.modules.repository.AudioObjectComparator" scope="prototype"/>
+	<bean id="audioObjectDuplicateFinder" class="net.sourceforge.atunes.kernel.modules.repository.AudioObjectDuplicateFinder" scope="prototype"/>
+	
+	<bean id="localAudioObjectFilter" class="net.sourceforge.atunes.kernel.modules.repository.LocalAudioObjectFilter" scope="prototype"/>	
+	<bean id="localAudioObjectRefresher" class="net.sourceforge.atunes.kernel.modules.repository.LocalAudioObjectRefresher" scope="prototype"/>
+	
+	<bean id="persistRepositoryTask" class="net.sourceforge.atunes.kernel.modules.repository.PersistRepositoryTask" scope="prototype"/>
+	
+	<bean id="showRepositoryDataHelper" class="net.sourceforge.atunes.kernel.modules.repository.ShowRepositoryDataHelper" scope="prototype"/>
+	
+	<bean id="voidRepository" class="net.sourceforge.atunes.kernel.modules.repository.VoidRepository" scope="prototype"/>
+	
+	
+	
+	
+	
+	<bean id="repositoryRefresher" class="net.sourceforge.atunes.kernel.modules.repository.RepositoryAutoRefresher"/>
+	
+	<bean id="localAudioObjectFactory" class="net.sourceforge.atunes.kernel.modules.repository.LocalAudioObjectFactory"/>
+	<bean id="localAudioObjectReader" class="net.sourceforge.atunes.kernel.modules.tags.TagReader"/>
+	<bean id="localAudioObjectValidator" class="net.sourceforge.atunes.kernel.modules.repository.LocalAudioObjectValidator" init-method="initialize"/>
+	<bean id="localAudioObjectLocator" class="net.sourceforge.atunes.kernel.modules.repository.LocalAudioObjectLocator"/>
+	<bean id="validLocalAudioObjectFileFilter" class="net.sourceforge.atunes.kernel.modules.repository.ValidLocalAudioObjectFileFilter"/>
+	
+	
+	<bean id="folderRefresher" class="net.sourceforge.atunes.kernel.modules.repository.FolderRefresher"/>
+	
+
+	<bean id="addFilesTask" class="net.sourceforge.atunes.kernel.modules.repository.AddFilesToRepositoryTask" scope="prototype"/>
+	<bean id="deleteFilesTask" class="net.sourceforge.atunes.kernel.modules.repository.DeleteFilesTask" scope="prototype"/>
+	<bean id="refreshFoldersTask" class="net.sourceforge.atunes.kernel.modules.repository.RefreshFoldersTask" scope="prototype"/>	
+	
+	<bean id="abstractRepositoryLoader" class="net.sourceforge.atunes.kernel.modules.repository.AbstractRepositoryLoader" abstract="true"/>
+	<bean id="repositoryReadLoader" class="net.sourceforge.atunes.kernel.modules.repository.RepositoryReadLoader" parent="abstractRepositoryLoader" scope="prototype"/>
+	<bean id="repositoryRefreshLoader" class="net.sourceforge.atunes.kernel.modules.repository.RepositoryRefreshLoader" parent="abstractRepositoryLoader" scope="prototype"/>
+	
+	<bean class="net.sourceforge.atunes.kernel.modules.repository.ImportFoldersToRepositoryCallable" scope="prototype"/>
+	<bean class="net.sourceforge.atunes.kernel.modules.repository.ImportFoldersToRepositoryActionsWithBackgroundResult" scope="prototype"/>
+	
+	<bean id="importToRepositoryProcessListener" class="net.sourceforge.atunes.kernel.modules.repository.ImportToRepositoryProcessListener" scope="prototype"/>
+	
+	
+	<bean id="tagFactory" class="net.sourceforge.atunes.kernel.modules.tags.TagFactory"/>
+	<bean id="tagModifier" class="net.sourceforge.atunes.kernel.modules.tags.TagModifier"/>
+	<bean id="tagAdapterSelector" class="net.sourceforge.atunes.kernel.modules.tags.TagAdapterSelector">
+		<property name="tagAdapters">
+			<list>
+				<ref bean="jAudiotaggerTagAdapter"/>
+				<ref bean="propertiesFileTagAdapter"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="jAudiotaggerTagAdapter" class="net.sourceforge.atunes.kernel.modules.tags.JAudiotaggerTagAdapter">
+		<property name="storeRatingInFile" value="true"/>
+	</bean>
+	
+	<bean id="jAudiotaggerTagCreator" class="net.sourceforge.atunes.kernel.modules.tags.JAudiotaggerTagCreator"/>
+	<bean id="jAudiotaggerFileReader" class="net.sourceforge.atunes.kernel.modules.tags.JAudiotaggerFileReader"/>
+	<bean id="jAudiotaggerAudioPropertiesReader" class="net.sourceforge.atunes.kernel.modules.repository.JAudiotaggerAudioPropertiesReader"/>
+	
+	<bean id="propertiesFileTagAdapter" class="net.sourceforge.atunes.kernel.modules.tags.PropertiesFileTagAdapter">
+		<property name="storeRatingInFile" value="false"/>
+	</bean>
+	
+	<bean class="net.sourceforge.atunes.kernel.modules.tags.RefreshTagAfterModifyRunnable" scope="prototype"/>
+	
+	
+	<bean id="ratingsToStars" class="net.sourceforge.atunes.kernel.modules.tags.RatingsToStars">
+		<property name="minRatingValue" value="0"/>
+		<property name="maxRatingValue" value="255"/>
+		<property name="numberOfStars" value="5"/>
+	</bean>
+
+	<bean class="net.sourceforge.atunes.kernel.modules.tags.TagAttributesReviewed" scope="prototype"/>
+
+	<bean id="localAudioObjectImageHandler" class="net.sourceforge.atunes.utils.LocalAudioObjectImageHandler"/>
+	
+	
+	<bean id="favoritesArtistsManager" class="net.sourceforge.atunes.kernel.modules.favorites.FavoritesArtistsManager" scope="prototype"/>
+	<bean id="favoritesAlbumsManager" class="net.sourceforge.atunes.kernel.modules.favorites.FavoritesAlbumsManager" scope="prototype"/>
+	<bean id="favoritesSongsManager" class="net.sourceforge.atunes.kernel.modules.favorites.FavoritesSongsManager" scope="prototype"/>
+	
+
+
+
+
+    <!-- SEARCH -->
+    <bean id="complexRuleTreeBuilder" class="net.sourceforge.atunes.kernel.modules.search.ComplexRuleTreeBuilder" scope="prototype"/>
+    
+    <bean id="andLogicalSearchOperator" class="net.sourceforge.atunes.kernel.modules.search.AndLogicalSearchOperator" scope="prototype"/>
+    <bean id="orLogicalSearchOperator" class="net.sourceforge.atunes.kernel.modules.search.OrLogicalSearchOperator"  scope="prototype"/>
+    <bean id="notLogicalSearchOperator" class="net.sourceforge.atunes.kernel.modules.search.NotLogicalSearchOperator"  scope="prototype"/>
+
+    <bean id="stringEqualsSearchOperator" class="net.sourceforge.atunes.kernel.modules.search.StringEqualsSearchOperator"  scope="prototype"/>	
+    <bean id="stringContainsSearchOperator" class="net.sourceforge.atunes.kernel.modules.search.StringContainsSearchOperator"  scope="prototype"/>
+    	
+    <bean id="integerGreaterThanSearchOperator" class="net.sourceforge.atunes.kernel.modules.search.IntegerGreaterThanSearchOperator" scope="prototype"/>	
+    <bean id="integerLessThanSearchOperator" class="net.sourceforge.atunes.kernel.modules.search.IntegerLessThanSearchOperator" scope="prototype"/>
+    <bean id="integerEqualsSearchOperator" class="net.sourceforge.atunes.kernel.modules.search.IntegerEqualsSearchOperator" scope="prototype"/>	
+
+    <bean id="longGreaterThanSearchOperator" class="net.sourceforge.atunes.kernel.modules.search.LongGreaterThanSearchOperator" scope="prototype"/>	
+    <bean id="longLessThanSearchOperator" class="net.sourceforge.atunes.kernel.modules.search.LongLessThanSearchOperator" scope="prototype"/>
+    <bean id="longEqualsSearchOperator" class="net.sourceforge.atunes.kernel.modules.search.LongEqualsSearchOperator" scope="prototype"/>
+    
+    <bean id="albumFavoriteSearchOperator" class="net.sourceforge.atunes.kernel.modules.search.AlbumFavoriteSearchOperator" scope="prototype"/>	
+    <bean id="artistFavoriteSearchOperator" class="net.sourceforge.atunes.kernel.modules.search.ArtistFavoriteSearchOperator" scope="prototype"/>	
+    <bean id="localAudioObjectFavoriteSearchOperator" class="net.sourceforge.atunes.kernel.modules.search.LocalAudioObjectFavoriteSearchOperator" scope="prototype"/>
+	
+	<bean id="genericSearchField" class="net.sourceforge.atunes.kernel.modules.search.GenericSearchField" abstract="true" scope="prototype"/>
+	<bean id="stringSearchField" class="net.sourceforge.atunes.kernel.modules.search.StringSearchField" parent="genericSearchField" abstract="true" scope="prototype"/>
+	<bean id="integerSearchField" class="net.sourceforge.atunes.kernel.modules.search.IntegerSearchField" parent="genericSearchField" abstract="true" scope="prototype"/>
+	<bean id="longSearchField" class="net.sourceforge.atunes.kernel.modules.search.LongSearchField" parent="genericSearchField" abstract="true" scope="prototype"/>
+	
+	<bean id="albumArtistSearchField" class="net.sourceforge.atunes.kernel.modules.search.AlbumArtistSearchField" parent="stringSearchField" scope="prototype"/>
+	<bean id="artistSearchField" class="net.sourceforge.atunes.kernel.modules.search.ArtistSearchField" parent="stringSearchField" scope="prototype"/>
+	<bean id="albumSearchField" class="net.sourceforge.atunes.kernel.modules.search.AlbumSearchField" parent="stringSearchField" scope="prototype"/>		
+	<bean id="bitrateSearchField" class="net.sourceforge.atunes.kernel.modules.search.BitrateSearchField" parent="longSearchField" scope="prototype"/>		
+	<bean id="commentSearchField" class="net.sourceforge.atunes.kernel.modules.search.CommentSearchField" parent="stringSearchField" scope="prototype"/>
+	<bean id="composerSearchField" class="net.sourceforge.atunes.kernel.modules.search.ComposerSearchField" parent="stringSearchField" scope="prototype"/>
+	<bean id="fileNameSearchField" class="net.sourceforge.atunes.kernel.modules.search.FileNameSearchField" parent="stringSearchField" scope="prototype"/>		
+	<bean id="frequencySearchField" class="net.sourceforge.atunes.kernel.modules.search.FrequencySearchField" parent="integerSearchField" scope="prototype"/>		
+	<bean id="genreSearchField" class="net.sourceforge.atunes.kernel.modules.search.GenreSearchField" parent="stringSearchField" scope="prototype"/>
+	<bean id="localAudioObjectSearchField" class="net.sourceforge.atunes.kernel.modules.search.LocalAudioObjectSearchField" parent="genericSearchField" scope="prototype"/>
+	<bean id="lyricsSearchField" class="net.sourceforge.atunes.kernel.modules.search.LyricsSearchField" parent="stringSearchField" scope="prototype"/>
+	<bean id="ratingSearchField" class="net.sourceforge.atunes.kernel.modules.search.RatingSearchField" parent="integerSearchField" scope="prototype"/>
+	<bean id="titleSearchField" class="net.sourceforge.atunes.kernel.modules.search.TitleSearchField" parent="stringSearchField" scope="prototype"/>
+	<bean id="trackSearchField" class="net.sourceforge.atunes.kernel.modules.search.TrackSearchField" parent="integerSearchField" scope="prototype"/>
+	<bean id="urlSearchField" class="net.sourceforge.atunes.kernel.modules.search.URLSearchField" parent="stringSearchField" scope="prototype"/>
+	<bean id="yearSearchField" class="net.sourceforge.atunes.kernel.modules.search.YearSearchField" parent="integerSearchField" scope="prototype"/>
+</beans>

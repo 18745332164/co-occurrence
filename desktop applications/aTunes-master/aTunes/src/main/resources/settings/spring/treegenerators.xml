@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-autowire="byName" default-lazy-init="true">
+
+	<bean id="treeGeneratorFactory"
+		class="net.sourceforge.atunes.kernel.modules.navigator.TreeGeneratorFactory" scope="prototype"/>
+
+
+	<bean id="artistTreeGenerator"
+		class="net.sourceforge.atunes.kernel.modules.navigator.ArtistTreeGenerator" scope="prototype"/>
+	<bean id="albumTreeGenerator"
+		class="net.sourceforge.atunes.kernel.modules.navigator.AlbumTreeGenerator"  scope="prototype"/>
+	<bean id="genreTreeGenerator"
+		class="net.sourceforge.atunes.kernel.modules.navigator.GenreTreeGenerator"  scope="prototype"/>
+	<bean id="folderTreeGenerator"
+		class="net.sourceforge.atunes.kernel.modules.navigator.FolderTreeGenerator"  scope="prototype"/>
+	<bean id="yearTreeGenerator"
+		class="net.sourceforge.atunes.kernel.modules.navigator.YearTreeGenerator"  scope="prototype"/>
+		
+	
+	<bean id="favoritesTreeGenerator" class="net.sourceforge.atunes.kernel.modules.navigator.FavoritesTreeGenerator" scope="prototype"/>
+	
+	
+	<bean id="artistStructureBuilder" class="net.sourceforge.atunes.kernel.modules.navigator.ArtistStructureBuilder"  scope="prototype"/>
+	
+	<bean id="artistViewMode" class="net.sourceforge.atunes.model.ViewMode" factory-method="valueOf">
+		<constructor-arg value="ARTIST"/>
+	</bean>
+	<bean id="albumViewMode" class="net.sourceforge.atunes.model.ViewMode" factory-method="valueOf">
+		<constructor-arg value="ALBUM"/>
+	</bean>
+	<bean id="genreViewMode" class="net.sourceforge.atunes.model.ViewMode" factory-method="valueOf">
+		<constructor-arg value="GENRE"/>
+	</bean>
+	<bean id="folderViewMode" class="net.sourceforge.atunes.model.ViewMode" factory-method="valueOf">
+		<constructor-arg value="FOLDER"/>
+	</bean>
+	<bean id="yearViewMode" class="net.sourceforge.atunes.model.ViewMode" factory-method="valueOf">
+		<constructor-arg value="YEAR"/>
+	</bean>
+	<bean id="artistAlbumViewMode" class="net.sourceforge.atunes.model.ViewMode" factory-method="valueOf">
+		<constructor-arg value="ARTIST_ALBUM"/>
+	</bean>
+	
+	
+	<bean id="treeLevelsBuilder" class="net.sourceforge.atunes.kernel.modules.navigator.TreeLevelsBuilder" scope="prototype"/>
+	
+	<bean id="treeLevelGenre" class="net.sourceforge.atunes.kernel.modules.navigator.TreeLevelGenre" scope="prototype"/>
+	<bean id="treeLevelYear" class="net.sourceforge.atunes.kernel.modules.navigator.TreeLevelYear" scope="prototype"/>
+	<bean id="treeLevelArtist" class="net.sourceforge.atunes.kernel.modules.navigator.TreeLevelArtist" scope="prototype"/>
+	<bean id="treeLevelAlbum" class="net.sourceforge.atunes.kernel.modules.navigator.TreeLevelAlbum" scope="prototype"/>
+</beans>
